@@ -23,6 +23,7 @@ NTSTATUS RegistryFilterPostCreateKey(
 	{
 		return STATUS_SUCCESS;
 	}
+	DEBUG_LOG("RegistryFilterPostCreateKey: Applying filters");
 
 	pObjectContext = REGISTRY_FILTER_ALLOCATE(
 		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT), 
@@ -37,13 +38,12 @@ NTSTATUS RegistryFilterPostCreateKey(
 	}
 
 	pObjectContext->RuleEntry = RuleEntry;
-	pObjectContext->ObjectContextCookie.QuadPart = 0;
 
 	pOldContext = NULL;
 
 	Status = CmSetCallbackObjectContext(
 		Info->Object,
-		&pObjectContext->ObjectContextCookie,
+		&pContext->FilterContextCookie,
 		(PVOID)pObjectContext,
 		&pOldContext
 	);
@@ -131,6 +131,9 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
 		return STATUS_SUCCESS;
 	}
+
+	DEBUG_LOG("RegistryFilterPostCreateKeyEx: Applying filters");
+
 	REGISTRY_FILTER_FREE(FullKeyName.Buffer);
 
 	pObjectContext = REGISTRY_FILTER_ALLOCATE(
@@ -146,13 +149,12 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	}
 
 	pObjectContext->RuleEntry = RuleEntry;
-	pObjectContext->ObjectContextCookie.QuadPart = 0;
 
 	pOldContext = NULL;
 
 	Status = CmSetCallbackObjectContext(
 		Info->Object,
-		&pObjectContext->ObjectContextCookie,
+		&pContext->FilterContextCookie,
 		(PVOID)pObjectContext,
 		&pOldContext
 	);

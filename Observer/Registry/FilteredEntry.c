@@ -1,5 +1,8 @@
 #include "Includes.h"
 
+#include "../Log/Log.h"
+
+
 _Use_decl_annotations_
 BOOLEAN IsFilteredRegistryKey(
 	PUNICODE_STRING KeyPath,
@@ -34,6 +37,7 @@ BOOLEAN IsFilteredRegistryKey(
 		}
 		if (Result == 0)
 		{
+			DEBUG_LOG("IsFilteredRegistryKey: Filtered: %wZ", KeyPath);
 			if (EntryOut != NULL)
 			{
 				*EntryOut = CurrentEntry;

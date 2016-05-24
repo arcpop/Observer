@@ -37,7 +37,7 @@ NTSTATUS DriverEntry(
 
 	RtlInitUnicodeString(
 		&uTestFilter,
-		L"\\REGISTRY\\HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+		L"\\REGISTRY\\USER\\S-1-5-21-945703056-3533603644-3919355012-1000\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
 	);
 
 	Status = RegistryFilterAdd(
@@ -48,7 +48,7 @@ NTSTATUS DriverEntry(
 	);
 	RtlInitUnicodeString(
 		&uTestFilter,
-		L"\\REGISTRY\\HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
+		L"\\REGISTRY\\USER\\S-1-5-21-945703056-3533603644-3919355012-1000\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
 	);
 
 	Status = RegistryFilterAdd(

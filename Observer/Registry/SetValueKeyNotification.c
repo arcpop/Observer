@@ -12,7 +12,7 @@ NTSTATUS RegistryFilterPreSetValueKey(
 	if (Info->ObjectContext != NULL)
 	{
 		PREGISTRY_FILTER_FILTERED_KEY_ENTRY pEntry;
-		pEntry = (PREGISTRY_FILTER_FILTERED_KEY_ENTRY)Info->ObjectContext;
+		pEntry = (PREGISTRY_FILTER_FILTERED_KEY_ENTRY)(Info->ObjectContext);
 
 		if (pEntry->ActionFlags == ACTIONFLAG_BLOCK)
 		{
