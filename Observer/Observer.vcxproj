@@ -136,6 +136,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Registry\CleanupObectContextNotification.c" />
     <ClCompile Include="Registry\CreateKeyNotification.c" />
     <ClCompile Include="Registry\FilteredEntry.c" />
     <ClCompile Include="Registry\OpenKeyNotification.c" />

@@ -68,7 +68,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 {
 	const UNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
-	PREG_OPEN_KEY_INFORMATION PreInfo;
+	PREG_CREATE_KEY_INFORMATION PreInfo;
 	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
 	PVOID pOldContext;
 	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
@@ -76,7 +76,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	ULONG TotalUnicodeLength;
 	USHORT Count;
 
-	PreInfo = (PREG_OPEN_KEY_INFORMATION)Info->PreInformation;
+	PreInfo = (PREG_CREATE_KEY_INFORMATION)Info->PreInformation;
 
 	if (PreInfo == NULL)
 	{

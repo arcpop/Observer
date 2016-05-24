@@ -63,5 +63,8 @@
     <ClCompile Include="Registry\OpenKeyNotification.c">
       <Filter>Source Files\Registry</Filter>
     </ClCompile>
+    <ClCompile Include="Registry\CleanupObectContextNotification.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

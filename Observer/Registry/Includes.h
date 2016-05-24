@@ -50,10 +50,19 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 	_In_ PREG_POST_OPERATION_INFORMATION Info
 );
 
+NTSTATUS RegistryFilterCleanupObjectContext(
+	_In_ PREGISTRY_FILTER_CONTEXT pContext,
+	_In_ PREG_CALLBACK_CONTEXT_CLEANUP_INFORMATION Info
+);
+
 BOOLEAN IsFilteredRegistryKey(
 	_In_      PUNICODE_STRING KeyPath,
 	_In_      PREGISTRY_FILTER_CONTEXT Context,
 	_Out_opt_ PREGISTRY_FILTER_FILTERED_KEY_ENTRY* EntryOut
+);
+
+VOID ReleaseRegistryFilterFilteredKeyEntry(
+	_In_ PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry
 );
 
 #endif // !REGISTRY_FILTER_H

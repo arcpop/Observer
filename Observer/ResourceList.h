@@ -35,7 +35,7 @@ PRESOURCE_LIST_ENTRY NextListEntry(
 );
 
 BOOLEAN ReleaseListEntry(
-	_In_ PRESOURCE_LIST_ENTRY* ppEntry
+	_In_ PRESOURCE_LIST_ENTRY pEntry
 );
 
 #endif // !RESOURCE_LIST_H
