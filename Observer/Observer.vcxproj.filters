@@ -43,6 +43,9 @@
     <ClInclude Include="ResourceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Registry\ActionFlags.h">
+      <Filter>Header Files\Registry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Registry\RegistryFilterCallback.c">
@@ -73,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Registry\RegistryFilterUnload.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\RegistryFilterAdd.c">
       <Filter>Source Files\Registry</Filter>
     </ClCompile>
   </ItemGroup>

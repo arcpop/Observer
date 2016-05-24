@@ -18,7 +18,7 @@ VOID InitializeListEntryHead(
 	_In_ PRESOURCE_LIST_ENTRY_HEAD Head
 );
 
-VOID InsertHeadListEntry(
+VOID InsertListEntry(
 	_In_ PRESOURCE_LIST_ENTRY_HEAD Head,
 	_In_ PRESOURCE_LIST_ENTRY Entry
 );

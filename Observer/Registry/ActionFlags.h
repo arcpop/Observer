@@ -1,0 +1,8 @@
+#ifndef REGISTRY_ACTION_FLAGS_H
+#define REGISTRY_ACTION_FLAGS_H
+#pragma once
+
+#define ACTIONFLAG_BLOCK (1 << 0)
+#define ACTIONFLAG_NOTIFY (1 << 1)
+
+#endif // !REGISTRY_ACTION_FLAGS_H 

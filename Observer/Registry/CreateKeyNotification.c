@@ -21,7 +21,6 @@ NTSTATUS RegistryFilterPostCreateKey(
 	
 	if (!IsFilteredRegistryKey(Info->CompleteName, pContext, &RuleEntry))
 	{
-		DEBUG_LOG("RegistryFilterPostCreateKey: %wZ is not filtered", Info->CompleteName);
 		return STATUS_SUCCESS;
 	}
 
@@ -129,7 +128,6 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 
 	if (!IsFilteredRegistryKey(&FullKeyName, pContext, &RuleEntry))
 	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: %wZ is not filtered", &FullKeyName);
 		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
 		return STATUS_SUCCESS;
 	}
