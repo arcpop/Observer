@@ -12,6 +12,7 @@ NTSTATUS RegistryFilterInitialize(
 	PREGISTRY_FILTER_CONTEXT pContext;
 	UNICODE_STRING uAltitude;
 
+	RtlInitUnicodeString(&uAltitude, L"260005");
 
 	pContext = REGISTRY_FILTER_ALLOCATE(sizeof(REGISTRY_FILTER_CONTEXT), NonPagedPool);
 	if (pContext == NULL)
