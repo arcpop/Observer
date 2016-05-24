@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Driver Files">
+      <UniqueIdentifier>{8E41214B-6785-4CFE-B992-037D68949A14}</UniqueIdentifier>
+      <Extensions>inf;inv;inx;mof;mc;</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Registry">
+      <UniqueIdentifier>{c490ddef-d908-4637-b21c-0232b9f53a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Registry">
+      <UniqueIdentifier>{e446f364-a2ef-4e80-86e1-819c334d4bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Log">
+      <UniqueIdentifier>{28ec9a99-9037-4eb9-99fe-0fabd45e7e01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceList">
+      <UniqueIdentifier>{0ddb7ae9-9e9b-4b32-9db0-2df0889ec260}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Log\Log.h">
+      <Filter>Header Files\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistryFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Registry\Includes.h">
+      <Filter>Header Files\Registry</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Registry\RegistryFilterCallback.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\RegistryFilterInitialize.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\CreateKeyNotification.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\FilteredEntry.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceList\ResourceList.c">
+      <Filter>Source Files\ResourceList</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\OpenKeyNotification.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
