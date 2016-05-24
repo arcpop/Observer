@@ -21,16 +21,25 @@ BOOLEAN IsFilteredRegistryKey(
 			TRUE)
 	)
 	{
+		LONG Result = 0;
 		PREGISTRY_FILTER_FILTERED_KEY_ENTRY CurrentEntry;
 		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_FILTERED_KEY_ENTRY, ListEntry);
-		if (RtlCompareUnicodeString(KeyPath, &CurrentEntry->FullRegistryKeyPath, TRUE) == 0)
+		__try
+		{
+			Result = RtlCompareUnicodeString(KeyPath, &CurrentEntry->FullRegistryKeyPath, TRUE);
+		}
+		__except(EXCEPTION_EXECUTE_HANDLER)
+		{
+			Result = -1;
+		}
+		if (Result == 0)
 		{
 			if (EntryOut != NULL)
 			{
 				*EntryOut = CurrentEntry;
 				return TRUE;
 			}
-			if (ReleaseListEntry(&pEntry))
+			if (ReleaseListEntry(pEntry))
 			{
 				REGISTRY_FILTER_FREE(CurrentEntry);
 			}

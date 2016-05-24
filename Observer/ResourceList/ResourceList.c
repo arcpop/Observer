@@ -5,7 +5,7 @@ VOID InitializeListEntryHead(
 	PRESOURCE_LIST_ENTRY_HEAD Head
 )
 {
-	InitializeListHead(&Head->Entry);
+	InitializeListHead(&Head->Entry.ListEntry);
 	KeInitializeSpinLock(&Head->SpinLock);
 }
 
@@ -34,7 +34,11 @@ PRESOURCE_LIST_ENTRY RemoveListEntry(
 	PLIST_ENTRY pRemovedEntry;
 
 	KeAcquireSpinLock(&Head->SpinLock, &OldIrql);
-	pRemovedEntry = RemoveHeadList(&Entry->ListEntry, &Head->SpinLock);
+	pRemovedEntry = RemoveHeadList(&Entry->ListEntry);
+	if (pRemovedEntry != NULL)
+	{
+		pRemovedEntry->Flink = pRemovedEntry->Blink = &Head->Entry.ListEntry;
+	}
 	if (pRemovedEntry == &Entry->ListEntry)
 	{
 		//Only decrease Refcount if the entry was in our list!
@@ -57,7 +61,7 @@ PRESOURCE_LIST_ENTRY NextListEntry(
 	KIRQL OldIrql;
 
 	KeAcquireSpinLock(&Head->SpinLock, &OldIrql);
-	pEntry = CurrentEntry->ListEntry.Flink;
+	pEntry = CONTAINING_RECORD(CurrentEntry->ListEntry.Flink, RESOURCE_LIST_ENTRY, ListEntry);
 	InterlockedAdd(&pEntry->RefCount, 1);
 	if (ReleaseCurrent)
 	{

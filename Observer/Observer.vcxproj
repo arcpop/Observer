@@ -136,12 +136,15 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DriverEntry.c" />
     <ClCompile Include="Registry\CleanupObectContextNotification.c" />
     <ClCompile Include="Registry\CreateKeyNotification.c" />
     <ClCompile Include="Registry\FilteredEntry.c" />
     <ClCompile Include="Registry\OpenKeyNotification.c" />
     <ClCompile Include="Registry\RegistryFilterCallback.c" />
     <ClCompile Include="Registry\RegistryFilterInitialize.c" />
+    <ClCompile Include="Registry\RegistryFilterUnload.c" />
+    <ClCompile Include="Registry\SetValueKeyNotification.c" />
     <ClCompile Include="ResourceList\ResourceList.c" />
   </ItemGroup>
   <ItemGroup>

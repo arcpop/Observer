@@ -9,4 +9,8 @@ NTSTATUS RegistryFilterInitialize(
 	_Out_	 PVOID* ppContext
 );
 
+NTSTATUS RegistryFilterUnload(
+	_In_     PVOID pContext
+);
+
 #endif // !_REGISTRY_FILTER_H_

@@ -55,6 +55,11 @@ NTSTATUS RegistryFilterCleanupObjectContext(
 	_In_ PREG_CALLBACK_CONTEXT_CLEANUP_INFORMATION Info
 );
 
+NTSTATUS RegistryFilterPreSetValueKey(
+	_In_ PREGISTRY_FILTER_CONTEXT pContext,
+	_In_ PREG_SET_VALUE_KEY_INFORMATION Info
+);
+
 BOOLEAN IsFilteredRegistryKey(
 	_In_      PUNICODE_STRING KeyPath,
 	_In_      PREGISTRY_FILTER_CONTEXT Context,

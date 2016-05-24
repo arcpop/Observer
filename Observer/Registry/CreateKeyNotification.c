@@ -66,7 +66,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	PREG_POST_OPERATION_INFORMATION Info
 )
 {
-	const UNICODE_STRING cuRootName;
+	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_CREATE_KEY_INFORMATION PreInfo;
 	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
@@ -103,7 +103,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 		return Status;
 	}
 
-	TotalUnicodeLength = cuRootName.Length + 2 + PreInfo->CompleteName->Length;
+	TotalUnicodeLength = cuRootName->Length + 2 + PreInfo->CompleteName->Length;
 	
 	if (TotalUnicodeLength >= 0xFFFF)
 	{
@@ -121,8 +121,8 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 
 	FullKeyName.Length = (USHORT)TotalUnicodeLength;
 	FullKeyName.MaximumLength = (USHORT)TotalUnicodeLength;
-	Count = cuRootName.Length >> 1;
-	RtlCopyMemory(FullKeyName.Buffer, cuRootName.Buffer, cuRootName.Length);
+	Count = cuRootName->Length >> 1;
+	RtlCopyMemory(FullKeyName.Buffer, cuRootName->Buffer, cuRootName->Length);
 	FullKeyName.Buffer[Count] = '\\';
 	RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 

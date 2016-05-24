@@ -66,5 +66,14 @@
     <ClCompile Include="Registry\CleanupObectContextNotification.c">
       <Filter>Source Files\Registry</Filter>
     </ClCompile>
+    <ClCompile Include="Registry\SetValueKeyNotification.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="DriverEntry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\RegistryFilterUnload.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@ NTSTATUS RegistryFilterCallback(
 	}
 
 	pContext = (PREGISTRY_FILTER_CONTEXT)CallbackContext;
-	NotifyClass = (REG_NOTIFY_CLASS)Argument1;
+	NotifyClass = (REG_NOTIFY_CLASS)(ULONG_PTR)Argument1;
 
 	switch (NotifyClass)
 	{

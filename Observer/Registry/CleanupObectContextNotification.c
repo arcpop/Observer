@@ -21,6 +21,8 @@ NTSTATUS RegistryFilterCleanupObjectContext(
 
 	REGISTRY_FILTER_FREE(pObjectContext);
 
+	UNREFERENCED_PARAMETER(pContext);
+
 	return STATUS_SUCCESS;
 }
 
