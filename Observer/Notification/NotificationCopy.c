@@ -3,8 +3,8 @@
 _Use_decl_annotations_
 NTSTATUS NotificationCopy(
 	PVOID			Buffer,
-	SIZE_T			BufferSize,
-	KPROCESSOR_MODE RequestorMode
+	ULONG			BufferSize,
+	PULONG			BytesRead
 )
 {
 	NTSTATUS Status;
@@ -32,14 +32,8 @@ NTSTATUS NotificationCopy(
 		pEntry = CONTAINING_RECORD(pListEntry, NOTIFICATION_ENTRY, ListEntry);
 		break;
 	}
-	__try
-	{
-		RtlCopyMemory(Buffer, &pEntry->Data, sizeof(NOTIFICATION_DATA));
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		return GetExceptionCode();
-	}
+	RtlCopyMemory(Buffer, &pEntry->Data, sizeof(NOTIFICATION_DATA));
+	*BytesRead = sizeof(NOTIFICATION_DATA);
 	return STATUS_SUCCESS;
 }
 

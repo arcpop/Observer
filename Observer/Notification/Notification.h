@@ -20,8 +20,8 @@ VOID NotificationSend(
 
 NTSTATUS NotificationCopy (
 	_In_ PVOID			Buffer,
-	_In_ SIZE_T			BufferSize,
-	_In_ KPROCESSOR_MODE RequestorMode
+	_In_ ULONG			BufferSize,
+	_In_ PULONG			BytesRead
 );
 
 extern KMUTEX		NotificationListMutex;
