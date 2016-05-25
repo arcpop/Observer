@@ -29,6 +29,18 @@
     <Filter Include="Source Files\ResourceList">
       <UniqueIdentifier>{0ddb7ae9-9e9b-4b32-9db0-2df0889ec260}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Notification">
+      <UniqueIdentifier>{97e42e1b-b6c9-4263-96ef-4e87d25ea102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Notification">
+      <UniqueIdentifier>{b151069d-4b60-4844-bbdc-3fbe3c1df94f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DeviceIO">
+      <UniqueIdentifier>{438f87a3-530f-4313-bb72-605832e77123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DeviceIO">
+      <UniqueIdentifier>{8a52553a-d6ec-4abd-8147-54225a7f49a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log\Log.h">
@@ -45,6 +57,15 @@
     </ClInclude>
     <ClInclude Include="Registry\ActionFlags.h">
       <Filter>Header Files\Registry</Filter>
+    </ClInclude>
+    <ClInclude Include="Notification\Notification.h">
+      <Filter>Header Files\Notification</Filter>
+    </ClInclude>
+    <ClInclude Include="NotificationData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceIO\DeviceIO.h">
+      <Filter>Header Files\DeviceIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="Registry\RegistryFilterAdd.c">
       <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Notification\NotificationSend.c">
+      <Filter>Source Files\Notification</Filter>
+    </ClCompile>
+    <ClCompile Include="Notification\NotificationCopy.c">
+      <Filter>Source Files\Notification</Filter>
+    </ClCompile>
+    <ClCompile Include="Notification\NotificationInitialize.c">
+      <Filter>Source Files\Notification</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceIO\DeviceIO.c">
+      <Filter>Source Files\DeviceIO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

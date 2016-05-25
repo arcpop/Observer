@@ -71,4 +71,10 @@ VOID ReleaseRegistryFilterFilteredKeyEntry(
 	_In_ PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry
 );
 
+NTSTATUS RegistryFilterApplyObjectContext(
+	_In_ PREGISTRY_FILTER_CONTEXT Context,
+	_In_ PVOID Object,
+	_In_ PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry
+);
+
 #endif // !REGISTRY_FILTER_H

@@ -9,8 +9,6 @@ NTSTATUS RegistryFilterPostOpenKey(
 )
 {
 	NTSTATUS Status;
-	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
-	PVOID pOldContext;
 	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
 
 	if (Info->CompleteName == NULL)
@@ -23,39 +21,18 @@ NTSTATUS RegistryFilterPostOpenKey(
 	{
 		return STATUS_SUCCESS;
 	}
-	DEBUG_LOG("RegistryFilterPostOpenKey: Applying filters");
 
-	pObjectContext = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT),
-		PagedPool
-	);
-
-	if (pObjectContext == NULL)
-	{
-		DEBUG_LOG("RegistryFilterPostOpenKey: Out of memory");
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
-		return STATUS_NO_MEMORY;
-	}
-
-	pObjectContext->RuleEntry = RuleEntry;
-
-	pOldContext = NULL;
-
-	Status = CmSetCallbackObjectContext(
+	Status = RegistryFilterApplyObjectContext(
+		pContext,
 		Info->Object,
-		&pContext->FilterContextCookie,
-		(PVOID)pObjectContext,
-		&pOldContext
+		RuleEntry
 	);
 
 	if (!NT_SUCCESS(Status))
 	{
-		DEBUG_LOG("RegistryFilterPostOpenKey: CmSetCallbackObjectContext failed with error 0x%.8X", Status);
-		REGISTRY_FILTER_FREE(pObjectContext);
 		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
 		return Status;
 	}
-
 	return STATUS_SUCCESS;
 }
 
@@ -68,8 +45,6 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_OPEN_KEY_INFORMATION PreInfo;
-	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
-	PVOID pOldContext;
 	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
 	NTSTATUS Status;
 	ULONG TotalUnicodeLength;
@@ -88,8 +63,11 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 		DEBUG_LOG("RegistryFilterPostOpenKeyEx: PreInformation->CompleteName is NULL");
 		return STATUS_INVALID_PARAMETER;
 	}
+
+	//Check if Complete name is a relative path
 	if ((PreInfo->CompleteName->Length == 0) ||
 		(PreInfo->CompleteName->Buffer[0] != '\\')) {
+
 		Status = CmCallbackGetKeyObjectID(
 			&pContext->FilterContextCookie,
 			PreInfo->RootObject,
@@ -141,38 +119,17 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 		}
 	}
 
-	DEBUG_LOG("RegistryFilterPostOpenKeyEx: Applying filters");
-	pObjectContext = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT),
-		PagedPool
-	);
-
-	if (pObjectContext == NULL)
-	{
-		DEBUG_LOG("RegistryFilterPostOpenKeyEx: Out of memory");
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
-		return STATUS_NO_MEMORY;
-	}
-
-	pObjectContext->RuleEntry = RuleEntry;
-
-	pOldContext = NULL;
-
-	Status = CmSetCallbackObjectContext(
+	Status = RegistryFilterApplyObjectContext(
+		pContext,
 		Info->Object,
-		&pContext->FilterContextCookie,
-		(PVOID)pObjectContext,
-		&pOldContext
+		RuleEntry
 	);
 
 	if (!NT_SUCCESS(Status))
 	{
-		DEBUG_LOG("RegistryFilterPostOpenKeyEx: CmSetCallbackObjectContext failed with error 0x%.8X", Status);
-		REGISTRY_FILTER_FREE(pObjectContext);
 		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
 		return Status;
 	}
-
 	return STATUS_SUCCESS;
 }
 

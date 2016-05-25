@@ -9,8 +9,6 @@ NTSTATUS RegistryFilterPostCreateKey(
 )
 {
 	NTSTATUS Status;
-	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
-	PVOID pOldContext;
 	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
 
 	if (Info->CompleteName == NULL)
@@ -23,39 +21,18 @@ NTSTATUS RegistryFilterPostCreateKey(
 	{
 		return STATUS_SUCCESS;
 	}
-	DEBUG_LOG("RegistryFilterPostCreateKey: Applying filters");
 
-	pObjectContext = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT), 
-		PagedPool
-	);
-
-	if (pObjectContext == NULL)
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKey: Out of memory");
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
-		return STATUS_NO_MEMORY;
-	}
-
-	pObjectContext->RuleEntry = RuleEntry;
-
-	pOldContext = NULL;
-
-	Status = CmSetCallbackObjectContext(
+	Status = RegistryFilterApplyObjectContext(
+		pContext,
 		Info->Object,
-		&pContext->FilterContextCookie,
-		(PVOID)pObjectContext,
-		&pOldContext
+		RuleEntry
 	);
 
 	if (!NT_SUCCESS(Status))
 	{
-		DEBUG_LOG("RegistryFilterPostCreateKey: CmSetCallbackObjectContext failed with error 0x%.8X", Status);
-		REGISTRY_FILTER_FREE(pObjectContext);
 		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
 		return Status;
 	}
-
 	return STATUS_SUCCESS;
 }
 
@@ -68,8 +45,6 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_CREATE_KEY_INFORMATION PreInfo;
-	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
-	PVOID pOldContext;
 	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
 	NTSTATUS Status;
 	ULONG TotalUnicodeLength;
@@ -89,83 +64,73 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 		return STATUS_INVALID_PARAMETER;
 	}
 
-	Status = CmCallbackGetKeyObjectID(
-		&pContext->FilterContextCookie,
-		PreInfo->RootObject,
-		NULL,
-		&cuRootName
-	);
+	//Check if Complete name is a relative path
+	if ((PreInfo->CompleteName->Length == 0) ||
+		(PreInfo->CompleteName->Buffer[0] != '\\')) {
 
-	if (!NT_SUCCESS(Status))
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: CmCallbackGetKeyObjectID failed with error 0x%.8X", Status);
-		return Status;
-	}
+		Status = CmCallbackGetKeyObjectID(
+			&pContext->FilterContextCookie,
+			PreInfo->RootObject,
+			NULL,
+			&cuRootName
+		);
 
-	TotalUnicodeLength = cuRootName->Length + 2 + PreInfo->CompleteName->Length;
+		if (!NT_SUCCESS(Status))
+		{
+			DEBUG_LOG("RegistryFilterPostCreateKeyEx: CmCallbackGetKeyObjectID failed with error 0x%.8X", Status);
+			return Status;
+		}
+
+		TotalUnicodeLength = cuRootName->Length + 2 + PreInfo->CompleteName->Length;
 	
-	if (TotalUnicodeLength >= 0xFFFF)
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: TotalUnicodeLength >= 0xFFFF");
-		return STATUS_NO_MEMORY;
-	}
+		if (TotalUnicodeLength >= 0xFFFF)
+		{
+			DEBUG_LOG("RegistryFilterPostCreateKeyEx: TotalUnicodeLength >= 0xFFFF");
+			return STATUS_NO_MEMORY;
+		}
 
-	FullKeyName.Buffer = REGISTRY_FILTER_ALLOCATE(TotalUnicodeLength, NonPagedPool);
+		FullKeyName.Buffer = REGISTRY_FILTER_ALLOCATE(TotalUnicodeLength, NonPagedPool);
 
-	if (FullKeyName.Buffer == NULL)
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: Out of memory");
-		return STATUS_NO_MEMORY;
-	}
+		if (FullKeyName.Buffer == NULL)
+		{
+			DEBUG_LOG("RegistryFilterPostCreateKeyEx: Out of memory");
+			return STATUS_NO_MEMORY;
+		}
 
-	FullKeyName.Length = (USHORT)TotalUnicodeLength;
-	FullKeyName.MaximumLength = (USHORT)TotalUnicodeLength;
-	Count = cuRootName->Length >> 1;
-	RtlCopyMemory(FullKeyName.Buffer, cuRootName->Buffer, cuRootName->Length);
-	FullKeyName.Buffer[Count] = '\\';
-	RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
+		FullKeyName.Length = (USHORT)TotalUnicodeLength;
+		FullKeyName.MaximumLength = (USHORT)TotalUnicodeLength;
+		Count = cuRootName->Length >> 1;
+		RtlCopyMemory(FullKeyName.Buffer, cuRootName->Buffer, cuRootName->Length);
+		FullKeyName.Buffer[Count] = '\\';
+		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 
 
-	if (!IsFilteredRegistryKey(&FullKeyName, pContext, &RuleEntry))
-	{
+		if (!IsFilteredRegistryKey(&FullKeyName, pContext, &RuleEntry))
+		{
+			REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+			return STATUS_SUCCESS;
+		}
+
 		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
-		return STATUS_SUCCESS;
 	}
-
-	DEBUG_LOG("RegistryFilterPostCreateKeyEx: Applying filters");
-
-	REGISTRY_FILTER_FREE(FullKeyName.Buffer);
-
-	pObjectContext = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT),
-		PagedPool
-	);
-
-	if (pObjectContext == NULL)
+	else
 	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: Out of memory");
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
-		return STATUS_NO_MEMORY;
+		if (!IsFilteredRegistryKey(PreInfo->CompleteName, pContext, &RuleEntry))
+		{
+			return STATUS_SUCCESS;
+		}
 	}
 
-	pObjectContext->RuleEntry = RuleEntry;
-
-	pOldContext = NULL;
-
-	Status = CmSetCallbackObjectContext(
+	Status = RegistryFilterApplyObjectContext(
+		pContext,
 		Info->Object,
-		&pContext->FilterContextCookie,
-		(PVOID)pObjectContext,
-		&pOldContext
+		RuleEntry
 	);
 
 	if (!NT_SUCCESS(Status))
 	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: CmSetCallbackObjectContext failed with error 0x%.8X", Status);
-		REGISTRY_FILTER_FREE(pObjectContext);
 		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
 		return Status;
 	}
-
 	return STATUS_SUCCESS;
 }

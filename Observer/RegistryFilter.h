@@ -1,5 +1,5 @@
-#ifndef _REGISTRY_FILTER_H_
-#define _REGISTRY_FILTER_H_
+#ifndef REGISTRY_FILTER_H
+#define REGISTRY_FILTER_H
 
 #include <ntddk.h>
 
@@ -20,4 +20,4 @@ NTSTATUS RegistryFilterAdd(
 	_In_ PVOID Reserved
 );
 
-#endif // !_REGISTRY_FILTER_H_
+#endif // !REGISTRY_FILTER_H
