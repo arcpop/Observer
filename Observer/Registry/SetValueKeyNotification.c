@@ -66,11 +66,22 @@ NTSTATUS RegistryFilterPreSetValueKey(
 			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
 			if (Info->ValueName != NULL)
 			{
+				USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+				if (Info->ValueName->Length > CopyLength)
+				{
+					pNotification->Data.Types.Registry.Truncated =
+						(Info->ValueName->Length - CopyLength) >> 1;
+				}
+				else
+				{
+					CopyLength = Info->ValueName->Length;
+				}
 				RtlCopyMemory(
 					pNotification->Data.Types.Registry.RegistryPath,
 					Info->ValueName->Buffer,
-					min(Info->ValueName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+					CopyLength
 				);
+				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
 			}
 			else
 			{

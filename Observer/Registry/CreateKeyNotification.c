@@ -32,11 +32,22 @@ NTSTATUS RegistryFilterPostCreateKey(
 			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
 			if (Info->CompleteName != NULL)
 			{
+				UINT16 CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+				if (Info->CompleteName->Length > CopyLength)
+				{
+					pNotification->Data.Types.Registry.Truncated =
+						(Info->CompleteName->Length - CopyLength) >> 1;
+				}
+				else
+				{
+					CopyLength = Info->CompleteName->Length;
+				}
 				RtlCopyMemory(
 					pNotification->Data.Types.Registry.RegistryPath,
 					Info->CompleteName->Buffer,
-					min(Info->CompleteName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+					CopyLength
 				);
+				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
 			}
 			else
 			{
@@ -172,11 +183,22 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
 			if (ReportName != NULL)
 			{
+				UINT16 CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+				if (ReportName->Length > CopyLength)
+				{
+					pNotification->Data.Types.Registry.Truncated =
+						(ReportName->Length - CopyLength) >> 1;
+				}
+				else
+				{
+					CopyLength = ReportName->Length;
+				}
 				RtlCopyMemory(
 					pNotification->Data.Types.Registry.RegistryPath,
 					ReportName->Buffer,
-					min(ReportName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+					CopyLength
 				);
+				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
 			}
 			else
 			{

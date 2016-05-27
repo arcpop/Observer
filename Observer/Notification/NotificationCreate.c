@@ -16,6 +16,7 @@ PNOTIFICATION_ENTRY NotificationCreate(
 		DEBUG_LOG("NotificationCreate: Out of memory");
 		return NULL;
 	}
+	RtlZeroMemory(pNotification, sizeof(NOTIFICATION_ENTRY));
 
 	pNotification->Data.CurrentProcessID = (UINT64)PsGetCurrentProcessId();
 	pNotification->Data.CurrentThreadID = (UINT64)PsGetCurrentThreadId();

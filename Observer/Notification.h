@@ -24,17 +24,21 @@ typedef struct _OBSERVER_NOTIFICATION {
 		struct
 		{
 			UINT16	RegistryAction;
+			UINT16	Truncated;
 			WCHAR	RegistryPath[NOTIFICATION_STRING_BUFFER_SIZE];
 		} Registry;
 		struct
 		{
-			ULONG64 NewThreadID;
-			ULONG64 TargetProcessID;
+			UINT64  NewThreadID;
+			UINT64  TargetProcessID;
 		} ThreadCreated;
 		struct
 		{
-			ULONG64 NewProcessID;
-			ULONG64 ParentProcessID;
+			UINT64  NewProcessID;
+			UINT64  ParentProcessID;
+			UINT64  CreatingThreadID;
+			UINT64  CreatingProcessID;
+			UINT16	Truncated;
 			WCHAR	ImageNamePath[NOTIFICATION_STRING_BUFFER_SIZE];
 		} ProcessCreated;
 		struct
@@ -44,6 +48,7 @@ typedef struct _OBSERVER_NOTIFICATION {
 			UINT32  ImageSigned		: 1;
 			UINT32  SystemImage		: 1;
 			UINT32	Reserved		: 30;
+			UINT16  Truncated;
 			WCHAR	ImageName[NOTIFICATION_STRING_BUFFER_SIZE];
 		} ModuleLoaded;
 		struct
@@ -53,6 +58,7 @@ typedef struct _OBSERVER_NOTIFICATION {
 			UINT32  ImageSigned : 1;
 			UINT32  SystemImage : 1;
 			UINT32	Reserved : 30;
+			UINT16  Truncated;
 			WCHAR	ImageName[NOTIFICATION_STRING_BUFFER_SIZE];
 		} DriverLoaded;
 	} Types;

@@ -20,7 +20,11 @@ typedef struct _PROCESS_RULE_LIST_ENTRY
 
 extern RESOURCE_LIST_ENTRY_HEAD	ProcessRuleList;
 
-PCREATE_PROCESS_NOTIFY_ROUTINE_EX ProcessNotifyRoutine;
+VOID ProcessNotifyRoutine(
+	_Inout_	 PEPROCESS Process,
+	_In_     HANDLE ProcessId,
+	_In_opt_ PPS_CREATE_NOTIFY_INFO CreateInfo
+);
 
 
 #endif // !PROCESS_OBSERVER_H
