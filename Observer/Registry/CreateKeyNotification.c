@@ -1,6 +1,7 @@
 #include "Includes.h"
 
 #include "../Log/Log.h"
+#include "../Notification/NotificationQueue.h"
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterPostCreateKey(
@@ -17,10 +18,49 @@ NTSTATUS RegistryFilterPostCreateKey(
 		return STATUS_INVALID_PARAMETER;
 	}
 	
-	if (!IsFilteredRegistryKey(Info->CompleteName, pContext, &RuleEntry))
+	if (!IsFilteredRegistryKey(Info->CompleteName, &RuleEntry))
 	{
 		return STATUS_SUCCESS;
 	}
+
+	if ((RuleEntry->Rule.Action == ACTION_REPORT) ||
+		(RuleEntry->Rule.Action == ACTION_BLOCK))
+	{
+		PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+		if (pNotification != NULL)
+		{
+			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
+			if (Info->CompleteName != NULL)
+			{
+				RtlCopyMemory(
+					pNotification->Data.Types.Registry.RegistryPath,
+					Info->CompleteName->Buffer,
+					min(Info->CompleteName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+				);
+			}
+			else
+			{
+				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
+			}
+			pNotification->Data.Reaction = RuleEntry->Rule.Action;
+			NotificationSend(pNotification);
+		}
+
+	}
+	if (RuleEntry->Rule.Action == ACTION_BLOCK)
+	{
+		return STATUS_ACCESS_DENIED;
+	}
+
+	if (RuleEntry->Rule.Action == ACTION_DBGPRINT)
+	{
+		DEBUG_LOG("KeyCreate notification");
+	}
+	else
+	{
+		DEBUG_LOG("RegistryFilterPostCreateKey: Unknown action");
+	}
+
 
 	Status = RegistryFilterApplyObjectContext(
 		pContext,
@@ -42,6 +82,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	PREG_POST_OPERATION_INFORMATION Info
 )
 {
+	PUNICODE_STRING ReportName;
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_CREATE_KEY_INFORMATION PreInfo;
@@ -105,20 +146,65 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 
 
-		if (!IsFilteredRegistryKey(&FullKeyName, pContext, &RuleEntry))
+		if (!IsFilteredRegistryKey(&FullKeyName, &RuleEntry))
 		{
 			REGISTRY_FILTER_FREE(FullKeyName.Buffer);
 			return STATUS_SUCCESS;
 		}
-
-		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+		ReportName = &FullKeyName;
 	}
 	else
 	{
-		if (!IsFilteredRegistryKey(PreInfo->CompleteName, pContext, &RuleEntry))
+		if (!IsFilteredRegistryKey(PreInfo->CompleteName, &RuleEntry))
 		{
 			return STATUS_SUCCESS;
 		}
+		ReportName = PreInfo->CompleteName;
+	}
+
+
+	if ((RuleEntry->Rule.Action == ACTION_REPORT) ||
+		(RuleEntry->Rule.Action == ACTION_BLOCK))
+	{
+		PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+		if (pNotification != NULL)
+		{
+			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
+			if (ReportName != NULL)
+			{
+				RtlCopyMemory(
+					pNotification->Data.Types.Registry.RegistryPath,
+					ReportName->Buffer,
+					min(ReportName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+				);
+			}
+			else
+			{
+				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
+			}
+			pNotification->Data.Reaction = RuleEntry->Rule.Action;
+			NotificationSend(pNotification);
+		}
+
+	}
+
+	if (ReportName == &FullKeyName)
+	{
+		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+	}
+
+	if (RuleEntry->Rule.Action == ACTION_BLOCK)
+	{
+		return STATUS_ACCESS_DENIED;
+	}
+
+	if (RuleEntry->Rule.Action == ACTION_DBGPRINT)
+	{
+		DEBUG_LOG("KeyCreateEx Notification");
+	}
+	else
+	{
+		DEBUG_LOG("RegistryFilterPostCreateKeyEx: Unknown action");
 	}
 
 	Status = RegistryFilterApplyObjectContext(

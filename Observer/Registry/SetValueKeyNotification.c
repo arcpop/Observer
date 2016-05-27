@@ -1,6 +1,6 @@
 #include "Includes.h"
 #include "../Log/Log.h"
-
+#include "../Notification/NotificationQueue.h"
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterApplyObjectContext(
@@ -55,17 +55,43 @@ NTSTATUS RegistryFilterPreSetValueKey(
 		PREGISTRY_FILTER_OBJECT_CONTEXT pEntry;
 		pEntry = (PREGISTRY_FILTER_OBJECT_CONTEXT)(Info->ObjectContext);
 
-		if (pEntry->RuleEntry->Rule.Action == ACTION_BLOCK)
+		if ((pEntry->RuleEntry->Rule.Action == ACTION_REPORT) ||
+			(pEntry->RuleEntry->Rule.Action == ACTION_REPORT))
 		{
-			DEBUG_LOG("RegistryFilterPreSetValueKey: Value set blocked");
-			return STATUS_ACCESS_DENIED;
+			PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+			if (pNotification == NULL)
+			{
+				return STATUS_SUCCESS;
+			}
+			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
+			if (Info->ValueName != NULL)
+			{
+				RtlCopyMemory(
+					pNotification->Data.Types.Registry.RegistryPath,
+					Info->ValueName->Buffer,
+					min(Info->ValueName->Length, NOTIFICATION_STRING_BUFFER_SIZE * sizeof(WCHAR))
+				);
+			}
+			else
+			{
+				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
+			} 
+			pNotification->Data.Reaction = pEntry->RuleEntry->Rule.Action;
+			NotificationSend(pNotification);
+
+			if (pEntry->RuleEntry->Rule.Action == ACTION_BLOCK)
+			{
+				return STATUS_ACCESS_DENIED;
+			}
 		}
+
 
 		if (pEntry->RuleEntry->Rule.Action == ACTION_DBGPRINT)
 		{
 			DEBUG_LOG("RegistryFilterPreSetValueKey: Value set notification");
 			return STATUS_SUCCESS;
 		}
+
 		DEBUG_LOG("RegistryFilterPreSetValueKey: Unknown action");
 		return STATUS_SUCCESS;
 	}

@@ -17,7 +17,7 @@ NTSTATUS RegistryFilterPostOpenKey(
 		return STATUS_INVALID_PARAMETER;
 	}
 
-	if (!IsFilteredRegistryKey(Info->CompleteName, pContext, &RuleEntry))
+	if (!IsFilteredRegistryKey(Info->CompleteName, &RuleEntry))
 	{
 		return STATUS_SUCCESS;
 	}
@@ -104,7 +104,7 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 		FullKeyName.Buffer[Count] = '\\';
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 
-		if (!IsFilteredRegistryKey(&FullKeyName, pContext, &RuleEntry))
+		if (!IsFilteredRegistryKey(&FullKeyName, &RuleEntry))
 		{
 			REGISTRY_FILTER_FREE(FullKeyName.Buffer);
 			return STATUS_SUCCESS;
@@ -113,7 +113,7 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 	} 
 	else
 	{
-		if (!IsFilteredRegistryKey(PreInfo->CompleteName, pContext, &RuleEntry))
+		if (!IsFilteredRegistryKey(PreInfo->CompleteName, &RuleEntry))
 		{
 			return STATUS_SUCCESS;
 		}

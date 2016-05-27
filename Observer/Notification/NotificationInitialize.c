@@ -1,4 +1,4 @@
-#include "Notification.h"
+#include "NotificationQueue.h"
 
 _Use_decl_annotations_
 NTSTATUS NotificationInitialize()

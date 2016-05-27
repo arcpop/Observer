@@ -2,16 +2,15 @@
 #include "../Rule.h"
 #include "../Log/Log.h"
 
+RESOURCE_LIST_ENTRY_HEAD RegistryFilterRuleList;
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterAddRule(
-	PVOID pContext,
 	POBSERVER_REGISTRY_RULE Rule,
 	POBSERVER_RULE_HANDLE RuleHandle
 )
 {
 	static LONG64 RuleCounter = 0;
-	PREGISTRY_FILTER_CONTEXT Context = (PREGISTRY_FILTER_CONTEXT)pContext;
 	PREGISTRY_FILTER_RULE_ENTRY RuleEntry = NULL;
 
 	RuleEntry = REGISTRY_FILTER_ALLOCATE(
@@ -47,7 +46,7 @@ NTSTATUS RegistryFilterAddRule(
 	RtlInitUnicodeString(&RuleEntry->Path, RuleEntry->Rule.Path);
 
 	InsertListEntry(
-		&Context->FilteredRegistryKeysList,
+		&RegistryFilterRuleList,
 		&RuleEntry->ListEntry
 	);
 

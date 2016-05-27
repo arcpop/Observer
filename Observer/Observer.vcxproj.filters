@@ -47,6 +47,12 @@
     <Filter Include="Header Files\Util">
       <UniqueIdentifier>{d52cedb0-01d3-425e-8355-d1f8c6d51e2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Process">
+      <UniqueIdentifier>{cca0ff47-fd6b-4af8-89ca-348c324498d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Process">
+      <UniqueIdentifier>{2054821d-1ee3-4202-abd2-2f8de7432f96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log\Log.h">
@@ -61,12 +67,6 @@
     <ClInclude Include="ResourceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Notification\Notification.h">
-      <Filter>Header Files\Notification</Filter>
-    </ClInclude>
-    <ClInclude Include="NotificationData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DeviceIO\DeviceIO.h">
       <Filter>Header Files\DeviceIO</Filter>
     </ClInclude>
@@ -75,6 +75,18 @@
     </ClInclude>
     <ClInclude Include="Util\Util.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Notification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Notification\NotificationQueue.h">
+      <Filter>Header Files\Notification</Filter>
+    </ClInclude>
+    <ClInclude Include="Process\ProcessObserver.h">
+      <Filter>Header Files\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +137,12 @@
     </ClCompile>
     <ClCompile Include="Util\UnicodeStringContains.c">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Notification\NotificationCreate.c">
+      <Filter>Source Files\Notification</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\ProcessCallback.c">
+      <Filter>Source Files\Process</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

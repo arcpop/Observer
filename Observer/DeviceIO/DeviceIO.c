@@ -1,7 +1,8 @@
 #include "DeviceIO.h"
-
+#include "../Rule.h"
 #include "../Log/Log.h"
-#include "../Notification/Notification.h"
+#include "../Notification/NotificationQueue.h"
+#include "../RegistryFilter.h"
 
 typedef struct _IO_DEVICE_EXTENSION
 {
@@ -112,6 +113,69 @@ NTSTATUS DeviceIORead(
 	UNREFERENCED_PARAMETER(DeviceObject);
 	return Status;
 }
+NTSTATUS DeviceIOControlAddRule(
+	PIRP Irp
+)
+{
+	OBSERVER_RULE_HANDLE RuleHandle = { 0, 0 };
+	PIO_STACK_LOCATION IOStackLocation;
+	ULONG_PTR Information = 0;
+	NTSTATUS Status;
+	POBSERVER_ADD_RULE pAddRule;
+	ULONG Length;
+	ULONG Offset = FIELD_OFFSET(OBSERVER_ADD_RULE, Rule);
+
+	IOStackLocation = IoGetCurrentIrpStackLocation(Irp);
+	Length = IOStackLocation->Parameters.DeviceIoControl.InputBufferLength;
+
+	if (Length < Offset)
+	{
+		Irp->IoStatus.Status = STATUS_BUFFER_TOO_SMALL;
+		Irp->IoStatus.Information = 0;
+		IoCompleteRequest(Irp, IO_NO_INCREMENT);
+		return STATUS_BUFFER_TOO_SMALL;
+	}
+	Length -= Offset;
+	pAddRule = (POBSERVER_ADD_RULE)Irp->AssociatedIrp.SystemBuffer;
+
+	switch (pAddRule->RuleType)
+	{
+	case RULE_TYPE_REGISTRY:
+	{
+		if (Length < sizeof(OBSERVER_REGISTRY_RULE))
+		{
+			Status = STATUS_BUFFER_TOO_SMALL;
+			break;
+		}
+		Length -= FIELD_OFFSET(OBSERVER_REGISTRY_RULE, Path);
+		if (Length < pAddRule->Rule.Registry.PathLength)
+		{
+			Status = STATUS_BUFFER_TOO_SMALL;
+			break;
+		}
+		Status = RegistryFilterAddRule(&pAddRule->Rule.Registry, &RuleHandle);
+		break;
+	}
+	default:
+		Status = STATUS_NOT_IMPLEMENTED;
+		break;
+	}
+
+	if (NT_SUCCESS(Status))
+	{
+		if (IOStackLocation->Parameters.DeviceIoControl.OutputBufferLength >= sizeof(OBSERVER_RULE_HANDLE))
+		{
+			((POBSERVER_RULE_HANDLE)Irp->AssociatedIrp.SystemBuffer)->RuleHandle = RuleHandle.RuleHandle;
+			((POBSERVER_RULE_HANDLE)Irp->AssociatedIrp.SystemBuffer)->RuleType = RuleHandle.RuleType;
+			Information = sizeof(OBSERVER_RULE_HANDLE);
+		}
+	}
+
+	Irp->IoStatus.Status = Status;
+	Irp->IoStatus.Information = Information;
+	IoCompleteRequest(Irp, IO_NO_INCREMENT);
+	return Status;
+}
 
 _Use_decl_annotations_
 NTSTATUS DeviceIOControl(
@@ -119,9 +183,20 @@ NTSTATUS DeviceIOControl(
 	PIRP			Irp
 )
 {
+	PIO_STACK_LOCATION IOStackLocation;
+	IOStackLocation = IoGetCurrentIrpStackLocation(Irp);
+	if (IOStackLocation->Parameters.DeviceIoControl.IoControlCode ==
+		IOCTL_OBSERVER_ADD_RULE)
+	{
+		return DeviceIOControlAddRule(Irp);
+	}
+
+	Irp->IoStatus.Status = STATUS_NOT_IMPLEMENTED;
+	Irp->IoStatus.Information = 0;
+	IoCompleteRequest(Irp, IO_NO_INCREMENT);
+
 	UNREFERENCED_PARAMETER(DeviceObject);
-	UNREFERENCED_PARAMETER(Irp);
-	return STATUS_SUCCESS;
+	return STATUS_NOT_IMPLEMENTED;
 }
 
 _Use_decl_annotations_

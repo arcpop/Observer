@@ -139,8 +139,10 @@
     <ClCompile Include="DeviceIO\DeviceIO.c" />
     <ClCompile Include="DriverEntry.c" />
     <ClCompile Include="Notification\NotificationCopy.c" />
+    <ClCompile Include="Notification\NotificationCreate.c" />
     <ClCompile Include="Notification\NotificationInitialize.c" />
     <ClCompile Include="Notification\NotificationSend.c" />
+    <ClCompile Include="Process\ProcessCallback.c" />
     <ClCompile Include="Registry\CleanupObectContextNotification.c" />
     <ClCompile Include="Registry\CreateKeyNotification.c" />
     <ClCompile Include="Registry\FilteredEntry.c" />
@@ -156,8 +158,10 @@
   <ItemGroup>
     <ClInclude Include="DeviceIO\DeviceIO.h" />
     <ClInclude Include="Log\Log.h" />
-    <ClInclude Include="NotificationData.h" />
-    <ClInclude Include="Notification\Notification.h" />
+    <ClInclude Include="Notification.h" />
+    <ClInclude Include="Notification\NotificationQueue.h" />
+    <ClInclude Include="Process.h" />
+    <ClInclude Include="Process\ProcessObserver.h" />
     <ClInclude Include="RegistryFilter.h" />
     <ClInclude Include="Registry\Includes.h" />
     <ClInclude Include="ResourceList.h" />

@@ -6,7 +6,6 @@
 _Use_decl_annotations_
 BOOLEAN IsFilteredRegistryKey(
 	PUNICODE_STRING KeyPath,
-	PREGISTRY_FILTER_CONTEXT Context,
 	PREGISTRY_FILTER_RULE_ENTRY* EntryOut
 )
 {
@@ -14,12 +13,12 @@ BOOLEAN IsFilteredRegistryKey(
 
 	for (
 		pEntry = NextListEntry(
-			&Context->FilteredRegistryKeysList,
-			&Context->FilteredRegistryKeysList.Entry,
+			&RegistryFilterRuleList,
+			&RegistryFilterRuleList.Entry,
 			FALSE);
-		pEntry != &Context->FilteredRegistryKeysList.Entry;
+		pEntry != &RegistryFilterRuleList.Entry;
 		pEntry = NextListEntry(
-			&Context->FilteredRegistryKeysList,
+			&RegistryFilterRuleList,
 			pEntry,
 			TRUE)
 	)

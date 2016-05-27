@@ -1,4 +1,4 @@
-#include "Notification.h"
+#include "NotificationQueue.h"
 
 FAST_MUTEX	NotificationListMutex;
 LIST_ENTRY	NotificationList;

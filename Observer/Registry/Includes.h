@@ -24,7 +24,6 @@ typedef struct _REGISTRY_FILTER_RULE_ENTRY {
 typedef struct _REGISTRY_FILTER_CONTEXT {
 	PDRIVER_OBJECT DriverObject;
 	LARGE_INTEGER FilterContextCookie;
-	RESOURCE_LIST_ENTRY_HEAD FilteredRegistryKeysList;
 } REGISTRY_FILTER_CONTEXT, *PREGISTRY_FILTER_CONTEXT;
 
 typedef struct _REGISTRY_FILTER_OBJECT_CONTEXT {
@@ -63,7 +62,6 @@ NTSTATUS RegistryFilterPreSetValueKey(
 
 BOOLEAN IsFilteredRegistryKey(
 	_In_      PUNICODE_STRING KeyPath,
-	_In_      PREGISTRY_FILTER_CONTEXT Context,
 	_Out_opt_ PREGISTRY_FILTER_RULE_ENTRY* EntryOut
 );
 
@@ -76,5 +74,8 @@ NTSTATUS RegistryFilterApplyObjectContext(
 	_In_ PVOID Object,
 	_In_ PREGISTRY_FILTER_RULE_ENTRY RuleEntry
 );
+
+
+extern RESOURCE_LIST_ENTRY_HEAD RegistryFilterRuleList;
 
 #endif // !REGISTRY_FILTER_H

@@ -1,4 +1,4 @@
-#include "Notification.h"
+#include "NotificationQueue.h"
 
 _Use_decl_annotations_
 NTSTATUS NotificationCopy(
@@ -10,7 +10,7 @@ NTSTATUS NotificationCopy(
 	NTSTATUS Status;
 	PLIST_ENTRY pListEntry;
 	PNOTIFICATION_ENTRY pEntry;
-	if (BufferSize < sizeof(NOTIFICATION_DATA))
+	if (BufferSize < sizeof(OBSERVER_NOTIFICATION))
 	{
 		return STATUS_BUFFER_TOO_SMALL;
 	}
@@ -32,8 +32,9 @@ NTSTATUS NotificationCopy(
 		pEntry = CONTAINING_RECORD(pListEntry, NOTIFICATION_ENTRY, ListEntry);
 		break;
 	}
-	RtlCopyMemory(Buffer, &pEntry->Data, sizeof(NOTIFICATION_DATA));
-	*BytesRead = sizeof(NOTIFICATION_DATA);
+	RtlCopyMemory(Buffer, &pEntry->Data, sizeof(OBSERVER_NOTIFICATION));
+	*BytesRead = sizeof(OBSERVER_NOTIFICATION);
+	NOTIFICATION_FREE(pEntry);
 	return STATUS_SUCCESS;
 }
 
