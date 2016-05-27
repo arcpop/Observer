@@ -5,12 +5,12 @@
 
 typedef struct _IO_DEVICE_EXTENSION
 {
-	
+	PVOID ptr;
 } IO_DEVICE_EXTENSION, *PIO_DEVICE_EXTENSION;
 
 static UNICODE_STRING uDeviceName;
 static UNICODE_STRING uDosDeviceName;
-static PDEVICE_OBJECT DeviceObject;
+static PDEVICE_OBJECT g_DeviceObject;
 
 _Use_decl_annotations_
 NTSTATUS DeviceIOInitialize(
@@ -19,7 +19,7 @@ NTSTATUS DeviceIOInitialize(
 {
 	NTSTATUS Status;
 
-	DeviceObject = NULL;
+	g_DeviceObject = NULL;
 	RtlInitUnicodeString(&uDeviceName, DeviceName);
 	RtlInitUnicodeString(&uDosDeviceName, DosDeviceName);
 
@@ -30,7 +30,7 @@ NTSTATUS DeviceIOInitialize(
 		FILE_DEVICE_UNKNOWN,
 		FILE_DEVICE_UNKNOWN,
 		FALSE,
-		&DeviceObject
+		&g_DeviceObject
 	);
 
 	if (!NT_SUCCESS(Status))
@@ -39,7 +39,7 @@ NTSTATUS DeviceIOInitialize(
 		return Status;
 	}
 
-	DeviceObject->Flags |= DO_BUFFERED_IO;
+	g_DeviceObject->Flags |= DO_BUFFERED_IO;
 
 	Status = IoCreateSymbolicLink(
 		&uDosDeviceName,
@@ -48,7 +48,7 @@ NTSTATUS DeviceIOInitialize(
 
 	if (!NT_SUCCESS(Status))
 	{
-		IoDeleteDevice(DeviceObject);
+		IoDeleteDevice(g_DeviceObject);
 		DEBUG_LOG("CreateIODevice: IoCreateSymbolicLink failed with error 0x%.8X", Status);
 		return Status;
 	}
@@ -69,8 +69,10 @@ NTSTATUS DeviceIOUnload(
 )
 {
 	IoDeleteSymbolicLink(&uDosDeviceName);
-	IoDeleteDevice(DeviceObject);
+	IoDeleteDevice(g_DeviceObject);
 	DEBUG_LOG("DeviceIOUnload completed");
+	UNREFERENCED_PARAMETER(DriverObject);
+	return STATUS_SUCCESS;
 }
 
 _Use_decl_annotations_
@@ -79,6 +81,8 @@ NTSTATUS DeviceIOCreate(
 	PIRP			Irp
 )
 {
+	UNREFERENCED_PARAMETER(DeviceObject);
+	UNREFERENCED_PARAMETER(Irp);
 	return STATUS_SUCCESS;
 }
 
@@ -105,6 +109,7 @@ NTSTATUS DeviceIORead(
 	Irp->IoStatus.Status = Status;
 	Irp->IoStatus.Information = BytesRead;
 	IoCompleteRequest(Irp, IO_NO_INCREMENT);
+	UNREFERENCED_PARAMETER(DeviceObject);
 	return Status;
 }
 
@@ -114,6 +119,8 @@ NTSTATUS DeviceIOControl(
 	PIRP			Irp
 )
 {
+	UNREFERENCED_PARAMETER(DeviceObject);
+	UNREFERENCED_PARAMETER(Irp);
 	return STATUS_SUCCESS;
 }
 
@@ -123,6 +130,8 @@ NTSTATUS DeviceIOCleanup(
 	PIRP			Irp
 )
 {
+	UNREFERENCED_PARAMETER(DeviceObject);
+	UNREFERENCED_PARAMETER(Irp);
 	return STATUS_SUCCESS;
 }
 
@@ -132,5 +141,7 @@ NTSTATUS DeviceIOClose(
 	PIRP			Irp
 )
 {
+	UNREFERENCED_PARAMETER(DeviceObject);
+	UNREFERENCED_PARAMETER(Irp);
 	return STATUS_SUCCESS;
 }

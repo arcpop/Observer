@@ -3,6 +3,7 @@
 
 #include <ntddk.h>
 
+#include "Rule.h"
 
 NTSTATUS RegistryFilterInitialize(
 	_In_     PDRIVER_OBJECT pDriverObject,
@@ -13,11 +14,13 @@ NTSTATUS RegistryFilterUnload(
 	_In_     PVOID pContext
 );
 
-NTSTATUS RegistryFilterAdd(
-	_In_ PVOID pContext,
-	_In_ PUNICODE_STRING KeyPath,
-	_In_ LONG ActionFlags,
-	_In_ PVOID Reserved
+NTSTATUS RegistryFilterAddRule(
+	_In_	POBSERVER_REGISTRY_RULE Rule,
+	_Out_	POBSERVER_RULE_HANDLE RuleHandle
+);
+
+NTSTATUS RegistryFilterRemoveRule(
+	_In_	POBSERVER_RULE_HANDLE RuleHandle
 );
 
 #endif // !REGISTRY_FILTER_H

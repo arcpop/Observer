@@ -145,12 +145,13 @@
     <ClCompile Include="Registry\CreateKeyNotification.c" />
     <ClCompile Include="Registry\FilteredEntry.c" />
     <ClCompile Include="Registry\OpenKeyNotification.c" />
-    <ClCompile Include="Registry\RegistryFilterAdd.c" />
+    <ClCompile Include="Registry\RegistryFilterRule.c" />
     <ClCompile Include="Registry\RegistryFilterCallback.c" />
     <ClCompile Include="Registry\RegistryFilterInitialize.c" />
     <ClCompile Include="Registry\RegistryFilterUnload.c" />
     <ClCompile Include="Registry\SetValueKeyNotification.c" />
     <ClCompile Include="ResourceList\ResourceList.c" />
+    <ClCompile Include="Util\UnicodeStringContains.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeviceIO\DeviceIO.h" />
@@ -158,9 +159,10 @@
     <ClInclude Include="NotificationData.h" />
     <ClInclude Include="Notification\Notification.h" />
     <ClInclude Include="RegistryFilter.h" />
-    <ClInclude Include="Registry\ActionFlags.h" />
     <ClInclude Include="Registry\Includes.h" />
     <ClInclude Include="ResourceList.h" />
+    <ClInclude Include="Rule.h" />
+    <ClInclude Include="Util\Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,7 +9,7 @@ NTSTATUS RegistryFilterPostOpenKey(
 )
 {
 	NTSTATUS Status;
-	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
 
 	if (Info->CompleteName == NULL)
 	{
@@ -45,7 +45,7 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_OPEN_KEY_INFORMATION PreInfo;
-	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry;
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
 	NTSTATUS Status;
 	ULONG TotalUnicodeLength;
 	USHORT Count;

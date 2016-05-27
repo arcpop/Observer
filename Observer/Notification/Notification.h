@@ -24,7 +24,7 @@ NTSTATUS NotificationCopy (
 	_In_ PULONG			BytesRead
 );
 
-extern KMUTEX		NotificationListMutex;
+extern FAST_MUTEX	NotificationListMutex;
 extern LIST_ENTRY	NotificationList;
 extern KEVENT		NotificationListEvent;
 

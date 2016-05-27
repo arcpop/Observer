@@ -1,8 +1,8 @@
 #include "Notification.h"
 
-KMUTEX		NotificationListMutex;
+FAST_MUTEX	NotificationListMutex;
 LIST_ENTRY	NotificationList;
-KEVENT		NotificationEvent;
+KEVENT		NotificationListEvent;
 
 _Use_decl_annotations_
 VOID NotificationSend(

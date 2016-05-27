@@ -41,6 +41,12 @@
     <Filter Include="Header Files\DeviceIO">
       <UniqueIdentifier>{8a52553a-d6ec-4abd-8147-54225a7f49a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{013c661c-0913-43f3-8e66-f1b1b979de63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{d52cedb0-01d3-425e-8355-d1f8c6d51e2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log\Log.h">
@@ -55,9 +61,6 @@
     <ClInclude Include="ResourceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Registry\ActionFlags.h">
-      <Filter>Header Files\Registry</Filter>
-    </ClInclude>
     <ClInclude Include="Notification\Notification.h">
       <Filter>Header Files\Notification</Filter>
     </ClInclude>
@@ -66,6 +69,12 @@
     </ClInclude>
     <ClInclude Include="DeviceIO\DeviceIO.h">
       <Filter>Header Files\DeviceIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Util.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +108,6 @@
     <ClCompile Include="Registry\RegistryFilterUnload.c">
       <Filter>Source Files\Registry</Filter>
     </ClCompile>
-    <ClCompile Include="Registry\RegistryFilterAdd.c">
-      <Filter>Source Files\Registry</Filter>
-    </ClCompile>
     <ClCompile Include="Notification\NotificationSend.c">
       <Filter>Source Files\Notification</Filter>
     </ClCompile>
@@ -113,6 +119,12 @@
     </ClCompile>
     <ClCompile Include="DeviceIO\DeviceIO.c">
       <Filter>Source Files\DeviceIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\RegistryFilterRule.c">
+      <Filter>Source Files\Registry</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\UnicodeStringContains.c">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

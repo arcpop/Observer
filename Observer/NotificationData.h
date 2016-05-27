@@ -51,7 +51,7 @@ typedef struct _NOTIFICATION_DATA {
 			UINT64	ImageSize;
 			WCHAR	ImageName[250];
 		} ImageMapped;
-	};
+	} Types;
 } NOTIFICATION_DATA, *PNOTIFICATION_DATA;
 
 #endif // !NOTIFICATION_DATA_H

@@ -1,5 +1,4 @@
 #include "Includes.h"
-#include "ActionFlags.h"
 #include "../Log/Log.h"
 
 
@@ -7,7 +6,7 @@ _Use_decl_annotations_
 NTSTATUS RegistryFilterApplyObjectContext(
 	PREGISTRY_FILTER_CONTEXT Context,
 	PVOID Object,
-	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntry
 )
 {
 	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
@@ -56,13 +55,13 @@ NTSTATUS RegistryFilterPreSetValueKey(
 		PREGISTRY_FILTER_OBJECT_CONTEXT pEntry;
 		pEntry = (PREGISTRY_FILTER_OBJECT_CONTEXT)(Info->ObjectContext);
 
-		if (pEntry->RuleEntry->ActionFlags == ACTIONFLAG_BLOCK)
+		if (pEntry->RuleEntry->Rule.Action == ACTION_BLOCK)
 		{
 			DEBUG_LOG("RegistryFilterPreSetValueKey: Value set blocked");
 			return STATUS_ACCESS_DENIED;
 		}
 
-		if (pEntry->RuleEntry->ActionFlags == ACTIONFLAG_NOTIFY)
+		if (pEntry->RuleEntry->Rule.Action == ACTION_DBGPRINT)
 		{
 			DEBUG_LOG("RegistryFilterPreSetValueKey: Value set notification");
 			return STATUS_SUCCESS;

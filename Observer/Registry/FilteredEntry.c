@@ -1,13 +1,13 @@
 #include "Includes.h"
 
 #include "../Log/Log.h"
-
+#include "../Util/Util.h"
 
 _Use_decl_annotations_
 BOOLEAN IsFilteredRegistryKey(
 	PUNICODE_STRING KeyPath,
 	PREGISTRY_FILTER_CONTEXT Context,
-	PREGISTRY_FILTER_FILTERED_KEY_ENTRY* EntryOut
+	PREGISTRY_FILTER_RULE_ENTRY* EntryOut
 )
 {
 	PRESOURCE_LIST_ENTRY pEntry;
@@ -24,20 +24,36 @@ BOOLEAN IsFilteredRegistryKey(
 			TRUE)
 	)
 	{
+		BOOLEAN ShouldDoAction = FALSE;
 		LONG Result = 0;
-		PREGISTRY_FILTER_FILTERED_KEY_ENTRY CurrentEntry;
-		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_FILTERED_KEY_ENTRY, ListEntry);
-		__try
+		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;
+		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+
+		Result = -1;
+
+		if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_EQUALS)
 		{
-			Result = RtlCompareUnicodeString(KeyPath, &CurrentEntry->FullRegistryKeyPath, TRUE);
+			if (RtlCompareUnicodeString(
+				&CurrentEntry->Path,
+				KeyPath,
+				CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE
+			) == 0)
+				ShouldDoAction = TRUE;
 		}
-		__except(EXCEPTION_EXECUTE_HANDLER)
+		else if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_CONTAINS)
 		{
-			Result = -1;
+			ShouldDoAction = UtilUnicodeStringContains(
+				KeyPath,
+				&CurrentEntry->Path,
+				CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE
+			);
 		}
-		if (Result == 0)
+
+
+
+		if (ShouldDoAction)
 		{
-			DEBUG_LOG("IsFilteredRegistryKey: Filtered: %wZ", KeyPath);
+			DEBUG_LOG("IsFilteredRegistryKey: Action: %d for %wZ", CurrentEntry->Rule.Action, KeyPath);
 			if (EntryOut != NULL)
 			{
 				*EntryOut = CurrentEntry;

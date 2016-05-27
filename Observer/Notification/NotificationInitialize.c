@@ -5,6 +5,6 @@ NTSTATUS NotificationInitialize()
 {
 	InitializeListHead(&NotificationList);
 	KeInitializeEvent(&NotificationListEvent, NotificationEvent, FALSE);
-	KeInitializeMutex(&NotificationListMutex, 0);
+	ExInitializeFastMutex(&NotificationListMutex);
 	return STATUS_SUCCESS;
 }

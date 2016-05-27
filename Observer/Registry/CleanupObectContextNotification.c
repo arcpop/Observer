@@ -28,7 +28,7 @@ NTSTATUS RegistryFilterCleanupObjectContext(
 
 _Use_decl_annotations_
 VOID ReleaseRegistryFilterFilteredKeyEntry(
-	PREGISTRY_FILTER_FILTERED_KEY_ENTRY RuleEntry
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntry
 )
 {
 	if (ReleaseListEntry(&RuleEntry->ListEntry))
