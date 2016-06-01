@@ -99,7 +99,7 @@ NTSTATUS RegistryFilterPreSetValueKey(
 
 		if (pEntry->RuleEntry->Rule.Action == ACTION_DBGPRINT)
 		{
-			DEBUG_LOG("RegistryFilterPreSetValueKey: Value set notification");
+			DbgPrint("RegistryFilterPreSetValueKey: Value set notification");
 			return STATUS_SUCCESS;
 		}
 

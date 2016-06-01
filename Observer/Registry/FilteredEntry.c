@@ -74,8 +74,6 @@ BOOLEAN IsFilteredRegistryKey(
 			);
 		}
 
-
-
 		if (ShouldDoAction)
 		{
 			DEBUG_LOG("IsFilteredRegistryKey: Action: %d for %wZ", CurrentEntry->Rule.Action, KeyPath);

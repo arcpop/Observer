@@ -187,7 +187,7 @@ VOID ProcessNotifyRoutine(
 			}
 			else if (pCurrentEntry->Rule.Action == ACTION_DBGPRINT)
 			{
-				DEBUG_LOG("ProcessNotifyRoutine: Created %wZ", CreateInfo->ImageFileName);
+				DbgPrint("ProcessNotifyRoutine: Created %wZ", CreateInfo->ImageFileName);
 			}
 		}
 	}
