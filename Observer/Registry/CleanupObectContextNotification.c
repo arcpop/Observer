@@ -17,22 +17,11 @@ NTSTATUS RegistryFilterCleanupObjectContext(
 		return STATUS_INVALID_PARAMETER;
 	}
 
-	ReleaseRegistryFilterFilteredKeyEntry(pObjectContext->RuleEntry);
+	ExReleaseRundownProtection(&pObjectContext->RuleEntry->RundownProtection);
 
 	REGISTRY_FILTER_FREE(pObjectContext);
 
 	UNREFERENCED_PARAMETER(pContext);
 
 	return STATUS_SUCCESS;
-}
-
-_Use_decl_annotations_
-VOID ReleaseRegistryFilterFilteredKeyEntry(
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry
-)
-{
-	if (ReleaseListEntry(&RuleEntry->ListEntry))
-	{
-		REGISTRY_FILTER_FREE(RuleEntry);
-	}
 }

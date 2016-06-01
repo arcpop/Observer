@@ -26,9 +26,6 @@
     <Filter Include="Header Files\Log">
       <UniqueIdentifier>{28ec9a99-9037-4eb9-99fe-0fabd45e7e01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ResourceList">
-      <UniqueIdentifier>{0ddb7ae9-9e9b-4b32-9db0-2df0889ec260}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Notification">
       <UniqueIdentifier>{97e42e1b-b6c9-4263-96ef-4e87d25ea102}</UniqueIdentifier>
     </Filter>
@@ -64,9 +61,6 @@
     <ClInclude Include="Registry\Includes.h">
       <Filter>Header Files\Registry</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DeviceIO\DeviceIO.h">
       <Filter>Header Files\DeviceIO</Filter>
     </ClInclude>
@@ -101,9 +95,6 @@
     </ClCompile>
     <ClCompile Include="Registry\FilteredEntry.c">
       <Filter>Source Files\Registry</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceList\ResourceList.c">
-      <Filter>Source Files\ResourceList</Filter>
     </ClCompile>
     <ClCompile Include="Registry\OpenKeyNotification.c">
       <Filter>Source Files\Registry</Filter>

@@ -3,12 +3,14 @@
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 
-RESOURCE_LIST_ENTRY_HEAD	ProcessRuleList;
+LIST_ENTRY ProcessRuleList;
+FAST_MUTEX ProcessRuleListMutex;
 
 _Use_decl_annotations_
 NTSTATUS ProcessObserverInitialize()
 {
-	InitializeListEntryHead(&ProcessRuleList);
+	InitializeListHead(&ProcessRuleList);
+	ExInitializeFastMutex(&ProcessRuleListMutex);
 	return PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, FALSE);
 }
 
@@ -36,9 +38,39 @@ NTSTATUS ProcessObserverAddRule(
 	RuleHandle->RuleHandle = pEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = pEntry->RuleHandle.RuleType = RULE_TYPE_CREATE_PROCESS;
 
-	InsertListEntry(&ProcessRuleList, &pEntry->ListEntry);
-	ReleaseListEntry(&pEntry->ListEntry);
+	ExInitializeRundownProtection(&pEntry->RundownProtection);
+
+	ExAcquireFastMutex(&ProcessRuleListMutex);
+	InsertHeadList(&ProcessRuleList, &pEntry->ListEntry);
+	ExReleaseFastMutex(&ProcessRuleListMutex);
+
 	return STATUS_SUCCESS;
+}
+
+PLIST_ENTRY NextProcessRuleListEntry(PLIST_ENTRY CurrentEntry, BOOLEAN ReleaseCurrent)
+{
+	PLIST_ENTRY pNextEntry;
+	ExAcquireFastMutex(&ProcessRuleListMutex);
+	if (ReleaseCurrent)
+	{
+		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(CurrentEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
+		ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
+	}
+TryAgain:
+	pNextEntry = CurrentEntry->Flink;
+	if (pNextEntry != &ProcessRuleList)
+	{
+		PPROCESS_RULE_LIST_ENTRY pNext = CONTAINING_RECORD(pNextEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
+		if (ExAcquireRundownProtection(&pNext->RundownProtection))
+		{
+			ExReleaseFastMutex(&ProcessRuleListMutex);
+			return pNextEntry;
+		}
+		CurrentEntry = pNextEntry;
+		goto TryAgain;
+	}
+	ExReleaseFastMutex(&ProcessRuleListMutex);
+	return NULL;
 }
 
 _Use_decl_annotations_
@@ -46,27 +78,30 @@ NTSTATUS ProcessObserverRemoveRule(
 	POBSERVER_RULE_HANDLE RuleHandle
 )
 {
-	PRESOURCE_LIST_ENTRY pEntry;
+	PLIST_ENTRY pEntry;
 	for (
-		pEntry = NextListEntry(
-			&ProcessRuleList,
-			&ProcessRuleList.Entry,
-			FALSE);
-		pEntry != &ProcessRuleList.Entry;
-		pEntry = NextListEntry(
-			&ProcessRuleList,
-			pEntry,
-			TRUE)
-		)
+		pEntry = NextProcessRuleListEntry(&ProcessRuleList, FALSE); 
+		pEntry != NULL; 
+		pEntry = NextProcessRuleListEntry(pEntry, TRUE)
+	)
 	{
 		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
 		if (RuleHandle->RuleHandle == pCurrentEntry->RuleHandle.RuleHandle)
 		{
-			RemoveListEntry(&ProcessRuleList, pEntry);
-			if (ReleaseListEntry(pEntry))
+			ExAcquireFastMutex(&ProcessRuleListMutex);
+			if (pEntry->Blink == NULL)
 			{
-				PROCESS_OBSERVER_FREE(pCurrentEntry);
+				//Somebody is removing us at the moment.
+				ExReleaseFastMutex(&ProcessRuleListMutex);
+				ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
+				return STATUS_NOT_FOUND;
 			}
+			RemoveHeadList(pEntry->Blink);
+			pEntry->Flink = pEntry->Blink = NULL;
+			ExReleaseFastMutex(&ProcessRuleListMutex);
+			ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
+			ExWaitForRundownProtectionRelease(&pCurrentEntry->RundownProtection);
+			PROCESS_OBSERVER_FREE(pCurrentEntry);
 			return STATUS_SUCCESS;
 		}
 	}
@@ -80,7 +115,7 @@ VOID ProcessNotifyRoutine(
 	PPS_CREATE_NOTIFY_INFO CreateInfo
 )
 {
-	PRESOURCE_LIST_ENTRY pEntry;
+	PLIST_ENTRY pEntry;
 	UINT64 PID, TID, PPID;
 	if (CreateInfo == NULL)
 	{
@@ -92,15 +127,9 @@ VOID ProcessNotifyRoutine(
 	PPID	= (UINT64)CreateInfo->ParentProcessId;
 
 	for (
-		pEntry = NextListEntry(
-			&ProcessRuleList,
-			&ProcessRuleList.Entry,
-			FALSE);
-		pEntry != &ProcessRuleList.Entry;
-		pEntry = NextListEntry(
-			&ProcessRuleList,
-			pEntry,
-			TRUE)
+		pEntry = NextProcessRuleListEntry(&ProcessRuleList, FALSE);
+		pEntry != NULL;
+		pEntry = NextProcessRuleListEntry(pEntry, TRUE)
 		)
 	{
 		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);

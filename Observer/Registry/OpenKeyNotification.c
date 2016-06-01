@@ -30,7 +30,7 @@ NTSTATUS RegistryFilterPostOpenKey(
 
 	if (!NT_SUCCESS(Status))
 	{
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
+		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
 		return Status;
 	}
 	return STATUS_SUCCESS;
@@ -127,7 +127,7 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 
 	if (!NT_SUCCESS(Status))
 	{
-		ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
+		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
 		return Status;
 	}
 	return STATUS_SUCCESS;

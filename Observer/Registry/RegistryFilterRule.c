@@ -2,7 +2,8 @@
 #include "../Rule.h"
 #include "../Log/Log.h"
 
-RESOURCE_LIST_ENTRY_HEAD RegistryFilterRuleList;
+LIST_ENTRY RegistryFilterRuleList;
+FAST_MUTEX RegistryFilterRuleListMutex;
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterAddRule(
@@ -45,25 +46,57 @@ NTSTATUS RegistryFilterAddRule(
 
 	RtlInitUnicodeString(&RuleEntry->Path, RuleEntry->Rule.Path);
 
-	InsertListEntry(
+	ExInitializeRundownProtection(&RuleEntry->RundownProtection);
+
+	ExAcquireFastMutex(&RegistryFilterRuleListMutex);
+
+	InsertHeadList(
 		&RegistryFilterRuleList,
 		&RuleEntry->ListEntry
 	);
-
-	ReleaseRegistryFilterFilteredKeyEntry(RuleEntry);
+	ExReleaseFastMutex(&RegistryFilterRuleListMutex);
 	return STATUS_SUCCESS;
 }
 
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterRemoveRule(
-	PVOID pContext,
 	POBSERVER_RULE_HANDLE RuleHandle
 )
 {
-	//PREGISTRY_FILTER_CONTEXT Context = (PREGISTRY_FILTER_CONTEXT)pContext;
-	UNREFERENCED_PARAMETER(pContext);
-	UNREFERENCED_PARAMETER(RuleHandle);
-	return STATUS_NOT_IMPLEMENTED;
+	PLIST_ENTRY pEntry;
+
+	if (RuleHandle->RuleType != RULE_TYPE_REGISTRY)
+	{
+		return STATUS_NOT_FOUND;
+	}
+
+	for (
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
+		pEntry != NULL;
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, TRUE)
+		)
+	{
+		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;
+		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+
+		if (CurrentEntry->RuleHandle.RuleHandle == RuleHandle->RuleHandle)
+		{
+			ExAcquireFastMutex(&RegistryFilterRuleListMutex);
+			if (pEntry->Blink == NULL)
+			{
+				//Somebody is removing us at the moment.
+				ExReleaseFastMutex(&RegistryFilterRuleListMutex);
+				ExReleaseRundownProtection(&CurrentEntry->RundownProtection);
+				return STATUS_NOT_FOUND;
+			}
+			RemoveHeadList(pEntry->Blink);
+			ExReleaseFastMutex(&RegistryFilterRuleListMutex);
+			ExWaitForRundownProtectionRelease(&CurrentEntry->RundownProtection);
+			REGISTRY_FILTER_FREE(CurrentEntry);
+			return STATUS_SUCCESS;
+		}
+	}
+	return STATUS_NOT_FOUND;
 }
 

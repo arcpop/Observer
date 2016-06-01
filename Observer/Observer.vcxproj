@@ -152,7 +152,6 @@
     <ClCompile Include="Registry\RegistryFilterInitialize.c" />
     <ClCompile Include="Registry\RegistryFilterUnload.c" />
     <ClCompile Include="Registry\SetValueKeyNotification.c" />
-    <ClCompile Include="ResourceList\ResourceList.c" />
     <ClCompile Include="Util\UnicodeStringContains.c" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +163,6 @@
     <ClInclude Include="Process\ProcessObserver.h" />
     <ClInclude Include="RegistryFilter.h" />
     <ClInclude Include="Registry\Includes.h" />
-    <ClInclude Include="ResourceList.h" />
     <ClInclude Include="Rule.h" />
     <ClInclude Include="Util\Util.h" />
   </ItemGroup>

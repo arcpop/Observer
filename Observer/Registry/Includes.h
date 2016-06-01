@@ -6,7 +6,6 @@
 #include <ntddk.h>
 
 #include "../Rule.h"
-#include "../ResourceList.h"
 
 #define REGISTRY_FILTER_TAG 'FRbO'
 #define REGISTRY_FILTER_ALLOCATE(size, pool) ExAllocatePoolWithTag(pool, size, REGISTRY_FILTER_TAG)
@@ -15,7 +14,8 @@
 EX_CALLBACK_FUNCTION RegistryFilterCallback;
 
 typedef struct _REGISTRY_FILTER_RULE_ENTRY {
-	RESOURCE_LIST_ENTRY		ListEntry;
+	LIST_ENTRY				ListEntry;
+	EX_RUNDOWN_REF			RundownProtection;
 	OBSERVER_RULE_HANDLE	RuleHandle;
 	UNICODE_STRING			Path;
 	OBSERVER_REGISTRY_RULE	Rule;
@@ -65,17 +65,18 @@ BOOLEAN IsFilteredRegistryKey(
 	_Out_opt_ PREGISTRY_FILTER_RULE_ENTRY* EntryOut
 );
 
-VOID ReleaseRegistryFilterFilteredKeyEntry(
-	_In_ PREGISTRY_FILTER_RULE_ENTRY RuleEntry
-);
-
 NTSTATUS RegistryFilterApplyObjectContext(
 	_In_ PREGISTRY_FILTER_CONTEXT Context,
 	_In_ PVOID Object,
 	_In_ PREGISTRY_FILTER_RULE_ENTRY RuleEntry
 );
+PLIST_ENTRY NextRegistryFilterRuleListEntry(
+	_In_ PLIST_ENTRY CurrentEntry, 
+	_In_ BOOLEAN ReleaseCurrent
+);
 
 
-extern RESOURCE_LIST_ENTRY_HEAD RegistryFilterRuleList;
+extern LIST_ENTRY RegistryFilterRuleList;
+extern FAST_MUTEX RegistryFilterRuleListMutex;
 
 #endif // !REGISTRY_FILTER_H

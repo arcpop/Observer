@@ -3,24 +3,46 @@
 #include "../Log/Log.h"
 #include "../Util/Util.h"
 
+PLIST_ENTRY NextRegistryFilterRuleListEntry(PLIST_ENTRY CurrentEntry, BOOLEAN ReleaseCurrent)
+{
+	PLIST_ENTRY pNextEntry;
+	ExAcquireFastMutex(&RegistryFilterRuleListMutex);
+	if (ReleaseCurrent)
+	{
+		PREGISTRY_FILTER_RULE_ENTRY pCurrent = CONTAINING_RECORD(CurrentEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+		ExReleaseRundownProtection(&pCurrent->RundownProtection);
+	}
+TryAgain:
+	pNextEntry = CurrentEntry->Flink;
+	if (pNextEntry != &RegistryFilterRuleList)
+	{
+		PREGISTRY_FILTER_RULE_ENTRY pNext = CONTAINING_RECORD(pNextEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+		if (!ExAcquireRundownProtection(&pNext->RundownProtection))
+		{
+			CurrentEntry = pNextEntry;
+			goto TryAgain;
+		}
+		ExReleaseFastMutex(&RegistryFilterRuleListMutex);
+		return pNextEntry;
+	}
+	ExReleaseFastMutex(&RegistryFilterRuleListMutex);
+	return NULL;
+}
+
+
+
 _Use_decl_annotations_
 BOOLEAN IsFilteredRegistryKey(
 	PUNICODE_STRING KeyPath,
 	PREGISTRY_FILTER_RULE_ENTRY* EntryOut
 )
 {
-	PRESOURCE_LIST_ENTRY pEntry;
+	PLIST_ENTRY pEntry;
 
 	for (
-		pEntry = NextListEntry(
-			&RegistryFilterRuleList,
-			&RegistryFilterRuleList.Entry,
-			FALSE);
-		pEntry != &RegistryFilterRuleList.Entry;
-		pEntry = NextListEntry(
-			&RegistryFilterRuleList,
-			pEntry,
-			TRUE)
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
+		pEntry != NULL;
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, TRUE)
 	)
 	{
 		BOOLEAN ShouldDoAction = FALSE;
@@ -58,10 +80,7 @@ BOOLEAN IsFilteredRegistryKey(
 				*EntryOut = CurrentEntry;
 				return TRUE;
 			}
-			if (ReleaseListEntry(pEntry))
-			{
-				REGISTRY_FILTER_FREE(CurrentEntry);
-			}
+			ExReleaseRundownProtection(&CurrentEntry->RundownProtection);
 			return TRUE;
 		}
 	}

@@ -3,7 +3,6 @@
 #pragma once
 
 #include "../Process.h"
-#include "../ResourceList.h"
 
 
 #define PROCESS_OBSERVER_TAG 'sPbO'
@@ -12,13 +11,15 @@
 
 typedef struct _PROCESS_RULE_LIST_ENTRY
 {
-	RESOURCE_LIST_ENTRY				ListEntry;
+	LIST_ENTRY						ListEntry;
+	EX_RUNDOWN_REF					RundownProtection;
 	OBSERVER_RULE_HANDLE			RuleHandle;
 	OBSERVER_PROCESS_CREATION_RULE	Rule;
 } PROCESS_RULE_LIST_ENTRY, *PPROCESS_RULE_LIST_ENTRY;
 
 
-extern RESOURCE_LIST_ENTRY_HEAD	ProcessRuleList;
+extern LIST_ENTRY	ProcessRuleList;
+extern FAST_MUTEX	ProcessRuleListMutex;
 
 VOID ProcessNotifyRoutine(
 	_Inout_	 PEPROCESS Process,
