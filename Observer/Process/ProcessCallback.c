@@ -47,7 +47,10 @@ NTSTATUS ProcessObserverAddRule(
 	return STATUS_SUCCESS;
 }
 
-PLIST_ENTRY NextProcessRuleListEntry(PLIST_ENTRY CurrentEntry, BOOLEAN ReleaseCurrent)
+PLIST_ENTRY NextProcessRuleListEntry(
+	_In_ PLIST_ENTRY CurrentEntry, 
+	_In_ BOOLEAN ReleaseCurrent
+)
 {
 	PLIST_ENTRY pNextEntry;
 	ExAcquireFastMutex(&ProcessRuleListMutex);

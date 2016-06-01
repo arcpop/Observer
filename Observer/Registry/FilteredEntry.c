@@ -3,7 +3,11 @@
 #include "../Log/Log.h"
 #include "../Util/Util.h"
 
-PLIST_ENTRY NextRegistryFilterRuleListEntry(PLIST_ENTRY CurrentEntry, BOOLEAN ReleaseCurrent)
+_Use_decl_annotations_
+PLIST_ENTRY NextRegistryFilterRuleListEntry(
+	PLIST_ENTRY CurrentEntry, 
+	BOOLEAN ReleaseCurrent
+)
 {
 	PLIST_ENTRY pNextEntry;
 	ExAcquireFastMutex(&RegistryFilterRuleListMutex);
