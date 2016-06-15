@@ -33,72 +33,40 @@ TryAgain:
 	return NULL;
 }
 
-
-
-_Use_decl_annotations_
-BOOLEAN IsFilteredRegistryKey(
-	PUNICODE_STRING KeyPath,
-	PREGISTRY_FILTER_RULE_ENTRY* EntryOut
+BOOLEAN RegistryMatchStrings(
+	PCUNICODE_STRING RuleString,
+	PCUNICODE_STRING RegString,
+	ULONG MatchType
 )
 {
-	PLIST_ENTRY pEntry;
-	for (
-		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
-		pEntry != NULL;
-		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
-	)
+	BOOLEAN IgnoreCase = (MatchType >> 16) & 1;
+	switch (MatchType & 0xFFFF)
 	{
-		BOOLEAN ShouldDoAction = FALSE;
-		LONG Result = 0;
-		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;
-		BOOLEAN CaseInsensitive = FALSE;
-		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
-		if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE)
-		{
-			CaseInsensitive = TRUE;
-		}
-
-		Result = -1;
-
-		if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_EQUALS)
-		{
-			if (RtlCompareUnicodeString(
-				&CurrentEntry->Path,
-				KeyPath,
-				CaseInsensitive
-			) == 0) 
-				ShouldDoAction = TRUE;
-		}
-		else if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_POSTFIX)
-		{
-			ShouldDoAction = RtlSuffixUnicodeString(
-				&CurrentEntry->Path,
-				KeyPath,
-				CaseInsensitive
-			);
-		}
-		else if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_CONTAINS)
-		{
-			ShouldDoAction = UtilUnicodeStringContains(
-				KeyPath,
-				&CurrentEntry->Path,
-				CaseInsensitive
-			);
-		}
-
-		if (ShouldDoAction)
-		{
-			DEBUG_LOG("IsFilteredRegistryKey: Action: %d for %wZ", CurrentEntry->Rule.Action, KeyPath);
-			if (EntryOut != NULL)
-			{
-				*EntryOut = CurrentEntry;
-				return TRUE;
-			}
-			ExReleaseRundownProtection(&CurrentEntry->RundownProtection);
-			return TRUE;
-		}
+	case REGISTRY_MATCH_EQUALS:
+		return RtlEqualUnicodeString(
+			RuleString,
+			RegString,
+			IgnoreCase
+		);
+	case REGISTRY_MATCH_SUFFIX:
+		return RtlSuffixUnicodeString(
+			RuleString,
+			RegString,
+			IgnoreCase
+		);
+	case REGISTRY_MATCH_PREFIX:
+		return RtlPrefixUnicodeString(
+			RuleString,
+			RegString,
+			IgnoreCase
+		);
+	case REGISTRY_MATCH_CONTAINS:
+		return UtilUnicodeStringContains(
+			RegString,
+			RuleString,
+			IgnoreCase
+		);
 	}
-	UNREFERENCED_PARAMETER(KeyPath);
-	UNREFERENCED_PARAMETER(EntryOut);
 	return FALSE;
 }
+

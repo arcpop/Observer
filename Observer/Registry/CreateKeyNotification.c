@@ -3,14 +3,127 @@
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 
+
+
+VOID HandleCreateKey(
+	PLARGE_INTEGER Cookie,
+	PUNICODE_STRING KeyName,
+	PVOID Object,
+	PBOOLEAN ShouldBlock
+)
+{
+	BOOLEAN Block = FALSE;
+	REGISTRY_FILTER_OBJECT_CONTEXT ObjCtx;
+	PLIST_ENTRY pEntry;
+	ObjCtx.NumberOfRules = 0;
+	for (
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
+		pEntry != NULL;
+		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
+		)
+	{
+		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+
+		if (CurrentEntry->Rule.Type == REGISTRY_TYPE_CREATE_KEY)
+		{
+			if (!RegistryMatchStrings(&CurrentEntry->Path, KeyName, CurrentEntry->Rule.KeyMatch))
+			{
+				continue;
+			}
+			if (CurrentEntry->Rule.Action & ACTION_BLOCK)
+			{
+				Block = TRUE;
+			}
+			if (CurrentEntry->Rule.Action & ACTION_DBGPRINT)
+			{
+				DbgPrint("Create Key Rule Match -> %wZ\n", KeyName);
+			}
+			if (CurrentEntry->Rule.Action & ACTION_REPORT)
+			{
+				PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+				if (pNotification != NULL)
+				{
+					USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+					pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_CREATE_KEY;
+					if (KeyName->Length > CopyLength)
+					{
+						pNotification->Data.Types.Registry.Truncated =
+							(KeyName->Length - CopyLength) >> 1;
+					}
+					else
+					{
+						CopyLength = KeyName->Length;
+					}
+					RtlCopyMemory(
+						pNotification->Data.Types.Registry.RegistryPath,
+						KeyName->Buffer,
+						CopyLength
+					);
+					pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+					pNotification->Data.Reaction = CurrentEntry->Rule.Action;
+					NotificationSend(pNotification);
+				}
+			}
+		}
+		else if ((CurrentEntry->Rule.Type == REGISTRY_TYPE_ENUMERATE_SUBKEYS) ||
+			(CurrentEntry->Rule.Type == REGISTRY_TYPE_QUERY_VALUE) ||
+			(CurrentEntry->Rule.Type == REGISTRY_TYPE_SET_VALUE))
+		{
+			if (!RegistryMatchStrings(&CurrentEntry->Path, KeyName, CurrentEntry->Rule.KeyMatch))
+			{
+				continue;
+			}
+			if (ObjCtx.NumberOfRules < MAX_OBJECT_CONTEXT_RULES) 
+			{
+				ExAcquireRundownProtection(&CurrentEntry->RundownProtection);
+				ObjCtx.RuleEntries[ObjCtx.NumberOfRules] = CurrentEntry;
+				ObjCtx.NumberOfRules++;
+			}
+			else
+			{
+				DEBUG_LOG("HandleCreateKey: Too many followup rules");
+			}
+		}
+	}
+	if (Block)
+	{
+		*ShouldBlock = TRUE;
+		return;
+	}
+	*ShouldBlock = FALSE;
+	if (ObjCtx.NumberOfRules > 0)
+	{
+		PVOID OldCtx = NULL;
+		NTSTATUS Status;
+		PREGISTRY_FILTER_OBJECT_CONTEXT pCtx = REGISTRY_FILTER_ALLOCATE(sizeof(REGISTRY_FILTER_OBJECT_CONTEXT), NonPagedPool);
+		if (pCtx == NULL)
+		{
+			DEBUG_LOG("HandleCreateKey: Out of memory");
+			*ShouldBlock = TRUE;
+			return;
+		}
+		RtlCopyMemory(pCtx, &ObjCtx, sizeof(REGISTRY_FILTER_OBJECT_CONTEXT));
+		Status = CmSetCallbackObjectContext(Object, Cookie, pCtx, &OldCtx);
+		if (!NT_SUCCESS(Status))
+		{
+			DEBUG_LOG("HandleCreateKey: CmSetCallbackObjectContext returned error 0x%.8X", Status);
+			*ShouldBlock = TRUE;
+			REGISTRY_FILTER_FREE(pCtx);
+		}
+		if (OldCtx != NULL)
+		{
+			CleanupObjectContext(OldCtx);
+		}
+	}
+}
+
 _Use_decl_annotations_
 NTSTATUS RegistryFilterPostCreateKey(
 	PREGISTRY_FILTER_CONTEXT pContext, 
 	PREG_POST_CREATE_KEY_INFORMATION Info
 )
 {
-	NTSTATUS Status;
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry = NULL;
+	BOOLEAN ShouldBlock = FALSE;
 
 	if (Info->CompleteName == NULL)
 	{
@@ -18,71 +131,16 @@ NTSTATUS RegistryFilterPostCreateKey(
 		return STATUS_INVALID_PARAMETER;
 	}
 	
-	if (!IsFilteredRegistryKey(Info->CompleteName, &RuleEntry))
-	{
-		return STATUS_SUCCESS;
-	}
-
-	if ((RuleEntry->Rule.Action == ACTION_REPORT) ||
-		(RuleEntry->Rule.Action == ACTION_BLOCK))
-	{
-		PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
-		if (pNotification != NULL)
-		{
-			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
-			if (Info->CompleteName != NULL)
-			{
-				UINT16 CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
-				if (Info->CompleteName->Length > CopyLength)
-				{
-					pNotification->Data.Types.Registry.Truncated =
-						(Info->CompleteName->Length - CopyLength) >> 1;
-				}
-				else
-				{
-					CopyLength = Info->CompleteName->Length;
-				}
-				RtlCopyMemory(
-					pNotification->Data.Types.Registry.RegistryPath,
-					Info->CompleteName->Buffer,
-					CopyLength
-				);
-				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
-			}
-			else
-			{
-				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
-			}
-			pNotification->Data.Reaction = RuleEntry->Rule.Action;
-			NotificationSend(pNotification);
-		}
-
-	}
-	if (RuleEntry->Rule.Action == ACTION_BLOCK)
-	{
-		return STATUS_ACCESS_DENIED;
-	}
-
-	if (RuleEntry->Rule.Action == ACTION_DBGPRINT)
-	{
-		DEBUG_LOG("KeyCreate notification");
-	}
-	else
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKey: Unknown action");
-	}
-
-
-	Status = RegistryFilterApplyObjectContext(
-		pContext,
+	HandleCreateKey(
+		&pContext->FilterContextCookie,
+		Info->CompleteName,
 		Info->Object,
-		RuleEntry
+		&ShouldBlock
 	);
 
-	if (!NT_SUCCESS(Status))
+	if (ShouldBlock)
 	{
-		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
-		return Status;
+		return STATUS_ACCESS_DENIED;
 	}
 	return STATUS_SUCCESS;
 }
@@ -97,10 +155,10 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
 	PREG_CREATE_KEY_INFORMATION PreInfo;
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
 	NTSTATUS Status;
 	ULONG TotalUnicodeLength;
 	USHORT Count;
+	BOOLEAN ShouldBlock = FALSE;
 
 	PreInfo = (PREG_CREATE_KEY_INFORMATION)Info->PreInformation;
 
@@ -158,90 +216,30 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 		FullKeyName.Buffer[Count] = '\\';
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 
-
-		if (!IsFilteredRegistryKey(&FullKeyName, &RuleEntry))
-		{
-			REGISTRY_FILTER_FREE(FullKeyName.Buffer);
-			return STATUS_SUCCESS;
-		}
 		ReportName = &FullKeyName;
 	}
 	else
 	{
-		if (!IsFilteredRegistryKey(PreInfo->CompleteName, &RuleEntry))
-		{
-			return STATUS_SUCCESS;
-		}
 		ReportName = PreInfo->CompleteName;
 	}
 
 
-	if ((RuleEntry->Rule.Action == ACTION_REPORT) ||
-		(RuleEntry->Rule.Action == ACTION_BLOCK))
-	{
-		PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
-		if (pNotification != NULL)
-		{
-			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
-			if (ReportName != NULL)
-			{
-				UINT16 CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
-				if (ReportName->Length > CopyLength)
-				{
-					pNotification->Data.Types.Registry.Truncated =
-						(ReportName->Length - CopyLength) >> 1;
-				}
-				else
-				{
-					CopyLength = ReportName->Length;
-				}
-				RtlCopyMemory(
-					pNotification->Data.Types.Registry.RegistryPath,
-					ReportName->Buffer,
-					CopyLength
-				);
-				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
-			}
-			else
-			{
-				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
-			}
-			pNotification->Data.Reaction = RuleEntry->Rule.Action;
-			NotificationSend(pNotification);
-		}
-
-	}
+	HandleCreateKey(
+		&pContext->FilterContextCookie,
+		ReportName,
+		Info->Object,
+		&ShouldBlock
+	);
 
 	if (ReportName == &FullKeyName)
 	{
 		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+		FullKeyName.Buffer = NULL;
 	}
 
-	if (RuleEntry->Rule.Action == ACTION_BLOCK)
+	if (ShouldBlock)
 	{
-		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
 		return STATUS_ACCESS_DENIED;
-	}
-
-	if (RuleEntry->Rule.Action == ACTION_DBGPRINT)
-	{
-		DEBUG_LOG("KeyCreateEx Notification");
-	}
-	else
-	{
-		DEBUG_LOG("RegistryFilterPostCreateKeyEx: Unknown action");
-	}
-
-	Status = RegistryFilterApplyObjectContext(
-		pContext,
-		Info->Object,
-		RuleEntry
-	);
-
-	if (!NT_SUCCESS(Status))
-	{
-		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
-		return Status;
 	}
 	return STATUS_SUCCESS;
 }

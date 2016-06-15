@@ -40,8 +40,11 @@ typedef struct _REGISTRY_FILTER_CONTEXT {
 	LARGE_INTEGER FilterContextCookie;
 } REGISTRY_FILTER_CONTEXT, *PREGISTRY_FILTER_CONTEXT;
 
+
+#define MAX_OBJECT_CONTEXT_RULES 16
 typedef struct _REGISTRY_FILTER_OBJECT_CONTEXT {
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
+	ULONG NumberOfRules;
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntries[MAX_OBJECT_CONTEXT_RULES];
 } REGISTRY_FILTER_OBJECT_CONTEXT, *PREGISTRY_FILTER_OBJECT_CONTEXT;
 
 NTSTATUS RegistryFilterPostCreateKey(
@@ -74,21 +77,20 @@ NTSTATUS RegistryFilterPreSetValueKey(
 	_In_ PREG_SET_VALUE_KEY_INFORMATION Info
 );
 
-BOOLEAN IsFilteredRegistryKey(
-	_In_      PUNICODE_STRING KeyPath,
-	_Out_opt_ PREGISTRY_FILTER_RULE_ENTRY* EntryOut
-);
-
-NTSTATUS RegistryFilterApplyObjectContext(
-	_In_ PREGISTRY_FILTER_CONTEXT Context,
-	_In_ PVOID Object,
-	_In_ PREGISTRY_FILTER_RULE_ENTRY RuleEntry
-);
 PLIST_ENTRY NextRegistryFilterRuleListEntry(
 	_In_ PLIST_ENTRY CurrentEntry, 
 	_In_ BOOLEAN ReleaseCurrent
 );
 
+BOOLEAN RegistryMatchStrings(
+	_In_ PCUNICODE_STRING RuleString,
+	_In_ PCUNICODE_STRING RegString,
+	_In_ ULONG	MatchType
+);
+
+VOID CleanupObjectContext(
+	_In_ PVOID ObjectContext
+);
 
 extern LIST_ENTRY RegistryFilterRuleList;
 extern FAST_MUTEX RegistryFilterRuleListMutex;

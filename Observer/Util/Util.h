@@ -5,8 +5,8 @@
 #include <ntddk.h>
 
 BOOLEAN UtilUnicodeStringContains(
-	_In_ PUNICODE_STRING	String,
-	_In_ PUNICODE_STRING	SubString,
+	_In_ PCUNICODE_STRING	String,
+	_In_ PCUNICODE_STRING	SubString,
 	_In_ BOOLEAN			IgnoreCase
 );
 

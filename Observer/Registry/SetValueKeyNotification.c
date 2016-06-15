@@ -2,47 +2,6 @@
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 
-_Use_decl_annotations_
-NTSTATUS RegistryFilterApplyObjectContext(
-	PREGISTRY_FILTER_CONTEXT Context,
-	PVOID Object,
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry
-)
-{
-	PREGISTRY_FILTER_OBJECT_CONTEXT pObjectContext;
-	PVOID pOldContext;
-	NTSTATUS Status;
-
-	pObjectContext = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT),
-		NonPagedPool
-	);
-
-	if (pObjectContext == NULL)
-	{
-		DEBUG_LOG("RegistryFilterApplyObjectContext: Out of memory");
-		return STATUS_NO_MEMORY;
-	}
-
-	pObjectContext->RuleEntry = RuleEntry;
-
-	pOldContext = NULL;
-
-	Status = CmSetCallbackObjectContext(
-		Object,
-		&Context->FilterContextCookie,
-		(PVOID)pObjectContext,
-		&pOldContext
-	);
-
-	if (!NT_SUCCESS(Status))
-	{
-		DEBUG_LOG("RegistryFilterApplyObjectContext: CmSetCallbackObjectContext failed with error 0x%.8X", Status);
-		REGISTRY_FILTER_FREE(pObjectContext);
-		return Status;
-	}
-	return STATUS_SUCCESS;
-}
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterPreSetValueKey(
@@ -50,59 +9,77 @@ NTSTATUS RegistryFilterPreSetValueKey(
 	PREG_SET_VALUE_KEY_INFORMATION Info
 )
 {
+	const UNICODE_STRING DefaultKeyName = RTL_CONSTANT_STRING(L"(Default)");
+	BOOLEAN Block = FALSE;
+	PCUNICODE_STRING RegString;
 	if (Info->ObjectContext != NULL)
 	{
-		PREGISTRY_FILTER_OBJECT_CONTEXT pEntry;
-		pEntry = (PREGISTRY_FILTER_OBJECT_CONTEXT)(Info->ObjectContext);
+		PREGISTRY_FILTER_OBJECT_CONTEXT pObjCtx = (PREGISTRY_FILTER_OBJECT_CONTEXT)(Info->ObjectContext);
 
-		if (pEntry->RuleEntry->Rule.Action & ACTION_REPORT)
+		for (ULONG i = 0; i < pObjCtx->NumberOfRules; i++)
 		{
-			PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
-			if (pNotification == NULL)
+			PREGISTRY_FILTER_RULE_ENTRY pEntry = pObjCtx->RuleEntries[i];
+			if (pEntry->Rule.Type != REGISTRY_TYPE_SET_VALUE)
 			{
-				return STATUS_SUCCESS;
+				continue;
 			}
-			pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_ACTION_SET_VALUE;
-			if (Info->ValueName != NULL)
+			//If valuename is NULL check if we match for the default value of this key
+			if (Info->ValueName == NULL)
 			{
-				USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
-				if (Info->ValueName->Length > CopyLength)
+				if ((pEntry->Rule.ValueMatch & 0xFFFF) != REGISTRY_MATCH_DEFAULT_VALUE_KEY)
 				{
-					pNotification->Data.Types.Registry.Truncated =
-						(Info->ValueName->Length - CopyLength) >> 1;
+					continue;
 				}
-				else
-				{
-					CopyLength = Info->ValueName->Length;
-				}
-				RtlCopyMemory(
-					pNotification->Data.Types.Registry.RegistryPath,
-					Info->ValueName->Buffer,
-					CopyLength
-				);
-				pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+				RegString = &DefaultKeyName;
 			}
 			else
 			{
-				pNotification->Data.Types.Registry.RegistryPath[0] = L'\0';
-			} 
-			pNotification->Data.Reaction = pEntry->RuleEntry->Rule.Action;
-			NotificationSend(pNotification);
-
+				if (!RegistryMatchStrings(&pEntry->Rule.ValueName, Info->ValueName, pEntry->Rule.ValueMatch))
+				{
+					continue;
+				}
+				RegString = Info->ValueName;
+			}
+			if (pEntry->Rule.Action & ACTION_DBGPRINT)
+			{
+				DbgPrint("SetValueKey Matched %wZ", RegString);
+			}
+			if (pEntry->Rule.Action & ACTION_BLOCK)
+			{
+				Block = TRUE;
+			}
+			if (pEntry->Rule.Action & ACTION_REPORT)
+			{
+				PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+				if (pNotification != NULL)
+				{
+					USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+					pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_SET_VALUE;
+					if (RegString->Length > CopyLength)
+					{
+						pNotification->Data.Types.Registry.Truncated =
+							(RegString->Length - CopyLength) >> 1;
+					}
+					else
+					{
+						CopyLength = RegString->Length;
+					}
+					RtlCopyMemory(
+						pNotification->Data.Types.Registry.RegistryPath,
+						RegString->Buffer,
+						CopyLength
+					);
+					pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+					pNotification->Data.Reaction = pEntry->Rule.Action;
+					NotificationSend(pNotification);
+				}
+			}
 		}
-
-
-		if (pEntry->RuleEntry->Rule.Action & ACTION_DBGPRINT)
-		{
-			DbgPrint("RegistryFilterPreSetValueKey: Value set notification");
-		}
-		if (pEntry->RuleEntry->Rule.Action & ACTION_BLOCK)
-		{
-			return STATUS_ACCESS_DENIED;
-		}
-
-		return STATUS_SUCCESS;
 	}
-	UNREFERENCED_PARAMETER(pContext);
+	if (Block)
+	{
+		return STATUS_ACCESS_DENIED;
+	}
 	return STATUS_SUCCESS;
+	UNREFERENCED_PARAMETER(pContext);
 }

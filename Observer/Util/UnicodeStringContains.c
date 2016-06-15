@@ -35,12 +35,8 @@ BOOLEAN UtilUnicodeStringContains(
 		}
 
 		Temp.Buffer = &String->Buffer[Index];
-		Temp.Length = Temp.MaximumLength = StringCount;
-		if (RtlPrefixUnicodeString(
-			SubString,
-			&Temp,
-			IgnoreCase
-		) == TRUE)
+		Temp.Length = Temp.MaximumLength = StringCount*sizeof(wchar_t);
+		if (RtlPrefixUnicodeString(SubString, &Temp, IgnoreCase))
 			return TRUE;
 	}
 	return FALSE;

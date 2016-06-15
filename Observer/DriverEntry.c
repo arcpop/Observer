@@ -6,7 +6,7 @@
 #include "Process.h"
 #include "Notification/NotificationQueue.h"
 
-const wchar_t RegPath[] = L"CurrentVersion\\Run";
+const wchar_t RegPath[] = L"Windows\\CurrentVersion\\Run";
 
 DRIVER_INITIALIZE DriverEntry;
 DRIVER_UNLOAD ObserverUnload;
@@ -80,10 +80,10 @@ NTSTATUS DriverEntry(
 		DEBUG_LOG("DriverEntry: ProcessObserverAddRule failed with error 0x%.8X", Status);
 	}
 	
-	Reg.Rule.Action = ACTION_REPORT;
-	Reg.Rule.MatchFlags = REGISTRY_MATCH_CONTAINS| REGISTRY_MATCH_IGNORE_CASE;
-	Reg.Buffer[0] = 0;
-
+	RtlSecureZeroMemory(&Reg, sizeof(Reg));
+	Reg.Rule.Type = REGISTRY_TYPE_OPEN_KEY;
+	Reg.Rule.Action = ACTION_REPORT | ACTION_BLOCK | ACTION_DBGPRINT;
+	Reg.Rule.KeyMatch = REGISTRY_MATCH_CONTAINS | REGISTRY_MATCH_IGNORE_CASE;
 	RtlCopyMemory(&Reg.Rule.Path[0], RegPath, sizeof(RegPath) - sizeof(wchar_t));
 	Reg.Rule.PathLength = sizeof(RegPath) / 2 - 1;
 	Status = RegistryFilterAddRule(&Reg.Rule, &RegRuleHandle);

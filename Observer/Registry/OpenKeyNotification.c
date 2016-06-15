@@ -1,6 +1,119 @@
 #include "Includes.h"
 
 #include "../Log/Log.h"
+#include "../Notification/NotificationQueue.h"
+
+VOID HandleOpenKey(
+	PLARGE_INTEGER Cookie,
+	PUNICODE_STRING KeyName,
+	PVOID Object,
+	PBOOLEAN ShouldBlock
+)
+{
+	BOOLEAN Block = FALSE;
+	REGISTRY_FILTER_OBJECT_CONTEXT ObjCtx;
+	PLIST_ENTRY pEntry;
+	ObjCtx.NumberOfRules = 0;
+	for (
+		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
+		pEntry != NULL;
+		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
+		)
+	{
+		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+
+		if (CurrentEntry->Rule.Type == REGISTRY_TYPE_OPEN_KEY)
+		{
+			if (!RegistryMatchStrings(&CurrentEntry->Path, KeyName, CurrentEntry->Rule.KeyMatch))
+			{
+				continue;
+			}
+			if (CurrentEntry->Rule.Action & ACTION_BLOCK)
+			{
+				Block = TRUE;
+			}
+			if (CurrentEntry->Rule.Action & ACTION_DBGPRINT)
+			{
+				DbgPrint("Open Key Rule Match -> %wZ\n", KeyName);
+			}
+			if (CurrentEntry->Rule.Action & ACTION_REPORT)
+			{
+				PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
+				if (pNotification != NULL)
+				{
+					USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
+					pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_OPEN_KEY;
+					if (KeyName->Length > CopyLength)
+					{
+						pNotification->Data.Types.Registry.Truncated =
+							(KeyName->Length - CopyLength) >> 1;
+					}
+					else
+					{
+						CopyLength = KeyName->Length;
+					}
+					RtlCopyMemory(
+						pNotification->Data.Types.Registry.RegistryPath,
+						KeyName->Buffer,
+						CopyLength
+					);
+					pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+					pNotification->Data.Reaction = CurrentEntry->Rule.Action;
+					NotificationSend(pNotification);
+				}
+			}
+		}
+		else if ((CurrentEntry->Rule.Type == REGISTRY_TYPE_ENUMERATE_SUBKEYS) ||
+			(CurrentEntry->Rule.Type == REGISTRY_TYPE_QUERY_VALUE) ||
+			(CurrentEntry->Rule.Type == REGISTRY_TYPE_SET_VALUE))
+		{
+			if (!RegistryMatchStrings(&CurrentEntry->Path, KeyName, CurrentEntry->Rule.KeyMatch))
+			{
+				continue;
+			}
+			if (ObjCtx.NumberOfRules < MAX_OBJECT_CONTEXT_RULES)
+			{
+				ExAcquireRundownProtection(&CurrentEntry->RundownProtection);
+				ObjCtx.RuleEntries[ObjCtx.NumberOfRules] = CurrentEntry;
+				ObjCtx.NumberOfRules++;
+			}
+			else
+			{
+				DEBUG_LOG("HandleOpenKey: Too many followup rules");
+			}
+		}
+	}
+	if (Block)
+	{
+		*ShouldBlock = TRUE;
+		return;
+	}
+	*ShouldBlock = FALSE;
+	if (ObjCtx.NumberOfRules > 0)
+	{
+		PVOID OldCtx = NULL;
+		NTSTATUS Status;
+		PREGISTRY_FILTER_OBJECT_CONTEXT pCtx = REGISTRY_FILTER_ALLOCATE(sizeof(REGISTRY_FILTER_OBJECT_CONTEXT), NonPagedPool);
+		if (pCtx == NULL)
+		{
+			DEBUG_LOG("HandleOpenKey: Out of memory");
+			*ShouldBlock = TRUE;
+			return;
+		}
+		RtlCopyMemory(pCtx, &ObjCtx, sizeof(REGISTRY_FILTER_OBJECT_CONTEXT));
+		Status = CmSetCallbackObjectContext(Object, Cookie, pCtx, &OldCtx);
+		if (!NT_SUCCESS(Status))
+		{
+			DEBUG_LOG("HandleOpenKey: CmSetCallbackObjectContext returned error 0x%.8X", Status);
+			*ShouldBlock = TRUE;
+			REGISTRY_FILTER_FREE(pCtx);
+		}
+		if (OldCtx != NULL)
+		{
+			CleanupObjectContext(OldCtx);
+		}
+	}
+}
 
 
 
@@ -10,8 +123,7 @@ NTSTATUS RegistryFilterPostOpenKey(
 	PREG_POST_OPEN_KEY_INFORMATION Info
 )
 {
-	NTSTATUS Status;
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
+	BOOLEAN ShouldBlock = FALSE;
 
 	if (Info->CompleteName == NULL)
 	{
@@ -19,21 +131,16 @@ NTSTATUS RegistryFilterPostOpenKey(
 		return STATUS_INVALID_PARAMETER;
 	}
 
-	if (!IsFilteredRegistryKey(Info->CompleteName, &RuleEntry))
-	{
-		return STATUS_SUCCESS;
-	}
-
-	Status = RegistryFilterApplyObjectContext(
-		pContext,
+	HandleOpenKey(
+		&pContext->FilterContextCookie,
+		Info->CompleteName,
 		Info->Object,
-		RuleEntry
+		&ShouldBlock
 	);
 
-	if (!NT_SUCCESS(Status))
+	if (ShouldBlock)
 	{
-		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
-		return Status;
+		return STATUS_ACCESS_DENIED;
 	}
 	return STATUS_SUCCESS;
 }
@@ -46,11 +153,12 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 {
 	PCUNICODE_STRING cuRootName;
 	UNICODE_STRING FullKeyName;
+	PUNICODE_STRING ReportName;
 	PREG_OPEN_KEY_INFORMATION PreInfo;
-	PREGISTRY_FILTER_RULE_ENTRY RuleEntry;
 	NTSTATUS Status;
 	ULONG TotalUnicodeLength;
 	USHORT Count;
+	BOOLEAN ShouldBlock = FALSE;
 
 	PreInfo = (PREG_OPEN_KEY_INFORMATION)Info->PreInformation;
 
@@ -109,31 +217,31 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
 		
 		
-		if (!IsFilteredRegistryKey(&FullKeyName, &RuleEntry))
-		{
-			REGISTRY_FILTER_FREE(FullKeyName.Buffer);
-			return STATUS_SUCCESS;
-		}
-		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+		ReportName = &FullKeyName;
 	} 
 	else
 	{
-		if (!IsFilteredRegistryKey(PreInfo->CompleteName, &RuleEntry))
-		{
-			return STATUS_SUCCESS;
-		}
+		ReportName = PreInfo->CompleteName;
 	}
 
-	Status = RegistryFilterApplyObjectContext(
-		pContext,
+
+
+	HandleOpenKey(
+		&pContext->FilterContextCookie,
+		ReportName,
 		Info->Object,
-		RuleEntry
+		&ShouldBlock
 	);
 
-	if (!NT_SUCCESS(Status))
+	if (ReportName == &FullKeyName)
 	{
-		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
-		return Status;
+		REGISTRY_FILTER_FREE(FullKeyName.Buffer);
+		FullKeyName.Buffer = NULL;
+	}
+
+	if (ShouldBlock)
+	{
+		return STATUS_ACCESS_DENIED;
 	}
 	return STATUS_SUCCESS;
 }
