@@ -2,6 +2,11 @@
 
 #include "Log\Log.h"
 #include "RegistryFilter.h"
+#include "DeviceIO\DeviceIO.h"
+#include "Process.h"
+#include "Notification/NotificationQueue.h"
+
+const wchar_t RegPath[] = L"CurrentVersion\\Run";
 
 DRIVER_INITIALIZE DriverEntry;
 DRIVER_UNLOAD ObserverUnload;
@@ -15,13 +20,28 @@ NTSTATUS DriverEntry(
 )
 {
 	NTSTATUS Status;
-
-	DriverObject->DriverUnload = ObserverUnload;
+	OBSERVER_PROCESS_CREATION_RULE Rule;
+	struct 
+	{
+		OBSERVER_REGISTRY_RULE Rule;
+		WCHAR Buffer[1024];
+	} Reg;
+	OBSERVER_RULE_HANDLE RegRuleHandle;
+	OBSERVER_RULE_HANDLE RuleHandle;
 
 	DEBUG_LOG("DriverEntry: Starting the driver");
 
+	DriverObject->DriverUnload = ObserverUnload;
+
 	g_RegistryFilterContext = NULL;
 
+	Status = NotificationInitialize();
+
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: NotificationInitialize failed with error 0x%.8X", Status);
+		return Status;
+	}
 	Status = RegistryFilterInitialize(
 		DriverObject, 
 		&g_RegistryFilterContext
@@ -32,7 +52,45 @@ NTSTATUS DriverEntry(
 		DEBUG_LOG("DriverEntry: RegistryFilterInitialize failed with error 0x%.8X", Status);
 		return Status;
 	}
+	
+	Status = ProcessObserverInitialize();
 
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: ProcessObserverInitialize failed with error 0x%.8X", Status);
+		return Status;
+	}
+	
+	
+	Status = DeviceIOInitialize(
+		DriverObject
+	);
+
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: DeviceIOInitialize failed with error 0x%.8X", Status);
+		return Status;
+	}
+	
+	Rule.Action = ACTION_REPORT;
+	Rule.ProcessRuleCheckFlags = 0;
+	Status = ProcessObserverAddRule(&Rule, &RuleHandle);
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: ProcessObserverAddRule failed with error 0x%.8X", Status);
+	}
+	
+	Reg.Rule.Action = ACTION_REPORT;
+	Reg.Rule.MatchFlags = REGISTRY_MATCH_CONTAINS| REGISTRY_MATCH_IGNORE_CASE;
+	Reg.Buffer[0] = 0;
+
+	RtlCopyMemory(&Reg.Rule.Path[0], RegPath, sizeof(RegPath) - sizeof(wchar_t));
+	Reg.Rule.PathLength = sizeof(RegPath) / 2 - 1;
+	Status = RegistryFilterAddRule(&Reg.Rule, &RegRuleHandle);
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: RegistryFilterAddRule failed with error 0x%.8X", Status);
+	}
 
 	UNREFERENCED_PARAMETER(RegistryPath);
 	return STATUS_SUCCESS;
@@ -45,12 +103,30 @@ VOID ObserverUnload(
 {
 	NTSTATUS Status;
 
-	Status = RegistryFilterUnload(g_RegistryFilterContext);
+	Status = RegistryFilterUnload(
+		g_RegistryFilterContext
+	);
 
 	if (!NT_SUCCESS(Status))
 	{
 		DEBUG_LOG("ObserverUnload: RegistryFilterUnload failed with error 0x%.8X", Status);
-		return;
+	}
+	
+	Status = ProcessObserverUnload();
+
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("ObserverUnload: ProcessObserverUnload failed with error 0x%.8X", Status);
+	}
+	
+
+	Status = DeviceIOUnload(
+		DriverObject
+	);
+
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("ObserverUnload: DeviceIOUnload failed with error 0x%.8X", Status);
 	}
 	DEBUG_LOG("ObserverUnload: Stopping the driver");
 

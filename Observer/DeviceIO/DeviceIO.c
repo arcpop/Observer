@@ -4,22 +4,23 @@
 #include "../Notification/NotificationQueue.h"
 #include "../RegistryFilter.h"
 
-typedef struct _IO_DEVICE_EXTENSION
-{
-	PVOID ptr;
-} IO_DEVICE_EXTENSION, *PIO_DEVICE_EXTENSION;
 
+const wchar_t DeviceName[] = L"\\Device\\Observer";
+const wchar_t DosDeviceName[] = L"\\DosDevices\\Observer";
 static UNICODE_STRING uDeviceName;
 static UNICODE_STRING uDosDeviceName;
 static PDEVICE_OBJECT g_DeviceObject;
+static BOOLEAN g_SymbolicLinkCreated;
+PIO_CSQ g_pCancelSafeQueue = NULL;
 
 _Use_decl_annotations_
 NTSTATUS DeviceIOInitialize(
 	PDRIVER_OBJECT DriverObject
 )
 {
+	PIO_DEVICE_EXTENSION pDevExt;
 	NTSTATUS Status;
-
+	g_SymbolicLinkCreated = FALSE;
 	g_DeviceObject = NULL;
 	RtlInitUnicodeString(&uDeviceName, DeviceName);
 	RtlInitUnicodeString(&uDosDeviceName, DosDeviceName);
@@ -36,9 +37,11 @@ NTSTATUS DeviceIOInitialize(
 
 	if (!NT_SUCCESS(Status))
 	{
-		DEBUG_LOG("CreateIODevice: IoCreateDevice failed with error 0x%.8X", Status);
+		g_DeviceObject = NULL;
+		DEBUG_LOG("DeviceIOInitialize: IoCreateDevice failed with error 0x%.8X", Status);
 		return Status;
 	}
+
 
 	g_DeviceObject->Flags |= DO_BUFFERED_IO;
 
@@ -50,9 +53,35 @@ NTSTATUS DeviceIOInitialize(
 	if (!NT_SUCCESS(Status))
 	{
 		IoDeleteDevice(g_DeviceObject);
-		DEBUG_LOG("CreateIODevice: IoCreateSymbolicLink failed with error 0x%.8X", Status);
+		g_DeviceObject = NULL;
+		DEBUG_LOG("DeviceIOInitialize: IoCreateSymbolicLink failed with error 0x%.8X", Status);
 		return Status;
 	}
+
+	pDevExt = g_DeviceObject->DeviceExtension;
+	KeInitializeSpinLock(&pDevExt->QueueLock);
+	InitializeListHead(&pDevExt->PendingIRPQueue);
+	Status = IoCsqInitialize(
+		&pDevExt->CancelSafeQueue,
+		ObserverCsqInsertIrp,
+		ObserverCsqRemoveIrp,
+		ObserverCsqPeekNextIrp,
+		ObserverCsqAcquireLock,
+		ObserverCsqReleaseLock,
+		ObserverCsqCompleteCanceledIrp
+	);
+
+	if (!NT_SUCCESS(Status))
+	{
+		IoDeleteSymbolicLink(&uDosDeviceName);
+		IoDeleteDevice(g_DeviceObject);
+		g_DeviceObject = NULL;
+		DEBUG_LOG("DeviceIOInitialize: IoCsqInitialize failed with error 0x%.8X", Status);
+		return Status;
+	}
+
+	g_pCancelSafeQueue = &pDevExt->CancelSafeQueue;
+
 	DriverObject->MajorFunction[IRP_MJ_CREATE]			= DeviceIOCreate;
 	DriverObject->MajorFunction[IRP_MJ_READ]			= DeviceIORead;
 	DriverObject->MajorFunction[IRP_MJ_CLEANUP]			= DeviceIOCleanup;
@@ -60,7 +89,7 @@ NTSTATUS DeviceIOInitialize(
 	DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL]	= DeviceIOControl;
 
 
-	DEBUG_LOG("CreateIODevice completed");
+	DEBUG_LOG("DeviceIOInitialize completed");
 	return STATUS_SUCCESS;
 }
 
@@ -70,7 +99,10 @@ NTSTATUS DeviceIOUnload(
 )
 {
 	IoDeleteSymbolicLink(&uDosDeviceName);
-	IoDeleteDevice(g_DeviceObject);
+	if (g_DeviceObject != NULL) 
+	{
+		IoDeleteDevice(g_DeviceObject);
+	}
 	DEBUG_LOG("DeviceIOUnload completed");
 	UNREFERENCED_PARAMETER(DriverObject);
 	return STATUS_SUCCESS;
@@ -93,6 +125,7 @@ NTSTATUS DeviceIORead(
 	PIRP			Irp
 )
 {
+	PIO_DEVICE_EXTENSION pDevExt;
 	PIO_STACK_LOCATION IOStackLocation;
 	NTSTATUS Status;
 	ULONG BytesRead;
@@ -107,12 +140,20 @@ NTSTATUS DeviceIORead(
 		&BytesRead
 	);
 
+	if ((Status == STATUS_MORE_PROCESSING_REQUIRED)
+		|| (Status == STATUS_PENDING))
+	{
+		pDevExt = DeviceObject->DeviceExtension;
+		IoMarkIrpPending(Irp);
+		IoCsqInsertIrp(&pDevExt->CancelSafeQueue, Irp, NULL);
+		return STATUS_PENDING;
+	}
 	Irp->IoStatus.Status = Status;
 	Irp->IoStatus.Information = BytesRead;
 	IoCompleteRequest(Irp, IO_NO_INCREMENT);
-	UNREFERENCED_PARAMETER(DeviceObject);
 	return Status;
 }
+
 NTSTATUS DeviceIOControlAddRule(
 	PIRP Irp
 )

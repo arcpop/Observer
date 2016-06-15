@@ -1,0 +1,19 @@
+slamscan SLAMSCAN
+slamscan {
+slamscan Discovered entry point: fun_IRP_MJ_CLEANUP, Function: DeviceIOCleanup defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.c, line 244.
+slamscan Discovered entry point: fun_IRP_MJ_CREATE, Function: DeviceIOCreate defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.c, line 112.
+slamscan Discovered entry point: fun_IRP_MJ_CLOSE, Function: DeviceIOClose defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.c, line 255.
+slamscan Discovered entry point: fun_IRP_MJ_DEVICE_CONTROL, Function: DeviceIOControl defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.c, line 222.
+slamscan Discovered entry point: fun_IRP_MJ_READ, Function: DeviceIORead defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.c, line 123.
+slamscan Discovered entry point: fun_DriverUnload, Function: ObserverUnload defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\driverentry.c, line 82.
+slamscan Discovered entry point: fun_DriverEntry, Function: DriverEntry defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\driverentry.c, line 16.
+slamscan Discovered entry point: fun_EX_CALLBACK_FUNCTION, Function: RegistryFilterCallback defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\registryfiltercallback.c, line 6.
+slamscan Discovered entry point: fun_IO_CSQ_REMOVE_IRP, Function: ObserverCsqRemoveIrp defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 15.
+slamscan Discovered entry point: fun_IO_CSQ_ACQUIRE_LOCK, Function: ObserverCsqAcquireLock defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 51.
+slamscan Discovered entry point: fun_IO_CSQ_COMPLETE_CANCELED_IRP, Function: ObserverCsqCompleteCanceledIrp defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 71.
+slamscan Discovered entry point: fun_IO_CSQ_PEEK_NEXT_IRP, Function: ObserverCsqPeekNextIrp defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 25.
+slamscan Discovered entry point: fun_IO_CSQ_RELEASE_LOCK, Function: ObserverCsqReleaseLock defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 61.
+slamscan Discovered entry point: fun_IO_CSQ_INSERT_IRP, Function: ObserverCsqInsertIrp defined at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c, line 5.
+slamscan Discovered 14 entry point(s)
+slamscan exit with 0} slamscan
+slamscan }

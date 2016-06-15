@@ -1,0 +1,525 @@
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--output|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO\csq.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO\csq.c']
+slamcl cl stdout {
+ csq.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c(25) : warning C28252: Inconsistent annotation for 'ObserverCsqPeekNextIrp': _Param_(2) has 'SAL_null(__no)' on the prior instance. See c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.h(38). The first declaration uses typedef 'IO_CSQ_PEEK_NEXT_IRP' at line c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(31325).
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c(25) : warning C28253: Inconsistent annotation for 'ObserverCsqPeekNextIrp': _Param_(2) has 'SAL_null(__maybe)' on this instance. See c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.h(38). The first declaration uses typedef 'IO_CSQ_PEEK_NEXT_IRP' at line c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(31325).
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c(25) : warning C28252: Inconsistent annotation for 'ObserverCsqPeekNextIrp': _Param_(3) has 'SAL_null(__no)' on the prior instance. See c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.h(38). The first declaration uses typedef 'IO_CSQ_PEEK_NEXT_IRP' at line c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(31325).
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\csq.c(25) : warning C28253: Inconsistent annotation for 'ObserverCsqPeekNextIrp': _Param_(3) has 'SAL_null(__maybe)' on this instance. See c:\users\raffi\documents\visual studio 2015\projects\observer\observer\deviceio\deviceio.h(38). The first declaration uses typedef 'IO_CSQ_PEEK_NEXT_IRP' at line c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(31325).
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\csq.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\csq.c {
+ slamcl_writer translate x64\Release\\csq.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\csq.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\csq.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO\DeviceIO.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO\DeviceIO.c']
+slamcl cl stdout {
+ DeviceIO.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\DeviceIO.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\DeviceIO.c {
+ slamcl_writer translate x64\Release\\DeviceIO.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\DeviceIO.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\DeviceIO.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\FilteredEntry.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\FilteredEntry.c']
+slamcl cl stdout {
+ FilteredEntry.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\filteredentry.c(39) : warning C6101: Returning uninitialized memory '*EntryOut'.  A successful path through the function does not set the named _Out_ parameter. Annotate this function with _Success_(return) if returning FALSE indicates failure.: Lines: 39, 44, 47, 48, 89, 39
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\FilteredEntry.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\FilteredEntry.c {
+ slamcl_writer translate x64\Release\\FilteredEntry.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\FilteredEntry.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\FilteredEntry.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\OpenKeyNotification.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\OpenKeyNotification.c']
+slamcl cl stdout {
+ OpenKeyNotification.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\OpenKeyNotification.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\OpenKeyNotification.c {
+ slamcl_writer translate x64\Release\\OpenKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\OpenKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\OpenKeyNotification.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterRule.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterRule.c']
+slamcl cl stdout {
+ RegistryFilterRule.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\registryfilterrule.c(9) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. No prior declaration found.
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\registryfilterrule.c(63) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. No prior declaration found.
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\RegistryFilterRule.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\RegistryFilterRule.c {
+ slamcl_writer translate x64\Release\\RegistryFilterRule.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\RegistryFilterRule.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\RegistryFilterRule.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterCallback.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterCallback.c']
+slamcl cl stdout {
+ RegistryFilterCallback.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\RegistryFilterCallback.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\RegistryFilterCallback.c {
+ slamcl_writer translate x64\Release\\RegistryFilterCallback.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\RegistryFilterCallback.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\RegistryFilterCallback.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterInitialize.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterInitialize.c']
+slamcl cl stdout {
+ RegistryFilterInitialize.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\registryfilterinitialize.c(6) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. No prior declaration found.
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\RegistryFilterInitialize.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\RegistryFilterInitialize.c {
+ slamcl_writer translate x64\Release\\RegistryFilterInitialize.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\RegistryFilterInitialize.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\RegistryFilterInitialize.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterUnload.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\RegistryFilterUnload.c']
+slamcl cl stdout {
+ RegistryFilterUnload.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\registryfilterunload.c(6) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. No prior declaration found.
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\RegistryFilterUnload.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\RegistryFilterUnload.c {
+ slamcl_writer translate x64\Release\\RegistryFilterUnload.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\RegistryFilterUnload.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\RegistryFilterUnload.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\SetValueKeyNotification.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\SetValueKeyNotification.c']
+slamcl cl stdout {
+ SetValueKeyNotification.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\setvaluekeynotification.c(16) : warning C6014: Leaking memory 'pObjectContext'. : Lines: 12, 13, 14, 16, 21, 27, 29, 31, 38, 44
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\setvaluekeynotification.c(58) : warning C6287: Redundant code:  the left and right sub-expressions are identical.
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\setvaluekeynotification.c(84) : warning C6386: Buffer overrun while writing to 'pNotification->Data.Types.Registry.RegistryPath':  the writable size is '2000' bytes, but 'CopyLength' bytes might be written.: Lines: 53, 55, 56, 58, 61, 62, 66, 67, 69, 70, 77, 79, 84
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\SetValueKeyNotification.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\SetValueKeyNotification.c {
+ slamcl_writer translate x64\Release\\SetValueKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\SetValueKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\SetValueKeyNotification.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Util\UnicodeStringContains.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Util\UnicodeStringContains.c']
+slamcl cl stdout {
+ UnicodeStringContains.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\util\unicodestringcontains.c(4) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. No prior declaration found.
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\UnicodeStringContains.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\UnicodeStringContains.c {
+ slamcl_writer translate x64\Release\\UnicodeStringContains.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\UnicodeStringContains.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\UnicodeStringContains.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DriverEntry.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DriverEntry.c']
+slamcl cl stdout {
+ DriverEntry.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\driverentry.c(70) : warning C6001: Using uninitialized memory 'RuleHandle'.: Lines: 21, 22, 23, 27, 29, 31, 33, 39, 44, 50, 52, 58, 62, 68, 69, 70
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\DriverEntry.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\DriverEntry.c {
+ slamcl_writer translate x64\Release\\DriverEntry.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\DriverEntry.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\DriverEntry.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationCopy.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationCopy.c']
+slamcl cl stdout {
+ NotificationCopy.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\NotificationCopy.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\NotificationCopy.c {
+ slamcl_writer translate x64\Release\\NotificationCopy.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\NotificationCopy.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\NotificationCopy.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationCreate.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationCreate.c']
+slamcl cl stdout {
+ NotificationCreate.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\NotificationCreate.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\NotificationCreate.c {
+ slamcl_writer translate x64\Release\\NotificationCreate.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\NotificationCreate.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\NotificationCreate.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationInitialize.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationInitialize.c']
+slamcl cl stdout {
+ NotificationInitialize.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\notification\notificationinitialize.c(4) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. Prior unannotated declaration at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\notification\notificationqueue.h(15).
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\NotificationInitialize.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\NotificationInitialize.c {
+ slamcl_writer translate x64\Release\\NotificationInitialize.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\NotificationInitialize.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\NotificationInitialize.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationSend.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification\NotificationSend.c']
+slamcl cl stdout {
+ NotificationSend.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\NotificationSend.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\NotificationSend.c {
+ slamcl_writer translate x64\Release\\NotificationSend.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\NotificationSend.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\NotificationSend.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Process\ProcessCallback.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Process\ProcessCallback.c']
+slamcl cl stdout {
+ ProcessCallback.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\process\processcallback.c(10) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. Prior unannotated declaration at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\process.h(9).
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\process\processcallback.c(22) : warning C28213: The _Use_decl_annotations_ annotation must be used to reference, without modification, a prior declaration. Prior unannotated declaration at c:\users\raffi\documents\visual studio 2015\projects\observer\observer\process.h(8).
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\process\processcallback.c(199) : warning C6386: Buffer overrun while writing to 'pNotification->Data.Types.ProcessCreated.ImageNamePath':  the writable size is '2000' bytes, but 'CopyLength' bytes might be written.: Lines: 140, 141, 142, 147, 148, 149, 152, 153, 157, 158, 159, 163, 167, 171, 173, 176, 177, 179, 180, 181, 182, 183, 184, 185, 192, 194, 199
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\ProcessCallback.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\ProcessCallback.c {
+ slamcl_writer translate x64\Release\\ProcessCallback.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\ProcessCallback.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\ProcessCallback.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\CleanupObectContextNotification.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\CleanupObectContextNotification.c']
+slamcl cl stdout {
+ CleanupObectContextNotification.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\CleanupObectContextNotification.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\CleanupObectContextNotification.c {
+ slamcl_writer translate x64\Release\\CleanupObectContextNotification.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\CleanupObectContextNotification.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\CleanupObectContextNotification.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }
+slamcl {
+slamcl ESP
+slamcl slamcl {invoked with args ['--update|sdv\compile\slamdrv.obj|/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\CreateKeyNotification.c']
+slamcl cl {
+slamcl slamcl invoking cl with 'set esp.cfgpersist.persistfile=x64\Release\\$SOURCEFILE.rawcfgf && set SDV_ANALYSIS_NORETURN=1&& set Esp.CfgPersist.ExpandLocalStaticInitializer=1&& cl.exe /nologo /analyze:only /analyze:plugin EspPersist.dll' and args ['/D_SDV_|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer|-IC:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\SDV\scan|-IC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm|/FIC:\Program Files (x86)\Windows Kits\10\TOOLS\SDV\osmodel\wdm\SDV_cl_frontend.h|/c|/Ix64/Release/|/Zi|/nologo|/W4|/Ox|/Os|/Oy-|/D|_WIN64|/D|_AMD64_|/D|AMD64|/D|_WIN32_WINNT=0x0A00|/D|WINVER=0x0A00|/D|WINNT=1|/D|NTDDI_VERSION=0x0A000001|/GF|/Gm-|/Zp8|/GS|/Gy|/fp:precise|/Zc:wchar_t-|/Zc:forScope|/Zc:inline|/GR-|/Fo"x64/Release//"|/Fd"x64/Release/vc140.pdb"|/Gz|/wd4603|/wd4627|/wd4986|/wd4987|/wd4996|/FI"C:/Program|Files|(x86)/Windows|Kits/10/Include/10.0.10586.0/shared/warning.h"|/errorReport:queue|/kernel|-cbstring|-d2epilogunwind|/d1import_no_registry|C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry\CreateKeyNotification.c']
+slamcl cl stdout {
+ CreateKeyNotification.c
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17356) : warning C28104: The FloatState that should have been acquired before function exit was not acquired.: Lines: 17363, 17365
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h(17374) : warning C28103: Leaking the FloatState stored in '*FloatSave'.: Lines: 17381, 17383
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(447) : warning C28251: Inconsistent annotation for 'sdv_KeLowerIrql': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(433). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1077) : warning C28301: No annotations for first declaration of 'sdv_ExInterlockedInsertTailList'. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(638). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1241) : warning C28252: Inconsistent annotation for 'sdv_ExInterlockedPopEntrySList': _Param_(2) has 'SAL_pre SAL_notref SAL_null(__no) SAL_pre SAL_valid SAL_post SAL_valid' on the prior instance. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1090). 
+ c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1251) : warning C28251: Inconsistent annotation for 'sdv_ExInterlockedPushEntrySList': this instance has no annotations. See c:\program files (x86)\windows kits\10\tools\sdv\osmodel\wdm\sdv_wdm.h(1102). 
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\createkeynotification.c(50) : warning C6386: Buffer overrun while writing to 'pNotification->Data.Types.Registry.RegistryPath':  the writable size is '2000' bytes, but 'CopyLength' bytes might be written.: Lines: 12, 13, 15, 21, 26, 29, 30, 32, 33, 35, 36, 43, 45, 50
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\createkeynotification.c(201) : warning C6386: Buffer overrun while writing to 'pNotification->Data.Types.Registry.RegistryPath':  the writable size is '2000' bytes, but 'CopyLength' bytes might be written.: Lines: 96, 97, 98, 99, 100, 101, 102, 103, 105, 107, 113, 120, 169, 173, 177, 180, 181, 183, 184, 186, 187, 194, 196, 201
+ c:\users\raffi\documents\visual studio 2015\projects\observer\observer\registry\createkeynotification.c(215) : warning C28199: Using possibly uninitialized memory 'FullKeyName':  The variable has had its address taken but no assignment to it has been discovered.: Lines: 96, 97, 98, 99, 100, 101, 102, 103, 105, 107, 113, 120, 169, 173, 177, 213, 215
+slamcl cl stdout }
+slamcl cl succeeded
+slamcl cl }
+slamcl Scanning for modules {
+slamcl Modules: [x64\Release\\CreateKeyNotification.c]
+slamcl Scanning for modules }
+slamcl translate x64\Release\\CreateKeyNotification.c {
+ slamcl_writer translate x64\Release\\CreateKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj {
+slamcl Warning: File "c:\program files (x86)\windows kits\10\include\10.0.10586.0\km\wdm.h", line 121, function: "KeGetCurrentThread": Imprecise translation: Intrinsic function call ignored
+slamcl slamcl_writer translate x64\Release\\CreateKeyNotification.c.rawcfgf sdv\compile\slamdrv.obj }
+slamcl translate x64\Release\\CreateKeyNotification.c }
+slamcl slamcl }
+slamcl exit with 0 from phase 2} slamcl
+slamcl }

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSrcFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">csq.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\csq.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-06-14T09:54:51.250559+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T10:36:09.9735869+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\DeviceIO</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">DeviceIO.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\DeviceIO.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-25T14:41:55.9776099+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T10:34:08.8467613+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">DriverEntry.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\DriverEntry.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T15:06:28.7767835+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T13:59:51.5148018+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">NotificationCopy.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\NotificationCopy.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-25T13:36:25.8868466+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T10:36:19.4250899+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">NotificationCreate.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\NotificationCreate.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-27T13:18:32.9225589+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-05-27T15:51:35.8456429+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">NotificationInitialize.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\NotificationInitialize.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-25T14:39:02.0480884+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-05-27T12:58:28.5344118+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Notification</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">NotificationSend.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\NotificationSend.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-25T13:24:28.5414443+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T10:33:25.6378241+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Process</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">ProcessCallback.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\ProcessCallback.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-27T14:10:06.9274585+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-14T13:40:48.5600043+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">CleanupObectContextNotification.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\CleanupObectContextNotification.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T14:44:37.3721116+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T13:27:46.9362755+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">CreateKeyNotification.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\CreateKeyNotification.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T11:16:22.1724316+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T13:44:00.7480075+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">FilteredEntry.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\FilteredEntry.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T11:48:48.5179379+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T14:53:00.9558203+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">OpenKeyNotification.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\OpenKeyNotification.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T14:33:02.7971686+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T13:47:57.8041303+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">RegistryFilterRule.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\RegistryFilterRule.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T16:13:22.9917148+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T14:16:07.9733555+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">RegistryFilterCallback.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\RegistryFilterCallback.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T09:31:12.3289397+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-05-24T17:40:23.7246137+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">RegistryFilterInitialize.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\RegistryFilterInitialize.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T11:13:05.3440442+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T13:43:23.819563+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">RegistryFilterUnload.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\RegistryFilterUnload.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T15:12:37.144977+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-05-24T15:36:54.5951193+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Registry</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">SetValueKeyNotification.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\SetValueKeyNotification.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-24T15:02:06.5612653+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-06-01T15:18:34.6056271+02:00</SrcFileDateModified>
+  </SrcFile>
+  <SrcFile>
+    <SDVSourceFilePath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\Util</SDVSourceFilePath>
+    <SDVSourceFileRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileName xmlns="http://www.microsoft.com/SDV">UnicodeStringContains.c</SrcFileName>
+    <SrcFileDestination xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileObjectName xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\UnicodeStringContains.obj</SrcFileObjectName>
+    <SrcFileCFlags xmlns="http://www.microsoft.com/SDV"> /c /Ix64\Release\ /Zi /nologo /W4 /WX /Ox /Os /Oy- /D _WIN64 /D _AMD64_ /D AMD64 /D _WIN32_WINNT=0x0A00 /D WINVER=0x0A00 /D WINNT=1 /D NTDDI_VERSION=0x0A000001 /GF /Gm- /Zp8 /GS /Gy /fp:precise /Zc:wchar_t- /Zc:forScope /Zc:inline /GR- /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gz /wd4603 /wd4627 /wd4986 /wd4987 /wd4996 /FI"C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared\warning.h" /errorReport:queue /kernel -cbstring -d2epilogunwind  /d1nodatetime /d1import_no_registry /d2AllowCompatibleILVersions /d2Zi+</SrcFileCFlags>
+    <SDVLineno xmlns="http://www.microsoft.com/SDV">0</SDVLineno>
+    <SdvLibOrder xmlns="http://www.microsoft.com/SDV">0</SdvLibOrder>
+    <SDVIsValid xmlns="http://www.microsoft.com/SDV">true</SDVIsValid>
+    <SDVCPlus xmlns="http://www.microsoft.com/SDV">false</SDVCPlus>
+    <SrcFileExtension xmlns="http://www.microsoft.com/SDV">.c</SrcFileExtension>
+    <SrcFileVersion xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileAuthor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileOnwer xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileVendor xmlns="http://www.microsoft.com/SDV" />
+    <SrcFileCopyright xmlns="http://www.microsoft.com/SDV" />
+    <BuildType xmlns="http://www.microsoft.com/SDV" />
+    <Include xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km\crt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\km;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10586.0\shared</Include>
+    <SrcFileRevision xmlns="http://www.microsoft.com/SDV">0</SrcFileRevision>
+    <SrcFileReleased xmlns="http://www.microsoft.com/SDV">false</SrcFileReleased>
+    <SrcFileDateCreated xmlns="http://www.microsoft.com/SDV">2016-05-27T11:33:32.8022261+02:00</SrcFileDateCreated>
+    <SrcFileDateModified xmlns="http://www.microsoft.com/SDV">2016-05-27T11:42:31.5648121+02:00</SrcFileDateModified>
+  </SrcFile>
+</ArrayOfSrcFile>

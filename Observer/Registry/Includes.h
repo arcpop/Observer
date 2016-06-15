@@ -6,10 +6,24 @@
 #include <ntddk.h>
 
 #include "../Rule.h"
+#include "../Log/Log.h"
 
 #define REGISTRY_FILTER_TAG 'FRbO'
-#define REGISTRY_FILTER_ALLOCATE(size, pool) ExAllocatePoolWithTag(pool, size, REGISTRY_FILTER_TAG)
-#define REGISTRY_FILTER_FREE(ptr) ExFreePoolWithTag(ptr, REGISTRY_FILTER_TAG)
+#define REGISTRY_FILTER_ALLOCATE(size, pool) MyAllocatePoolWithTag(pool, size, REGISTRY_FILTER_TAG)
+#define REGISTRY_FILTER_FREE(ptr) MyFreePoolWithTag(ptr, REGISTRY_FILTER_TAG)
+
+static PVOID MyAllocatePoolWithTag(POOL_TYPE pool, SIZE_T size, ULONG tag)
+{
+	PVOID p = ExAllocatePoolWithTag(pool, size, tag);
+	//DEBUG_LOG("Alloc: %p\n", p);
+	return p;
+}
+static void MyFreePoolWithTag(PVOID ptr, ULONG tag)
+{
+	UNREFERENCED_PARAMETER(tag);
+	//DEBUG_LOG("Free: %p\n", ptr);
+	ExFreePoolWithTag(ptr, tag);
+}
 
 EX_CALLBACK_FUNCTION RegistryFilterCallback;
 

@@ -1,4 +1,5 @@
 #include "NotificationQueue.h"
+#include "../Log/Log.h"
 
 _Use_decl_annotations_
 NTSTATUS NotificationCopy(
@@ -7,31 +8,23 @@ NTSTATUS NotificationCopy(
 	PULONG			BytesRead
 )
 {
-	NTSTATUS Status;
 	PLIST_ENTRY pListEntry;
 	PNOTIFICATION_ENTRY pEntry;
 	if (BufferSize < sizeof(OBSERVER_NOTIFICATION))
 	{
 		return STATUS_BUFFER_TOO_SMALL;
 	}
-	while(1)
+
+	ExAcquireFastMutex(&NotificationListMutex);
+	if (IsListEmpty(&NotificationList))
 	{
-		Status = KeWaitForSingleObject(&NotificationListEvent, UserRequest, KernelMode, FALSE, NULL);
-		if (!NT_SUCCESS(Status))
-		{
-			return Status;
-		}
-		ExAcquireFastMutex(&NotificationListMutex);
-		if (IsListEmpty(&NotificationList))
-		{
-			ExReleaseFastMutex(&NotificationListMutex);
-			continue;
-		}
-		pListEntry = RemoveHeadList(&NotificationList);
 		ExReleaseFastMutex(&NotificationListMutex);
-		pEntry = CONTAINING_RECORD(pListEntry, NOTIFICATION_ENTRY, ListEntry);
-		break;
+		*BytesRead = 0;
+		return STATUS_MORE_PROCESSING_REQUIRED;
 	}
+	pListEntry = RemoveHeadList(&NotificationList);
+	ExReleaseFastMutex(&NotificationListMutex);
+	pEntry = CONTAINING_RECORD(pListEntry, NOTIFICATION_ENTRY, ListEntry);
 	RtlCopyMemory(Buffer, &pEntry->Data, sizeof(OBSERVER_NOTIFICATION));
 	*BytesRead = sizeof(OBSERVER_NOTIFICATION);
 	NOTIFICATION_FREE(pEntry);

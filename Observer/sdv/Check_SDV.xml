@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SDV xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SDVExitCode xmlns="http://www.microsoft.com/SDV">9</SDVExitCode>
+  <SDVExitCodeDescription xmlns="http://www.microsoft.com/SDV">SDV did not complete the verification and writing to check_sdv.xml.</SDVExitCodeDescription>
+  <SDVDDKPath xmlns="http://www.microsoft.com/SDV">C:\Program Files (x86)\Windows Kits\10\</SDVDDKPath>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">wdm.h</SDV_Wdm_Headers>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">wdmsec.h</SDV_Wdm_Headers>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">ntifs.h</SDV_Wdm_Headers>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">csq.h</SDV_Wdm_Headers>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">ntddk.h</SDV_Wdm_Headers>
+  <SDV_Wdm_Headers xmlns="http://www.microsoft.com/SDV">ntosp.h</SDV_Wdm_Headers>
+  <IncludePath xmlns="http://www.microsoft.com/SDV">C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\10\include\10.0.10586.0\ucrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.10586.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.10586.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.10586.0\winrt;</IncludePath>
+  <SDVIFSPath xmlns="http://www.microsoft.com/SDV" />
+  <SDVBuildLog xmlns="http://www.microsoft.com/SDV">msbuild.log</SDVBuildLog>
+  <SDVWDMPATH xmlns="http://www.microsoft.com/SDV">inc\ddk\wdm\wnet</SDVWDMPATH>
+  <SDVNTDdkPath xmlns="http://www.microsoft.com/SDV">inc\ddk\wnet</SDVNTDdkPath>
+  <KmdfIncludePath xmlns="http://www.microsoft.com/SDV" />
+  <SDVSlamDisplayEnvironmentBebopOption xmlns="http://www.microsoft.com/SDV">-display_enironment</SDVSlamDisplayEnvironmentBebopOption>
+  <SDV_PUBLIC_ROOT xmlns="http://www.microsoft.com/SDV" />
+  <SDVDestinationBackup xmlns="http://www.microsoft.com/SDV">..\..\..</SDVDestinationBackup>
+  <SDVArch xmlns="http://www.microsoft.com/SDV">x86</SDVArch>
+  <SDVBuildType xmlns="http://www.microsoft.com/SDV">fre</SDVBuildType>
+  <SDVBuildArch xmlns="http://www.microsoft.com/SDV">x64</SDVBuildArch>
+  <SlamEnvironment xmlns="http://www.microsoft.com/SDV">WDK</SlamEnvironment>
+  <SDVPagefile xmlns="http://www.microsoft.com/SDV" />
+  <SDVSDVPath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SDVSDVPath>
+  <SDVType xmlns="http://www.microsoft.com/SDV" />
+  <SDVEnvironmentVersion xmlns="http://www.microsoft.com/SDV">0</SDVEnvironmentVersion>
+  <SDVMaxLoc xmlns="http://www.microsoft.com/SDV">0</SDVMaxLoc>
+  <SDVSlic2XDV xmlns="http://www.microsoft.com/SDV">false</SDVSlic2XDV>
+  <SDVScan xmlns="http://www.microsoft.com/SDV">true</SDVScan>
+  <SDV_cplus_Support xmlns="http://www.microsoft.com/SDV">true</SDV_cplus_Support>
+  <SDVBuild xmlns="http://www.microsoft.com/SDV">true</SDVBuild>
+  <SDVCompile xmlns="http://www.microsoft.com/SDV">true</SDVCompile>
+  <SDVCheck xmlns="http://www.microsoft.com/SDV">false</SDVCheck>
+  <SDVBuildConfigRequired xmlns="http://www.microsoft.com/SDV">false</SDVBuildConfigRequired>
+  <SDVReport xmlns="http://www.microsoft.com/SDV">false</SDVReport>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">adddevice.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">cancelspinlock.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">cancelspinlockrelease.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">completerequest.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">completerequeststatuscheck.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">completionroutineregistered.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">criticalregions.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">danglingdeviceobjectreference.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">debugbreakusage.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">doublecompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">exclusiveresourceaccess.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">forwardedatbadirql.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">forwardedatbadirqlallocate.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">forwardedatbadirqlfsdasync.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">forwardedatbadirqlfsdsync.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">guardedregions.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocatecomplete.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocateforward.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocatefree.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocateirpsignaleventincompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocateirpsignaleventincompletion2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocateirpsignaleventincompletion3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocateirpsignaleventincompletiontimeout.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuilddevicecontrolnofree.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuilddevicecontrolwait.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuilddevicecontrolwaittimeout.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuilddeviceiocontrolsetevent.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdcomplete.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdforward.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdfree.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdirpsignaleventincompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdirpsignaleventincompletion2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdirpsignaleventincompletion3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsdirpsignaleventincompletiontimeout.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildsynchronousfsdrequestnofree.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildsynchronousfsdrequestwait.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildsynchronousfsdrequestwaittimeout.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioreleaseremovelockandwaitoutsideremovedevice.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioreuseirp.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioreuseirp2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iosetcompletionexcompleteirp.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iosetcompletionroutineexcheck.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iosetcompletionroutineexcheckdeviceobject.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iosetcompletionroutinenonpnpdriver.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irpcancelfield.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irpprocessingcomplete.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlapclte.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqldispatch.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexallocatepool.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexapclte1.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexapclte2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexapclte3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexapclteinline.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexfree1.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexfree2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexfree3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlexpassive.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlioapclte.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliodispatch.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliopassive1.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliopassive2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliopassive3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliopassive4.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqliopassive5.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkeapclte1.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkeapclte2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkedispatchlte.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkeraiselower.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkeraiselower2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkereleasespinlock.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkesetevent.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkewaitformultipleobjects.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlkewaitformutexobject.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlmmapclte.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlmmdispatch.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlobpassive.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlpspassive.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlreturn.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlrtlapc.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlrtlpassive.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlrtlpassive2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">irqlzwpassive.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">lowerdriverreturn.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markdevicepower.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markinginterlockedqueuedirps.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markirppending.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markirppending2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markpower.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markpowerdown.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markqueryrelations.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">markstartdevice.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">nsremovelockmnremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">nsremovelockmnsurpriseremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">nsremovelockquerymnremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">obsoleteddis.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pendedcompletedrequest.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pendedcompletedrequest2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pendedcompletedrequest3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pendedcompletedrequestex.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pnpirpcompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pnpsamedeviceobject.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">pnpsurpriseremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">powerdownallocate.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">powerdownfail.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">powerirpddis.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">powerupfail.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">queuedspinlock.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">queuedspinlockrelease.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelock.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockcheck.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforward.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforward2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwarddevicecontrol.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwarddevicecontrol2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwarddevicecontrolinternal.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwarddevicecontrolinternal2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwardread.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwardread2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwardwrite.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockforwardwrite2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockmnremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockmnremove2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockmnsurpriseremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockquerymnremove.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockrelease2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasecleanup.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleaseclose.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasecreate.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasedevicecontrol.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleaseinternaldevicecontrol.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasepnp.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasepower.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleaseread.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleaseshutdown.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasesystemcontrol.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removelockreleasewrite.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">requestedpowerirp.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">safestrings.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">signaleventincompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">signaleventincompletion2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">signaleventincompletion3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">spinlock.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">spinlockdpc.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">spinlockrelease.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">spinlocksafe.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startdevicewait.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startdevicewait2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startdevicewait3.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startdevicewait4.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startiocancel.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startiorecursion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">targetrelationneedsref.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">withincriticalregion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">wmicomplete.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">wmiforward.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">zwregistrycreate.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">zwregistryopen.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">startioroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">dispatchroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">isrroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">kedpcroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">cancelroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iodpcroutine.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iocompletion.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">workerthread.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">checkadddevice.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">checkdriverunload.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">checkirpmjpnp.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">danglingdeviceobjectcheck.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">ioallocate.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildfsd.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuildsynchronousfsdrequest.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">iobuilddevicecontrol.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removecheck.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">removecheck2.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">isnonpnpdriver.fsm</SDVUniqueRules>
+  <SDVUniqueRules xsi:type="xsd:string" xmlns="http://www.microsoft.com/SDV">initializedpcrequest.fsm</SDVUniqueRules>
+  <SDVUniqueRules

@@ -2,6 +2,8 @@
 
 #include "../Log/Log.h"
 
+
+
 _Use_decl_annotations_
 NTSTATUS RegistryFilterPostOpenKey(
 	PREGISTRY_FILTER_CONTEXT pContext,
@@ -81,7 +83,9 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 			return Status;
 		}
 
-		TotalUnicodeLength = cuRootName->Length + 2 + PreInfo->CompleteName->Length;
+		TotalUnicodeLength = cuRootName->Length;
+		TotalUnicodeLength += sizeof(wchar_t);
+		TotalUnicodeLength += PreInfo->CompleteName->Length;
 
 		if (TotalUnicodeLength >= 0xFFFF)
 		{
@@ -99,11 +103,12 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 
 		FullKeyName.Length = (USHORT)TotalUnicodeLength;
 		FullKeyName.MaximumLength = (USHORT)TotalUnicodeLength;
-		Count = cuRootName->Length >> 1;
+		Count = cuRootName->Length / 2;
 		RtlCopyMemory(FullKeyName.Buffer, cuRootName->Buffer, cuRootName->Length);
 		FullKeyName.Buffer[Count] = '\\';
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
-
+		
+		
 		if (!IsFilteredRegistryKey(&FullKeyName, &RuleEntry))
 		{
 			REGISTRY_FILTER_FREE(FullKeyName.Buffer);

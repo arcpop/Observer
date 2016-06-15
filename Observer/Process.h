@@ -3,9 +3,10 @@
 #pragma once
 
 #include <ntddk.h>
-#include "../Rule.h"
+#include "Rule.h"
 
 NTSTATUS ProcessObserverInitialize();
+NTSTATUS ProcessObserverUnload();
 
 NTSTATUS ProcessObserverAddRule(
 	_In_ POBSERVER_PROCESS_CREATION_RULE Rule,

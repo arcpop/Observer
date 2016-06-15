@@ -16,6 +16,7 @@ NTSTATUS RegistryFilterCleanupObjectContext(
 		DEBUG_LOG("RegistryFilterCleanupObjectContext: ObjectContext is NULL");
 		return STATUS_INVALID_PARAMETER;
 	}
+	DEBUG_LOG("%.8X", pObjectContext->RuleEntry->RundownProtection.Count);
 
 	ExReleaseRundownProtection(&pObjectContext->RuleEntry->RundownProtection);
 

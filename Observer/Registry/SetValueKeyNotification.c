@@ -15,7 +15,7 @@ NTSTATUS RegistryFilterApplyObjectContext(
 
 	pObjectContext = REGISTRY_FILTER_ALLOCATE(
 		sizeof(REGISTRY_FILTER_OBJECT_CONTEXT),
-		PagedPool
+		NonPagedPool
 	);
 
 	if (pObjectContext == NULL)
@@ -55,8 +55,7 @@ NTSTATUS RegistryFilterPreSetValueKey(
 		PREGISTRY_FILTER_OBJECT_CONTEXT pEntry;
 		pEntry = (PREGISTRY_FILTER_OBJECT_CONTEXT)(Info->ObjectContext);
 
-		if ((pEntry->RuleEntry->Rule.Action == ACTION_REPORT) ||
-			(pEntry->RuleEntry->Rule.Action == ACTION_REPORT))
+		if (pEntry->RuleEntry->Rule.Action & ACTION_REPORT)
 		{
 			PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_REGISTRY);
 			if (pNotification == NULL)
@@ -90,20 +89,18 @@ NTSTATUS RegistryFilterPreSetValueKey(
 			pNotification->Data.Reaction = pEntry->RuleEntry->Rule.Action;
 			NotificationSend(pNotification);
 
-			if (pEntry->RuleEntry->Rule.Action == ACTION_BLOCK)
-			{
-				return STATUS_ACCESS_DENIED;
-			}
 		}
 
 
-		if (pEntry->RuleEntry->Rule.Action == ACTION_DBGPRINT)
+		if (pEntry->RuleEntry->Rule.Action & ACTION_DBGPRINT)
 		{
 			DbgPrint("RegistryFilterPreSetValueKey: Value set notification");
-			return STATUS_SUCCESS;
+		}
+		if (pEntry->RuleEntry->Rule.Action & ACTION_BLOCK)
+		{
+			return STATUS_ACCESS_DENIED;
 		}
 
-		DEBUG_LOG("RegistryFilterPreSetValueKey: Unknown action");
 		return STATUS_SUCCESS;
 	}
 	UNREFERENCED_PARAMETER(pContext);

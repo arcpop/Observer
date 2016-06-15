@@ -7,11 +7,30 @@ LIST_ENTRY ProcessRuleList;
 FAST_MUTEX ProcessRuleListMutex;
 
 _Use_decl_annotations_
+NTSTATUS ProcessObserverUnload()
+{
+	NTSTATUS Status;
+	Status = PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, TRUE);
+	if (!NT_SUCCESS(Status))
+	{
+		return Status;
+	}
+	DEBUG_LOG("ProcessObserverUnload completed");
+	return Status;
+}
+_Use_decl_annotations_
 NTSTATUS ProcessObserverInitialize()
 {
+	NTSTATUS Status;
 	InitializeListHead(&ProcessRuleList);
 	ExInitializeFastMutex(&ProcessRuleListMutex);
-	return PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, FALSE);
+	Status = PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, FALSE);
+	if (!NT_SUCCESS(Status))
+	{
+		return Status;
+	}
+	DEBUG_LOG("ProcessObserverInitialize completed");
+	return Status;
 }
 
 _Use_decl_annotations_
@@ -33,7 +52,7 @@ NTSTATUS ProcessObserverAddRule(
 	RtlCopyMemory(
 		&pEntry->Rule,
 		Rule,
-		sizeof(PROCESS_RULE_LIST_ENTRY)
+		sizeof(OBSERVER_PROCESS_CREATION_RULE)
 	);
 	RuleHandle->RuleHandle = pEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = pEntry->RuleHandle.RuleType = RULE_TYPE_CREATE_PROCESS;
@@ -151,8 +170,8 @@ VOID ProcessNotifyRoutine(
 		}
 		if (Matches)
 		{
-			if (pCurrentEntry->Rule.Action == ACTION_BLOCK ||
-				pCurrentEntry->Rule.Action == ACTION_REPORT)
+			if ((pCurrentEntry->Rule.Action & ACTION_BLOCK) ||
+				(pCurrentEntry->Rule.Action & ACTION_REPORT))
 			{
 				PNOTIFICATION_ENTRY pNotification = NotificationCreate(RULE_TYPE_CREATE_PROCESS);
 				if (pNotification != NULL)
@@ -180,12 +199,12 @@ VOID ProcessNotifyRoutine(
 					pNotification->Data.Types.ProcessCreated.ImageNamePath[CopyLength] = L'\0';
 					NotificationSend(pNotification);
 				}
-				if (pCurrentEntry->Rule.Action == ACTION_BLOCK)
+				if (pCurrentEntry->Rule.Action & ACTION_BLOCK)
 				{
 					CreateInfo->CreationStatus = STATUS_ACCESS_DENIED;
 				}
 			}
-			else if (pCurrentEntry->Rule.Action == ACTION_DBGPRINT)
+			else if (pCurrentEntry->Rule.Action & ACTION_DBGPRINT)
 			{
 				DbgPrint("ProcessNotifyRoutine: Created %wZ", CreateInfo->ImageFileName);
 			}

@@ -5,7 +5,7 @@
 
 _Use_decl_annotations_
 PLIST_ENTRY NextRegistryFilterRuleListEntry(
-	PLIST_ENTRY CurrentEntry, 
+	PLIST_ENTRY CurrentEntry,
 	BOOLEAN ReleaseCurrent
 )
 {
@@ -42,17 +42,21 @@ BOOLEAN IsFilteredRegistryKey(
 )
 {
 	PLIST_ENTRY pEntry;
-
 	for (
 		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
 		pEntry != NULL;
-		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, TRUE)
+		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
 	)
 	{
 		BOOLEAN ShouldDoAction = FALSE;
 		LONG Result = 0;
 		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;
+		BOOLEAN CaseInsensitive = FALSE;
 		CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
+		if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE)
+		{
+			CaseInsensitive = TRUE;
+		}
 
 		Result = -1;
 
@@ -61,16 +65,24 @@ BOOLEAN IsFilteredRegistryKey(
 			if (RtlCompareUnicodeString(
 				&CurrentEntry->Path,
 				KeyPath,
-				CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE
-			) == 0)
+				CaseInsensitive
+			) == 0) 
 				ShouldDoAction = TRUE;
+		}
+		else if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_POSTFIX)
+		{
+			ShouldDoAction = RtlSuffixUnicodeString(
+				&CurrentEntry->Path,
+				KeyPath,
+				CaseInsensitive
+			);
 		}
 		else if (CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_CONTAINS)
 		{
 			ShouldDoAction = UtilUnicodeStringContains(
 				KeyPath,
 				&CurrentEntry->Path,
-				CurrentEntry->Rule.MatchFlags & REGISTRY_MATCH_IGNORE_CASE
+				CaseInsensitive
 			);
 		}
 
@@ -86,5 +98,7 @@ BOOLEAN IsFilteredRegistryKey(
 			return TRUE;
 		}
 	}
+	UNREFERENCED_PARAMETER(KeyPath);
+	UNREFERENCED_PARAMETER(EntryOut);
 	return FALSE;
 }

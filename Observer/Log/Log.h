@@ -6,7 +6,7 @@
 #include <ntddk.h>
 
 #ifdef DBG
-#define DEBUG_LOG(fmt, ...) DbgPrint(fmt, __VA_ARGS__)
+#define DEBUG_LOG(fmt, ...) DbgPrint(fmt "\n", __VA_ARGS__)
 #else
 #define DEBUG_LOG(fmt, ...) 
 #endif

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSDVLink xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SDVLink>
+    <SDVLinkName xmlns="http://www.microsoft.com/SDV">c:\users\raffi\documents\visual</SDVLinkName>
+    <SDVLinkCommand xmlns="http://www.microsoft.com/SDV"> /ERRORREPORT:QUEUE studio 2015\Projects\Observer\Observer\x64\Release\Observer.sys" /VERSION:"10.0" /INCREMENTAL:NO /NOLOGO /WX /SECTION:"INIT,d" /NODEFAULTLIB /MANIFEST:NO /Debug /PDB:"C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\Observer.pdb" /SUBSYSTEM:NATIVE,"10.00" /Driver /OPT:REF /OPT:ICF /ENTRY:"GsDriverEntry" /RELEASE /IMPLIB:"C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer\x64\Release\Observer.lib" /MERGE:"_TEXT=.text;_PAGE=PAGE" /MACHINE:X64 /PROFILE /integritycheck /kernel /IGNORE:4198,4010,4037,4039,4065,4070,4078,4087,4089,4221,4108,4088,4218,4218,4235 /osversion:10.0 /pdbcompress /debugtype:pdata</SDVLinkCommand>
+    <SDVLinkEntry xmlns="http://www.microsoft.com/SDV">/ENTRY:"GsDriverEntry"</SDVLinkEntry>
+    <SDVLinkSubSystem xmlns="http://www.microsoft.com/SDV">/SUBSYSTEM:NATIVE,"10.00"</SDVLinkSubSystem>
+    <SDVLinkBase xmlns="http://www.microsoft.com/SDV" />
+    <SDVLinkStack xmlns="http://www.microsoft.com/SDV" />
+    <SDVLinkVersion xmlns="http://www.microsoft.com/SDV">/VERSION:"10.0"</SDVLinkVersion>
+    <SDVLinkOsVersion xmlns="http://www.microsoft.com/SDV">10.0</SDVLinkOsVersion>
+    <SDVLinkIncremental xmlns="http://www.microsoft.com/SDV">NO</SDVLinkIncremental>
+    <SDVLinkOpt xmlns="http://www.microsoft.com/SDV">REF ICF</SDVLinkOpt>
+    <SDVLinkSection xmlns="http://www.microsoft.com/SDV">REF ICF</SDVLinkSection>
+    <SDVLinkMerge xmlns="http://www.microsoft.com/SDV">"_TEXT=.text;_PAGE=PAGE"</SDVLinkMerge>
+    <SDVTemporaryName xmlns="http://www.microsoft.com/SDV" />
+    <SDVLinkPath xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SDVLinkPath>
+    <SDVLinkRelativePath xmlns="http://www.microsoft.com/SDV" />
+    <SDVLinkSwitchIgnore xmlns="http://www.microsoft.com/SDV">4198,4010,4037,4039,4065,4070,4078,4087,4089,4221,4108,4088,4218,4218,4235</SDVLinkSwitchIgnore>
+    <SDVLinkSwitchMachine xmlns="http://www.microsoft.com/SDV" />
+    <SDVLinkSwitchDebugType xmlns="http://www.microsoft.com/SDV">pdata</SDVLinkSwitchDebugType>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>CSQ.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>0</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>DEVICEIO.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>1</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>DRIVERENTRY.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>2</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>NOTIFICATIONCOPY.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>3</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>NOTIFICATIONCREATE.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>4</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>NOTIFICATIONINITIALIZE.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>5</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>NOTIFICATIONSEND.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>6</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>PROCESSCALLBACK.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>7</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>CLEANUPOBECTCONTEXTNOTIFICATION.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>8</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>CREATEKEYNOTIFICATION.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>9</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>FILTEREDENTRY.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>10</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>OPENKEYNOTIFICATION.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>11</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>REGISTRYFILTERRULE.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>12</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>REGISTRYFILTERCALLBACK.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>13</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>REGISTRYFILTERINITIALIZE.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>14</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>REGISTRYFILTERUNLOAD.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>15</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>SETVALUEKEYNOTIFICATION.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>16</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkObjects xmlns="http://www.microsoft.com/SDV">
+      <SdvObjectPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvObjectPath>
+      <SdvObjectRelativePath>C:\USERS\RAFFI\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\OBSERVER\OBSERVER\X64\RELEASE\</SdvObjectRelativePath>
+      <SdvObjectName>UNICODESTRINGCONTAINS.OBJ</SdvObjectName>
+      <SdvObjectSrcName />
+      <SdvObjectSrcPath />
+      <SdvLibOrder>17</SdvLibOrder>
+      <SDVExternal>false</SDVExternal>
+    </SDVLinkObjects>
+    <SDVLinkLinkLibraries xmlns="http://www.microsoft.com/SDV">
+      <DriverMapFile />
+      <SDV_Plugin_Model />
+      <Include />
+      <SDVCFlags />
+      <LibLoc>0</LibLoc>
+      <SDVLibraryName>bufferoverflowfastfailk.lib</SDVLibraryName>
+      <SdvLibMCNew />
+      <SdvLibMCOld />
+      <SDVTemporaryName />
+      <Vcxproj />
+      <NewLibPath>Observer</NewLibPath>
+      <SdvLibPath>C:\Users\Raffi\documents\visual studio 2015\Projects\Observer\Observer</SdvLibPath>
+      <SdvLibRelativePath>C:\PROGRAM FILES (X86)\WINDOWS KITS\10\LIB\10.0.10586.0\KM\X64\BUFFEROVERFLOWFASTFAILK.LIB</SdvLibRelativePath>
+      <SdvLibSwitchIgnore />
+      <SdvLibSwitchMachine />
+      <SdvLibSwitchDefFile />
+      <SdvLibLibOrder>0</SdvLibLibOrder>
+      <SdvLibCPlus>false</SdvLibCPlus>
+      <SdvLibIsValid>true</SdvLibIsValid>
+      <SdvLibBuild>true</SdvLibBuild>
+      <SdvLibScan>true</SdvLibScan>
+      <SdvLibCompile>true</SdvLibCompile>
+      <SdvLibUnSupported>false</SdvLibUnSupported>
+      <SdvLibLink>true</SdvLibLink>
+      <SdvLibFound>false</SdvLibFound>
+      <SdvLibObjectsFound>false</SdvLibObjectsFound>
+      <SdvLibrariesFound>false</SdvLibrariesFound>
+      <SDVDdkLib>false</SDVDdkLib>
+      <SdvLibExternalDependency>false</SdvLibExternalDependency>
+      <SdvLibSwitchWX>false</SdvLibSwitchWX>
+      <SdvLibSwitchNoDefaultLib>false</SdvLibSwitchNoDefaultLib>
+      <SdvLibDate />
+      <SdvLibout />
+      <SdvLibDestination />
+      <SdvLibLab />
+      <SdvLibThirdParty>false</SdvLibThirdParty>
+      <SdvLibObj>0</SdvLibObj>
+    </SDVLinkLinkLibraries>
+    <SDVDdkLib xmlns="http://www.microsoft.com/SDV">false</SDVDdkLib>
+    <SDVLinkObjectsFound xmlns="http://www.microsoft.com/SDV">false</SDVLinkObjectsFound>
+    <SDVLinkLibrariesFound xmlns="http://www.microsoft.com/SDV">false</SDVLinkLibrariesFound>
+    <SDVLinkSwitchWX xmlns="http://www.microsoft.com/SDV">true</SDVLinkSwitchWX>
+    <SDVLinkSwitchNoDefaultLib xmlns="http://www.microsoft.com/SDV">true</SDVLinkSwitchNoDefaultLib>
+    <SDVLinkDebug xmlns="http://www.microsoft.com/SDV">true</SDVLinkDebug>
+    <SDVLinkPdbCompress xmlns="http://www.microsoft.com/SDV">true</SDVLinkPdbCompress>
+    <SDVLinkDriver xmlns="http://www.microsoft.com/SDV">true</SDVLinkDriver>
+    <SDVLinkRelease xmlns="http://www.microsoft.com/SDV">true</SDVLinkRelease>
+    <SDVLinkFullBuild xmlns="http://www.microsoft.com/SDV">false</SDVLinkFullBuild>
+    <LibDate xmlns="http://www.microsoft.com/SDV" />
+    <linkout xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual</linkout>
+    <SDVDestination xmlns="http://www.microsoft.com/SDV">C:\Users\Raffi\documents\visual</SDVDestination>
+    <SDVlab xmlns="http://www.microsoft.com/SDV">LAB01_N</SDVlab>
+    <SDVThirdParty xmlns="http://www.microsoft.com/SDV">false</SDVThirdParty>
+    <SDVLinkObj xmlns="http://www.microsoft.com/SDV">0</SDVLinkObj>
+    <SDVLinkSwitchDef xmlns="http://www.microsoft.com/SDV" />
+  </SDVLink>
+</ArrayOfSDVLink>

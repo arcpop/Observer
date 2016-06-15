@@ -133,7 +133,9 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 			return Status;
 		}
 
-		TotalUnicodeLength = cuRootName->Length + 2 + PreInfo->CompleteName->Length;
+		TotalUnicodeLength = cuRootName->Length;
+		TotalUnicodeLength += sizeof(wchar_t);
+		TotalUnicodeLength += PreInfo->CompleteName->Length;
 	
 		if (TotalUnicodeLength >= 0xFFFF)
 		{
@@ -151,7 +153,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 
 		FullKeyName.Length = (USHORT)TotalUnicodeLength;
 		FullKeyName.MaximumLength = (USHORT)TotalUnicodeLength;
-		Count = cuRootName->Length >> 1;
+		Count = cuRootName->Length / 2;
 		RtlCopyMemory(FullKeyName.Buffer, cuRootName->Buffer, cuRootName->Length);
 		FullKeyName.Buffer[Count] = '\\';
 		RtlCopyMemory(FullKeyName.Buffer + Count + 1, PreInfo->CompleteName->Buffer, PreInfo->CompleteName->Length);
@@ -217,6 +219,7 @@ NTSTATUS RegistryFilterPostCreateKeyEx(
 
 	if (RuleEntry->Rule.Action == ACTION_BLOCK)
 	{
+		ExReleaseRundownProtection(&RuleEntry->RundownProtection);
 		return STATUS_ACCESS_DENIED;
 	}
 

@@ -13,10 +13,10 @@ NTSTATUS RegistryFilterAddRule(
 {
 	static LONG64 RuleCounter = 0;
 	PREGISTRY_FILTER_RULE_ENTRY RuleEntry = NULL;
-
+	ULONG Length =	sizeof(REGISTRY_FILTER_RULE_ENTRY) +
+		((Rule->PathLength + 1) * sizeof(WCHAR));
 	RuleEntry = REGISTRY_FILTER_ALLOCATE(
-		sizeof(REGISTRY_FILTER_RULE_ENTRY) + 
-		((Rule->PathLength + 1) * sizeof(WCHAR)),
+		Length,
 		NonPagedPool
 	);
 
@@ -32,19 +32,22 @@ NTSTATUS RegistryFilterAddRule(
 	);
 
 	RtlCopyMemory(
-		RuleEntry->Rule.Path,
-		Rule->Path,
+		&RuleEntry->Rule.Path[0],
+		&Rule->Path[0],
 		RuleEntry->Rule.PathLength * sizeof(WCHAR)
 	);
 
 	RuleEntry->Rule.Path[RuleEntry->Rule.PathLength] = L'\0';
 
-
+	DEBUG_LOG("%p %p", 
+		((PUCHAR)RuleEntry) + Length, 
+		&RuleEntry->Rule.Path[RuleEntry->Rule.PathLength] + sizeof(wchar_t)
+	);
 
 	RuleHandle->RuleHandle = RuleEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = RuleEntry->RuleHandle.RuleType = RULE_TYPE_REGISTRY;
 
-	RtlInitUnicodeString(&RuleEntry->Path, RuleEntry->Rule.Path);
+	RtlInitUnicodeString(&RuleEntry->Path, &RuleEntry->Rule.Path[0]);
 
 	ExInitializeRundownProtection(&RuleEntry->RundownProtection);
 
@@ -74,7 +77,7 @@ NTSTATUS RegistryFilterRemoveRule(
 	for (
 		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
 		pEntry != NULL;
-		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, TRUE)
+		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
 		)
 	{
 		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;

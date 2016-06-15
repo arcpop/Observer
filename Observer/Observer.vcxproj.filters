@@ -135,5 +135,8 @@
     <ClCompile Include="Process\ProcessCallback.c">
       <Filter>Source Files\Process</Filter>
     </ClCompile>
+    <ClCompile Include="DeviceIO\csq.c">
+      <Filter>Source Files\DeviceIO</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
