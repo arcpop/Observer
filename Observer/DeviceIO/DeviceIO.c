@@ -3,7 +3,7 @@
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 #include "../RegistryFilter.h"
-
+#include "../Process.h"
 
 const wchar_t DeviceName[] = L"\\Device\\Observer";
 const wchar_t DosDeviceName[] = L"\\DosDevices\\Observer";
@@ -189,12 +189,28 @@ NTSTATUS DeviceIOControlAddRule(
 			break;
 		}
 		Length -= FIELD_OFFSET(OBSERVER_REGISTRY_RULE, Path);
-		if (Length < pAddRule->Rule.Registry.PathLength)
+		if (Length < (pAddRule->Rule.Registry.PathLength * sizeof(WCHAR)))
 		{
 			Status = STATUS_BUFFER_TOO_SMALL;
 			break;
 		}
 		Status = RegistryFilterAddRule(&pAddRule->Rule.Registry, &RuleHandle);
+		break;
+	}
+	case RULE_TYPE_CREATE_PROCESS:
+	{
+		if (Length < sizeof(OBSERVER_PROCESS_CREATION_RULE))
+		{
+			Status = STATUS_BUFFER_TOO_SMALL;
+			break;
+		}
+		Length -= FIELD_OFFSET(OBSERVER_PROCESS_CREATION_RULE, ParentProcessName);
+		if (Length < (pAddRule->Rule.Process.ParentProcessNameLength * sizeof(WCHAR)))
+		{
+			Status = STATUS_BUFFER_TOO_SMALL;
+			break;
+		}
+		Status = ProcessObserverAddRule(&pAddRule->Rule.Process, &RuleHandle);
 		break;
 	}
 	default:

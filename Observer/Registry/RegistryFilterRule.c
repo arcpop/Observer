@@ -13,7 +13,7 @@ NTSTATUS RegistryFilterAddRule(
 {
 	static LONG64 RuleCounter = 0;
 	PREGISTRY_FILTER_RULE_ENTRY RuleEntry = NULL;
-	ULONG Length =	sizeof(REGISTRY_FILTER_RULE_ENTRY) +
+	ULONG Length =	FIELD_OFFSET(REGISTRY_FILTER_RULE_ENTRY, Rule.Path) +
 		((Rule->PathLength + 1) * sizeof(WCHAR));
 	RuleEntry = REGISTRY_FILTER_ALLOCATE(
 		Length,
@@ -36,6 +36,7 @@ NTSTATUS RegistryFilterAddRule(
 		&Rule->Path[0],
 		RuleEntry->Rule.PathLength * sizeof(WCHAR)
 	);
+
 	RuleEntry->Rule.Path[RuleEntry->Rule.PathLength] = L'\0';
 	RtlInitUnicodeString(&RuleEntry->Path, &RuleEntry->Rule.Path[0]);
 

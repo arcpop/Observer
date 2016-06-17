@@ -1,5 +1,6 @@
 #include "ProcessObserver.h"
 
+#include "../Util/Util.h"
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 
@@ -41,8 +42,13 @@ NTSTATUS ProcessObserverAddRule(
 {
 	static LONG64 RuleCounter = 0;
 	PPROCESS_RULE_LIST_ENTRY pEntry;
+	ULONG Length = FIELD_OFFSET(PROCESS_RULE_LIST_ENTRY, Rule.ParentProcessName) +
+		((Rule->ParentProcessNameLength + 1) * sizeof(WCHAR));
 
-	pEntry = PROCESS_OBSERVER_ALLOCATE(sizeof(PROCESS_RULE_LIST_ENTRY), NonPagedPool);
+	pEntry = PROCESS_OBSERVER_ALLOCATE(
+		Length,
+		NonPagedPool);
+
 	if (pEntry == NULL)
 	{
 		DEBUG_LOG("ProcessObserverAddRule: Out of memory");
@@ -54,6 +60,14 @@ NTSTATUS ProcessObserverAddRule(
 		Rule,
 		sizeof(OBSERVER_PROCESS_CREATION_RULE)
 	);
+
+	RtlCopyMemory(
+		pEntry->Rule.ParentProcessName,
+		Rule->ParentProcessName,
+		Rule->ParentProcessNameLength * sizeof(WCHAR)
+	);
+	pEntry->Rule.ParentProcessName[Rule->ParentProcessNameLength] = L'\0';
+
 	RuleHandle->RuleHandle = pEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = pEntry->RuleHandle.RuleType = RULE_TYPE_CREATE_PROCESS;
 
@@ -156,7 +170,7 @@ VOID ProcessNotifyRoutine(
 	{
 		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
 		BOOLEAN Matches = TRUE;
-		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT)
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_ID)
 		{
 			Matches = (PPID == pCurrentEntry->Rule.ParentProcessID);
 		}
@@ -167,6 +181,24 @@ VOID ProcessNotifyRoutine(
 		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_CREATING_THREAD)
 		{
 			Matches = Matches && (TID == pCurrentEntry->Rule.CreatingThreadID);
+		}
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_CONTAINS)
+		{
+			UNICODE_STRING ParentProcessName;
+			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && UtilUnicodeStringContains(CreateInfo->ImageFileName, &ParentProcessName, TRUE);
+		}
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_EQUALS)
+		{
+			UNICODE_STRING ParentProcessName;
+			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && RtlEqualUnicodeString(CreateInfo->ImageFileName, &ParentProcessName, TRUE);
+		}
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_ENDS_WITH)
+		{
+			UNICODE_STRING ParentProcessName;
+			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && RtlSuffixUnicodeString(&ParentProcessName, CreateInfo->ImageFileName, TRUE);
 		}
 		if (Matches)
 		{

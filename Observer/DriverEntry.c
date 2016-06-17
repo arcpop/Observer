@@ -7,6 +7,8 @@
 #include "Notification/NotificationQueue.h"
 
 const wchar_t RegPath[] = L"Windows\\CurrentVersion\\Run";
+const wchar_t CmdProcess[] = L"\\cmd.exe";
+const wchar_t DllhostProcess[] = L"dllhost";
 
 DRIVER_INITIALIZE DriverEntry;
 DRIVER_UNLOAD ObserverUnload;
@@ -20,7 +22,11 @@ NTSTATUS DriverEntry(
 )
 {
 	NTSTATUS Status;
-	OBSERVER_PROCESS_CREATION_RULE Rule;
+	struct 
+	{
+		OBSERVER_PROCESS_CREATION_RULE Rule;
+		WCHAR Buffer[1024];
+	} Proc;
 	struct 
 	{
 		OBSERVER_REGISTRY_RULE Rule;
@@ -72,9 +78,21 @@ NTSTATUS DriverEntry(
 		return Status;
 	}
 	
-	Rule.Action = ACTION_REPORT;
-	Rule.ProcessRuleCheckFlags = 0;
-	Status = ProcessObserverAddRule(&Rule, &RuleHandle);
+	Proc.Rule.Action = ACTION_REPORT;
+	Proc.Rule.ProcessRuleCheckFlags = PROCESS_CREATION_CHECK_PARENT_NAME_CONTAINS;
+	RtlCopyMemory(&Proc.Rule.ParentProcessName[0], DllhostProcess, sizeof(DllhostProcess) - sizeof(wchar_t));
+	Proc.Rule.ParentProcessNameLength = (sizeof(DllhostProcess) / 2) - 1;
+	Status = ProcessObserverAddRule(&Proc.Rule, &RuleHandle);
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: ProcessObserverAddRule failed with error 0x%.8X", Status);
+	}
+
+	Proc.Rule.Action = ACTION_BLOCK;
+	Proc.Rule.ProcessRuleCheckFlags = PROCESS_CREATION_CHECK_PARENT_NAME_ENDS_WITH;
+	RtlCopyMemory(&Proc.Rule.ParentProcessName[0], CmdProcess, sizeof(CmdProcess) - sizeof(wchar_t));
+	Proc.Rule.ParentProcessNameLength = (sizeof(CmdProcess) / 2) - 1;
+	Status = ProcessObserverAddRule(&Proc.Rule, &RuleHandle);
 	if (!NT_SUCCESS(Status))
 	{
 		DEBUG_LOG("DriverEntry: ProcessObserverAddRule failed with error 0x%.8X", Status);
