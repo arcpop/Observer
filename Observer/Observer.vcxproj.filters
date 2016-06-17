@@ -50,6 +50,12 @@
     <Filter Include="Header Files\Process">
       <UniqueIdentifier>{2054821d-1ee3-4202-abd2-2f8de7432f96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Image">
+      <UniqueIdentifier>{5a3b3ab5-1f45-48be-8eb0-a37db5a35944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Image">
+      <UniqueIdentifier>{849e3f0c-611c-4879-aa2e-509e5077ecce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log\Log.h">
@@ -81,6 +87,9 @@
     </ClInclude>
     <ClInclude Include="Process.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image\ImageLoadNotify.h">
+      <Filter>Header Files\Image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="DeviceIO\csq.c">
       <Filter>Source Files\DeviceIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\imageloadnotify.c">
+      <Filter>Source Files\Image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

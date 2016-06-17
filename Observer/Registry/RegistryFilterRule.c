@@ -40,8 +40,7 @@ NTSTATUS RegistryFilterAddRule(
 	RuleEntry->Rule.Path[RuleEntry->Rule.PathLength] = L'\0';
 	RtlInitUnicodeString(&RuleEntry->Path, &RuleEntry->Rule.Path[0]);
 
-	RuleEntry->Rule.ValueNameBuffer[REGISTRY_RULE_VALUE_NAME_BUFFER_LENTGTH - 1] = L'\0';
-	RtlInitUnicodeString(&RuleEntry->Rule.ValueName, &RuleEntry->Rule.ValueNameBuffer[0]);
+	RuleEntry->Rule.ValueName[REGISTRY_RULE_VALUE_NAME_BUFFER_LENTGTH - 1] = L'\0';
 
 
 	RuleHandle->RuleHandle = RuleEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
