@@ -12,14 +12,9 @@
 typedef struct _PROCESS_RULE_LIST_ENTRY
 {
 	LIST_ENTRY						ListEntry;
-	EX_RUNDOWN_REF					RundownProtection;
 	OBSERVER_RULE_HANDLE			RuleHandle;
 	OBSERVER_PROCESS_CREATION_RULE	Rule;
 } PROCESS_RULE_LIST_ENTRY, *PPROCESS_RULE_LIST_ENTRY;
-
-
-extern LIST_ENTRY	ProcessRuleList;
-extern FAST_MUTEX	ProcessRuleListMutex;
 
 VOID ProcessNotifyRoutine(
 	_Inout_	 PEPROCESS Process,

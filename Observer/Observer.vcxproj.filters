@@ -91,6 +91,9 @@
     <ClInclude Include="Image\ImageLoadNotify.h">
       <Filter>Header Files\Image</Filter>
     </ClInclude>
+    <ClInclude Include="Util\ResourceList.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Registry\RegistryFilterCallback.c">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="Image\imageloadnotify.c">
       <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\ResourceList.c">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

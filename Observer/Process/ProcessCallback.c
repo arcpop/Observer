@@ -1,21 +1,36 @@
 #include "ProcessObserver.h"
 
 #include "../Util/Util.h"
+#include "../Util/ResourceList.h"
 #include "../Log/Log.h"
 #include "../Notification/NotificationQueue.h"
 
-LIST_ENTRY ProcessRuleList;
-FAST_MUTEX ProcessRuleListMutex;
+
+OBSERVER_RESOURCE_LIST ProcessRuleList;
 
 _Use_decl_annotations_
 NTSTATUS ProcessObserverUnload()
 {
+	PLIST_ENTRY pEntry;
 	NTSTATUS Status;
 	Status = PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, TRUE);
 	if (!NT_SUCCESS(Status))
 	{
 		return Status;
 	}
+	WLockResourceList(&ProcessRuleList);
+	for (
+		pEntry = ProcessRuleList.ListEntry.Flink;
+		pEntry != &ProcessRuleList.ListEntry;
+		)
+	{
+		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
+		pEntry = pEntry->Flink;
+		RemoveEntryList(&pCurrentEntry->ListEntry);
+		PROCESS_OBSERVER_FREE(pCurrentEntry);
+	}
+	WUnlockResourceList(&ProcessRuleList);
+	ExDeleteResourceLite(&ProcessRuleList.Resource);
 	DEBUG_LOG("ProcessObserverUnload completed");
 	return Status;
 }
@@ -23,8 +38,7 @@ _Use_decl_annotations_
 NTSTATUS ProcessObserverInitialize()
 {
 	NTSTATUS Status;
-	InitializeListHead(&ProcessRuleList);
-	ExInitializeFastMutex(&ProcessRuleListMutex);
+	InitializeResourceList(&ProcessRuleList);
 	Status = PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, FALSE);
 	if (!NT_SUCCESS(Status))
 	{
@@ -71,42 +85,9 @@ NTSTATUS ProcessObserverAddRule(
 	RuleHandle->RuleHandle = pEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = pEntry->RuleHandle.RuleType = RULE_TYPE_CREATE_PROCESS;
 
-	ExInitializeRundownProtection(&pEntry->RundownProtection);
-
-	ExAcquireFastMutex(&ProcessRuleListMutex);
-	InsertHeadList(&ProcessRuleList, &pEntry->ListEntry);
-	ExReleaseFastMutex(&ProcessRuleListMutex);
+	InsertResourceListHead(&ProcessRuleList, &pEntry->ListEntry);
 
 	return STATUS_SUCCESS;
-}
-
-PLIST_ENTRY NextProcessRuleListEntry(
-	_In_ PLIST_ENTRY CurrentEntry, 
-	_In_ BOOLEAN ReleaseCurrent
-)
-{
-	PLIST_ENTRY pNextEntry;
-	ExAcquireFastMutex(&ProcessRuleListMutex);
-	if (ReleaseCurrent)
-	{
-		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(CurrentEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
-		ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
-	}
-TryAgain:
-	pNextEntry = CurrentEntry->Flink;
-	if (pNextEntry != &ProcessRuleList)
-	{
-		PPROCESS_RULE_LIST_ENTRY pNext = CONTAINING_RECORD(pNextEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
-		if (ExAcquireRundownProtection(&pNext->RundownProtection))
-		{
-			ExReleaseFastMutex(&ProcessRuleListMutex);
-			return pNextEntry;
-		}
-		CurrentEntry = pNextEntry;
-		goto TryAgain;
-	}
-	ExReleaseFastMutex(&ProcessRuleListMutex);
-	return NULL;
 }
 
 _Use_decl_annotations_
@@ -115,32 +96,27 @@ NTSTATUS ProcessObserverRemoveRule(
 )
 {
 	PLIST_ENTRY pEntry;
+	
+	//
+	// We need a write lock here, since we will modify the list if an entry is found.
+	//
+	WLockResourceList(&ProcessRuleList);
 	for (
-		pEntry = NextProcessRuleListEntry(&ProcessRuleList, FALSE); 
-		pEntry != NULL; 
-		pEntry = NextProcessRuleListEntry(pEntry, TRUE)
+		pEntry = ProcessRuleList.ListEntry.Flink; 
+		pEntry != &ProcessRuleList.ListEntry;
+		pEntry = pEntry->Flink
 	)
 	{
 		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
 		if (RuleHandle->RuleHandle == pCurrentEntry->RuleHandle.RuleHandle)
 		{
-			ExAcquireFastMutex(&ProcessRuleListMutex);
-			if (pEntry->Blink == NULL)
-			{
-				//Somebody is removing us at the moment.
-				ExReleaseFastMutex(&ProcessRuleListMutex);
-				ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
-				return STATUS_NOT_FOUND;
-			}
-			RemoveHeadList(pEntry->Blink);
-			pEntry->Flink = pEntry->Blink = NULL;
-			ExReleaseFastMutex(&ProcessRuleListMutex);
-			ExReleaseRundownProtection(&pCurrentEntry->RundownProtection);
-			ExWaitForRundownProtectionRelease(&pCurrentEntry->RundownProtection);
+			RemoveEntryList(pEntry);
 			PROCESS_OBSERVER_FREE(pCurrentEntry);
+			WUnlockResourceList(&ProcessRuleList);
 			return STATUS_SUCCESS;
 		}
 	}
+	WUnlockResourceList(&ProcessRuleList);
 	return STATUS_NOT_FOUND;
 }
 
@@ -162,10 +138,11 @@ VOID ProcessNotifyRoutine(
 	TID		= (UINT64)CreateInfo->CreatingThreadId.UniqueThread;
 	PPID	= (UINT64)CreateInfo->ParentProcessId;
 
+	RLockResourceList(&ProcessRuleList);
 	for (
-		pEntry = NextProcessRuleListEntry(&ProcessRuleList, FALSE);
-		pEntry != NULL;
-		pEntry = NextProcessRuleListEntry(pEntry, TRUE)
+		pEntry = ProcessRuleList.ListEntry.Flink;
+		pEntry != &ProcessRuleList.ListEntry;
+		pEntry = pEntry->Flink
 		)
 	{
 		PPROCESS_RULE_LIST_ENTRY pCurrentEntry = CONTAINING_RECORD(pEntry, PROCESS_RULE_LIST_ENTRY, ListEntry);
@@ -242,5 +219,6 @@ VOID ProcessNotifyRoutine(
 			}
 		}
 	}
+	RUnlockResourceList(&ProcessRuleList);
 	UNREFERENCED_PARAMETER(Process);
 }
