@@ -22,6 +22,7 @@ NTSTATUS DriverEntry(
 )
 {
 	NTSTATUS Status;
+#ifdef DBG
 	struct 
 	{
 		OBSERVER_PROCESS_CREATION_RULE Rule;
@@ -34,7 +35,7 @@ NTSTATUS DriverEntry(
 	} Reg;
 	OBSERVER_RULE_HANDLE RegRuleHandle;
 	OBSERVER_RULE_HANDLE RuleHandle;
-
+#endif //DBG
 	DEBUG_LOG("DriverEntry: Starting the driver");
 
 	DriverObject->DriverUnload = ObserverUnload;
@@ -77,6 +78,7 @@ NTSTATUS DriverEntry(
 		DEBUG_LOG("DriverEntry: DeviceIOInitialize failed with error 0x%.8X", Status);
 		return Status;
 	}
+#ifdef DBG
 	
 	Proc.Rule.Action = ACTION_REPORT;
 	Proc.Rule.ProcessRuleCheckFlags = PROCESS_CREATION_CHECK_PARENT_NAME_CONTAINS;
@@ -109,7 +111,7 @@ NTSTATUS DriverEntry(
 	{
 		DEBUG_LOG("DriverEntry: RegistryFilterAddRule failed with error 0x%.8X", Status);
 	}
-
+#endif //DBG
 	UNREFERENCED_PARAMETER(RegistryPath);
 	return STATUS_SUCCESS;
 }
