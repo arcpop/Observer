@@ -36,7 +36,10 @@ VOID CleanupObjectContext(
 
 	for (ULONG i = 0; i < pObjectContext->NumberOfRules; i++)
 	{
-		ExReleaseRundownProtection(&pObjectContext->RuleEntries[i]->RundownProtection);
+		if (InterlockedDecrement(&pObjectContext->RuleEntries[i]->Refcount) == 0)
+		{
+			REGISTRY_FILTER_FREE(pObjectContext->RuleEntries[i]);
+		}
 	}
 
 	REGISTRY_FILTER_FREE(pObjectContext);

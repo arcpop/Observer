@@ -16,10 +16,11 @@ VOID HandleCreateKey(
 	REGISTRY_FILTER_OBJECT_CONTEXT ObjCtx;
 	PLIST_ENTRY pEntry;
 	ObjCtx.NumberOfRules = 0;
+	RLockResourceList(&RegistryFilterRuleList);
 	for (
-		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
-		pEntry != NULL;
-		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
+		pEntry = RegistryFilterRuleList.ListEntry.Flink;
+		pEntry != &RegistryFilterRuleList.ListEntry;
+		pEntry = pEntry->Flink
 		)
 	{
 		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
@@ -75,7 +76,7 @@ VOID HandleCreateKey(
 			}
 			if (ObjCtx.NumberOfRules < MAX_OBJECT_CONTEXT_RULES) 
 			{
-				ExAcquireRundownProtection(&CurrentEntry->RundownProtection);
+				InterlockedIncrement(&CurrentEntry->Refcount);
 				ObjCtx.RuleEntries[ObjCtx.NumberOfRules] = CurrentEntry;
 				ObjCtx.NumberOfRules++;
 			}
@@ -85,6 +86,7 @@ VOID HandleCreateKey(
 			}
 		}
 	}
+	RUnlockResourceList(&RegistryFilterRuleList);
 	if (Block)
 	{
 		*ShouldBlock = TRUE;

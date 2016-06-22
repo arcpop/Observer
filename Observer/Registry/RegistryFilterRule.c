@@ -1,9 +1,9 @@
 #include "Includes.h"
 #include "../Rule.h"
 #include "../Log/Log.h"
+#include "../Util/ResourceList.h"
 
-LIST_ENTRY RegistryFilterRuleList;
-FAST_MUTEX RegistryFilterRuleListMutex;
+OBSERVER_RESOURCE_LIST RegistryFilterRuleList;
 
 _Use_decl_annotations_
 NTSTATUS RegistryFilterAddRule(
@@ -13,8 +13,10 @@ NTSTATUS RegistryFilterAddRule(
 {
 	static LONG64 RuleCounter = 0;
 	PREGISTRY_FILTER_RULE_ENTRY RuleEntry = NULL;
+
 	ULONG Length =	FIELD_OFFSET(REGISTRY_FILTER_RULE_ENTRY, Rule.Path) +
 		((Rule->PathLength + 1) * sizeof(WCHAR));
+
 	RuleEntry = REGISTRY_FILTER_ALLOCATE(
 		Length,
 		NonPagedPool
@@ -46,16 +48,13 @@ NTSTATUS RegistryFilterAddRule(
 	RuleHandle->RuleHandle = RuleEntry->RuleHandle.RuleHandle = InterlockedIncrement64(&RuleCounter);
 	RuleHandle->RuleType = RuleEntry->RuleHandle.RuleType = RULE_TYPE_REGISTRY;
 
+	RuleEntry->Refcount = 1;
 
-	ExInitializeRundownProtection(&RuleEntry->RundownProtection);
-
-	ExAcquireFastMutex(&RegistryFilterRuleListMutex);
-
-	InsertHeadList(
+	InsertResourceListHead(
 		&RegistryFilterRuleList,
 		&RuleEntry->ListEntry
 	);
-	ExReleaseFastMutex(&RegistryFilterRuleListMutex);
+
 	return STATUS_SUCCESS;
 }
 
@@ -72,10 +71,12 @@ NTSTATUS RegistryFilterRemoveRule(
 		return STATUS_NOT_FOUND;
 	}
 
+	WLockResourceList(&RegistryFilterRuleList);
+
 	for (
-		pEntry = NextRegistryFilterRuleListEntry(&RegistryFilterRuleList, FALSE);
-		pEntry != NULL;
-		pEntry = NextRegistryFilterRuleListEntry(pEntry, TRUE)
+		pEntry = RegistryFilterRuleList.ListEntry.Flink;
+		pEntry != &RegistryFilterRuleList.ListEntry;
+		pEntry = pEntry->Flink
 		)
 	{
 		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry;
@@ -83,21 +84,16 @@ NTSTATUS RegistryFilterRemoveRule(
 
 		if (CurrentEntry->RuleHandle.RuleHandle == RuleHandle->RuleHandle)
 		{
-			ExAcquireFastMutex(&RegistryFilterRuleListMutex);
-			if (pEntry->Blink == NULL)
+			RemoveEntryList(pEntry);
+			if (InterlockedDecrement(&CurrentEntry->Refcount) == 0)
 			{
-				//Somebody is removing us at the moment.
-				ExReleaseFastMutex(&RegistryFilterRuleListMutex);
-				ExReleaseRundownProtection(&CurrentEntry->RundownProtection);
-				return STATUS_NOT_FOUND;
+				REGISTRY_FILTER_FREE(CurrentEntry);
 			}
-			RemoveHeadList(pEntry->Blink);
-			ExReleaseFastMutex(&RegistryFilterRuleListMutex);
-			ExWaitForRundownProtectionRelease(&CurrentEntry->RundownProtection);
-			REGISTRY_FILTER_FREE(CurrentEntry);
+			WUnlockResourceList(&RegistryFilterRuleList);
 			return STATUS_SUCCESS;
 		}
 	}
+	WUnlockResourceList(&RegistryFilterRuleList);
 	return STATUS_NOT_FOUND;
 }
 

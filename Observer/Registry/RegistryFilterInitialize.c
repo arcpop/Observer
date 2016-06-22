@@ -21,8 +21,8 @@ NTSTATUS RegistryFilterInitialize(
 		return STATUS_NO_MEMORY;
 	}
 
-	InitializeListHead(&RegistryFilterRuleList);
-	ExInitializeFastMutex(&RegistryFilterRuleListMutex);
+	InitializeResourceList(&RegistryFilterRuleList);
+
 
 	pContext->DriverObject = pDriverObject;
 

@@ -7,6 +7,7 @@
 
 #include "../Rule.h"
 #include "../Log/Log.h"
+#include "../Util/ResourceList.h"
 
 #define REGISTRY_FILTER_TAG 'FRbO'
 #define REGISTRY_FILTER_ALLOCATE(size, pool) MyAllocatePoolWithTag(pool, size, REGISTRY_FILTER_TAG)
@@ -29,7 +30,7 @@ EX_CALLBACK_FUNCTION RegistryFilterCallback;
 
 typedef struct _REGISTRY_FILTER_RULE_ENTRY {
 	LIST_ENTRY				ListEntry;
-	EX_RUNDOWN_REF			RundownProtection;
+	LONG					Refcount;
 	OBSERVER_RULE_HANDLE	RuleHandle;
 	UNICODE_STRING			Path;
 	OBSERVER_REGISTRY_RULE	Rule;
@@ -77,11 +78,6 @@ NTSTATUS RegistryFilterPreSetValueKey(
 	_In_ PREG_SET_VALUE_KEY_INFORMATION Info
 );
 
-PLIST_ENTRY NextRegistryFilterRuleListEntry(
-	_In_ PLIST_ENTRY CurrentEntry, 
-	_In_ BOOLEAN ReleaseCurrent
-);
-
 BOOLEAN RegistryMatchStrings(
 	_In_ PCUNICODE_STRING RuleString,
 	_In_ PCUNICODE_STRING RegString,
@@ -92,7 +88,7 @@ VOID CleanupObjectContext(
 	_In_ PVOID ObjectContext
 );
 
-extern LIST_ENTRY RegistryFilterRuleList;
-extern FAST_MUTEX RegistryFilterRuleListMutex;
+extern OBSERVER_RESOURCE_LIST RegistryFilterRuleList;
+
 
 #endif // !REGISTRY_FILTER_H
