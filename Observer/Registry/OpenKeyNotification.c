@@ -127,7 +127,11 @@ NTSTATUS RegistryFilterPostOpenKey(
 )
 {
 	BOOLEAN ShouldBlock = FALSE;
-
+	
+	if (Info->Status != STATUS_SUCCESS)
+	{
+		return STATUS_SUCCESS;
+	}
 	if (Info->CompleteName == NULL)
 	{
 		DEBUG_LOG("RegistryFilterPostOpenKey: CompleteName is NULL");
@@ -175,6 +179,12 @@ NTSTATUS RegistryFilterPostOpenKeyEx(
 	{
 		DEBUG_LOG("RegistryFilterPostOpenKeyEx: PreInformation->CompleteName is NULL");
 		return STATUS_INVALID_PARAMETER;
+	}
+
+	if (Info->Status != STATUS_SUCCESS)
+	{
+		//DEBUG_LOG("RegistryFilterPostOpenKeyEx: Status 0x%.8X, Object is invalid, returning", Info->Status);
+		return STATUS_SUCCESS;
 	}
 
 	//Check if Complete name is a relative path

@@ -150,11 +150,14 @@
     <ClCompile Include="DeviceIO\csq.c">
       <Filter>Source Files\DeviceIO</Filter>
     </ClCompile>
-    <ClCompile Include="Image\imageloadnotify.c">
-      <Filter>Source Files\Image</Filter>
-    </ClCompile>
     <ClCompile Include="Util\ResourceList.c">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\Imageloadnotify.c">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Image\Driver.c">
+      <Filter>Source Files\Image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

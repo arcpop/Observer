@@ -34,11 +34,23 @@ NTSTATUS RegistryFilterPreSetValueKey(
 			}
 			else
 			{
-				UNICODE_STRING ValueName;
-				RtlInitUnicodeString(&ValueName, pEntry->Rule.ValueName);
-				if (!RegistryMatchStrings(&ValueName, Info->ValueName, pEntry->Rule.ValueMatch))
+				if (pEntry->Rule.ValueMatch != 0)
 				{
-					continue;
+					UNICODE_STRING ValueName;
+
+					RtlInitUnicodeString(
+						&ValueName, 
+						pEntry->Rule.ValueName
+					);
+
+					if (!RegistryMatchStrings(
+						&ValueName, 
+						Info->ValueName, 
+						pEntry->Rule.ValueMatch
+					))
+					{
+						continue;
+					}
 				}
 				RegString = Info->ValueName;
 			}

@@ -33,7 +33,7 @@ NTSTATUS RegistryFilterInitialize(
 		&uAltitude,
 		&pDriverObject,
 		(PVOID)pContext,
-		&pContext->FilterContextCookie,
+		&(pContext->FilterContextCookie),
 		NULL
 	);
 

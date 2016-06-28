@@ -114,6 +114,7 @@ NTSTATUS DeviceIOCreate(
 	PIRP			Irp
 )
 {
+	DEBUG_LOG("Driver opened by %.8X", PsGetCurrentProcessId());
 	UNREFERENCED_PARAMETER(DeviceObject);
 	UNREFERENCED_PARAMETER(Irp);
 	return STATUS_SUCCESS;

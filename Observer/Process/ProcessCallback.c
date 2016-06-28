@@ -127,6 +127,7 @@ VOID ProcessNotifyRoutine(
 	PPS_CREATE_NOTIFY_INFO CreateInfo
 )
 {
+	UNICODE_STRING ProcessName;
 	PLIST_ENTRY pEntry;
 	UINT64 PID, TID, PPID;
 	if (CreateInfo == NULL)
@@ -159,23 +160,20 @@ VOID ProcessNotifyRoutine(
 		{
 			Matches = Matches && (TID == pCurrentEntry->Rule.CreatingThreadID);
 		}
-		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_CONTAINS)
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_NAME_CONTAINS)
 		{
-			UNICODE_STRING ParentProcessName;
-			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
-			Matches = Matches && UtilUnicodeStringContains(CreateInfo->ImageFileName, &ParentProcessName, TRUE);
+			RtlInitUnicodeString(&ProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && UtilUnicodeStringContains(CreateInfo->ImageFileName, &ProcessName, TRUE);
 		}
-		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_EQUALS)
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_NAME_EQUALS)
 		{
-			UNICODE_STRING ParentProcessName;
-			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
-			Matches = Matches && RtlEqualUnicodeString(CreateInfo->ImageFileName, &ParentProcessName, TRUE);
+			RtlInitUnicodeString(&ProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && RtlEqualUnicodeString(CreateInfo->ImageFileName, &ProcessName, TRUE);
 		}
-		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_PARENT_NAME_ENDS_WITH)
+		if (pCurrentEntry->Rule.ProcessRuleCheckFlags & PROCESS_CREATION_CHECK_NAME_ENDS_WITH)
 		{
-			UNICODE_STRING ParentProcessName;
-			RtlInitUnicodeString(&ParentProcessName, pCurrentEntry->Rule.ParentProcessName);
-			Matches = Matches && RtlSuffixUnicodeString(&ParentProcessName, CreateInfo->ImageFileName, TRUE);
+			RtlInitUnicodeString(&ProcessName, pCurrentEntry->Rule.ParentProcessName);
+			Matches = Matches && RtlSuffixUnicodeString(&ProcessName, CreateInfo->ImageFileName, TRUE);
 		}
 		if (Matches)
 		{
