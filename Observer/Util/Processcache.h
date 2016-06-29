@@ -1,0 +1,42 @@
+#ifndef PROCESS_CACHE_H
+#define PROCESS_CACHE_H
+#pragma once
+
+#include <ntddk.h>
+
+enum PROCESS_TYPE
+{
+	PROCESS_TYPE_CRITICAL = 0,
+	PROCESS_TYPE_SYSTEM,
+	PROCESS_TYPE_SERVICE_HOST,
+	PROCESS_TYPE_NORMAL,
+};
+
+typedef struct _PROCESS_CACHE_ENTRY
+{
+	LIST_ENTRY ListEntry;
+	HANDLE ProcessId;
+	LONG64 ReferenceCounter;
+	POBJECT_NAME_INFORMATION DosExeFileName;
+	ULONG ProcessType;
+} PROCESS_CACHE_ENTRY, *PPROCESS_CACHE_ENTRY;
+
+typedef struct _PROCESS_CACHE_CHAIN
+{
+	LIST_ENTRY Entries;
+	ERESOURCE RWLock;
+}PROCESS_CACHE_CHAIN, *PPROCESS_CACHE_CHAIN;
+
+
+PPROCESS_CACHE_ENTRY ProcessCacheLookupProcessById(
+	_In_ HANDLE ProcessId
+);
+
+VOID ReleaseProcessCacheEntry(
+	_In_ PPROCESS_CACHE_ENTRY Entry
+);
+
+NTSTATUS ProcessCacheInitialize();
+NTSTATUS ProcessCacheUnload();
+
+#endif // !PROCESS_CACHE_H

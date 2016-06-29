@@ -114,7 +114,7 @@ VOID HandleDriverLoad(
 			}
 			if (CurrentEntry->Rule.Action & ACTION_DBGPRINT)
 			{
-				DbgPrint("Driver load: %wZ at 0x%p", FullImageName, ImageInfo->ImageBase);
+				DbgPrint("Driver loaded: %wZ at 0x%p", FullImageName, ImageInfo->ImageBase);
 			}
 			if (CurrentEntry->Rule.Action & ACTION_REPORT)
 			{

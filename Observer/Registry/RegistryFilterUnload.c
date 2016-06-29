@@ -21,14 +21,13 @@ NTSTATUS RegistryFilterUnload(
 	Status = CmUnRegisterCallback(Context->FilterContextCookie);
 
 	WLockResourceList(&RegistryFilterRuleList);
-
-	for (
-		PLIST_ENTRY pEntry = RegistryFilterRuleList.ListEntry.Flink;
-		pEntry != &RegistryFilterRuleList.ListEntry;
-	)
+	while (!IsListEmpty(&RegistryFilterRuleList.ListEntry))
 	{
-		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry = CONTAINING_RECORD(pEntry, REGISTRY_FILTER_RULE_ENTRY, ListEntry);
-		pEntry = pEntry->Flink;
+		PREGISTRY_FILTER_RULE_ENTRY CurrentEntry = CONTAINING_RECORD(
+			RemoveHeadList(&RegistryFilterRuleList.ListEntry),
+			REGISTRY_FILTER_RULE_ENTRY, 
+			ListEntry);
+
 		if (InterlockedDecrement(&CurrentEntry->Refcount) == 0)
 		{
 			REGISTRY_FILTER_FREE(CurrentEntry);

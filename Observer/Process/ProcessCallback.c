@@ -8,11 +8,17 @@
 
 OBSERVER_RESOURCE_LIST ProcessRuleList;
 
+VOID OpenProcessCallbacksUnload();
+NTSTATUS OpenProcessCallbacksInitialize();
+
+
 _Use_decl_annotations_
 NTSTATUS ProcessObserverUnload()
 {
 	PLIST_ENTRY pEntry;
 	NTSTATUS Status;
+	OpenProcessCallbacksUnload();
+
 	Status = PsSetCreateProcessNotifyRoutineEx(ProcessNotifyRoutine, TRUE);
 	if (!NT_SUCCESS(Status))
 	{
@@ -34,6 +40,7 @@ NTSTATUS ProcessObserverUnload()
 	DEBUG_LOG("ProcessObserverUnload completed");
 	return Status;
 }
+
 _Use_decl_annotations_
 NTSTATUS ProcessObserverInitialize()
 {
@@ -44,6 +51,13 @@ NTSTATUS ProcessObserverInitialize()
 	{
 		return Status;
 	}
+
+	Status = OpenProcessCallbacksInitialize();
+	if (!NT_SUCCESS(Status))
+	{
+		return Status;
+	}
+	
 	DEBUG_LOG("ProcessObserverInitialize completed");
 	return Status;
 }

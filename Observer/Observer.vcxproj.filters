@@ -94,6 +94,9 @@
     <ClInclude Include="Util\ResourceList.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Util\Processcache.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Registry\RegistryFilterCallback.c">
@@ -158,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="Image\Driver.c">
       <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Process\OpenProcessCallback.c">
+      <Filter>Source Files\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Processcache.c">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

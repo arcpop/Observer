@@ -6,11 +6,12 @@
 #include "Process.h"
 #include "Notification/NotificationQueue.h"
 #include "Image\ImageLoadNotify.h"
+#include "Util\Processcache.h"
 
 const wchar_t RegPath[] = L"\\Microsoft\\Windows\\CurrentVersion\\Run";
 const wchar_t CmdProcess[] = L"\\cmd.exe";
 const wchar_t AppDataProcess[] = L"\\AppData\\";
-const wchar_t DrvPath[] = L"\\drivers\\";
+const wchar_t DrvPath[] = L"\\System32\\drivers\\";
 const wchar_t DrvPath2[] = L"\\dummy.sys";
 
 DRIVER_INITIALIZE DriverEntry;
@@ -49,6 +50,13 @@ NTSTATUS DriverEntry(
 	DriverObject->DriverUnload = ObserverUnload;
 
 	g_RegistryFilterContext = NULL;
+
+	Status = ProcessCacheInitialize();
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("DriverEntry: ProcessCacheInitialize failed with error 0x%.8X", Status);
+		return Status;
+	}
 
 	Status = NotificationInitialize();
 
@@ -97,7 +105,7 @@ NTSTATUS DriverEntry(
 
 
 #ifdef DBG
-	Drv.Rule.Action = ACTION_REPORT;
+	Drv.Rule.Action = ACTION_REPORT | ACTION_BLOCK;
 	Drv.Rule.DriverLoadCheckFlags = DRIVER_LOAD_CHECK_PATH_NOT_CONTAINS | DRIVER_LOAD_CHECK_CASE_INSENSITIVE;
 	Drv.Rule.PathLength = (sizeof(DrvPath) / sizeof(wchar_t)) - 1;
 	RtlCopyMemory(Drv.Rule.Path, DrvPath, sizeof(DrvPath));
@@ -189,6 +197,11 @@ VOID ObserverUnload(
 		DEBUG_LOG("ObserverUnload: DeviceIOUnload failed with error 0x%.8X", Status);
 	}
 
+	Status = ProcessCacheUnload();
+	if (!NT_SUCCESS(Status))
+	{
+		DEBUG_LOG("ObserverUnload: ProcessCacheUnload failed with error 0x%.8X", Status);
+	}
 
 
 	DEBUG_LOG("ObserverUnload: Stopping the driver");

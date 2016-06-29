@@ -155,6 +155,7 @@
     <ClCompile Include="Notification\NotificationCreate.c" />
     <ClCompile Include="Notification\NotificationInitialize.c" />
     <ClCompile Include="Notification\NotificationSend.c" />
+    <ClCompile Include="Process\OpenProcessCallback.c" />
     <ClCompile Include="Process\ProcessCallback.c" />
     <ClCompile Include="Registry\CleanupObectContextNotification.c" />
     <ClCompile Include="Registry\CreateKeyNotification.c" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Registry\RegistryFilterInitialize.c" />
     <ClCompile Include="Registry\RegistryFilterUnload.c" />
     <ClCompile Include="Registry\SetValueKeyNotification.c" />
+    <ClCompile Include="Util\Processcache.c" />
     <ClCompile Include="Util\ResourceList.c" />
     <ClCompile Include="Util\UnicodeStringContains.c" />
   </ItemGroup>
@@ -179,6 +181,7 @@
     <ClInclude Include="RegistryFilter.h" />
     <ClInclude Include="Registry\Includes.h" />
     <ClInclude Include="Rule.h" />
+    <ClInclude Include="Util\Processcache.h" />
     <ClInclude Include="Util\ResourceList.h" />
     <ClInclude Include="Util\Util.h" />
   </ItemGroup>
