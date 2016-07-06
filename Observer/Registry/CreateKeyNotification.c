@@ -13,9 +13,11 @@ VOID HandleCreateKey(
 )
 {
 	BOOLEAN Block = FALSE;
-	REGISTRY_FILTER_OBJECT_CONTEXT ObjCtx;
+	ULONG NumberOfRules;
+	PREGISTRY_FILTER_RULE_ENTRY RuleEntries[MAX_OBJECT_CONTEXT_RULES];
 	PLIST_ENTRY pEntry;
-	ObjCtx.NumberOfRules = 0;
+	NumberOfRules = 0;
+
 	RLockResourceList(&RegistryFilterRuleList);
 	for (
 		pEntry = RegistryFilterRuleList.ListEntry.Flink;
@@ -56,11 +58,11 @@ VOID HandleCreateKey(
 						CopyLength = KeyName->Length;
 					}
 					RtlCopyMemory(
-						pNotification->Data.Types.Registry.RegistryPath,
+						pNotification->Data.Types.Registry.KeyPath,
 						KeyName->Buffer,
 						CopyLength
 					);
-					pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+					pNotification->Data.Types.Registry.KeyPath[CopyLength] = L'\0';
 					pNotification->Data.Reaction = CurrentEntry->Rule.Action;
 					NotificationSend(pNotification);
 				}
@@ -74,11 +76,11 @@ VOID HandleCreateKey(
 			{
 				continue;
 			}
-			if (ObjCtx.NumberOfRules < MAX_OBJECT_CONTEXT_RULES) 
+			if (NumberOfRules < MAX_OBJECT_CONTEXT_RULES) 
 			{
 				InterlockedIncrement(&CurrentEntry->Refcount);
-				ObjCtx.RuleEntries[ObjCtx.NumberOfRules] = CurrentEntry;
-				ObjCtx.NumberOfRules++;
+				RuleEntries[NumberOfRules] = CurrentEntry;
+				NumberOfRules++;
 			}
 			else
 			{
@@ -93,8 +95,9 @@ VOID HandleCreateKey(
 		return;
 	}
 	*ShouldBlock = FALSE;
-	if (ObjCtx.NumberOfRules > 0)
+	if (NumberOfRules > 0)
 	{
+		USHORT Length;
 		PVOID OldCtx = NULL;
 		NTSTATUS Status;
 		PREGISTRY_FILTER_OBJECT_CONTEXT pCtx = REGISTRY_FILTER_ALLOCATE(sizeof(REGISTRY_FILTER_OBJECT_CONTEXT), NonPagedPool);
@@ -104,7 +107,16 @@ VOID HandleCreateKey(
 			*ShouldBlock = TRUE;
 			return;
 		}
-		RtlCopyMemory(pCtx, &ObjCtx, sizeof(REGISTRY_FILTER_OBJECT_CONTEXT));
+		Length = KeyName->Length;
+		if (Length > 1000 * sizeof(WCHAR))
+		{
+			Length = 1000 * sizeof(WCHAR);
+		}
+		RtlCopyMemory(pCtx->KeyNameBuffer, KeyName->Buffer, Length);
+		pCtx->KeyName.Buffer = pCtx->KeyNameBuffer;
+		pCtx->KeyName.Length = pCtx->KeyName.MaximumLength = Length;
+		pCtx->NumberOfRules = NumberOfRules;
+		RtlCopyMemory(pCtx->RuleEntries, RuleEntries, sizeof(RuleEntries));
 		Status = CmSetCallbackObjectContext(Object, Cookie, pCtx, &OldCtx);
 		if (!NT_SUCCESS(Status))
 		{

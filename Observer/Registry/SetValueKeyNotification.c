@@ -69,21 +69,29 @@ NTSTATUS RegistryFilterPreSetValueKey(
 				{
 					USHORT CopyLength = (NOTIFICATION_STRING_BUFFER_SIZE - 1) * sizeof(WCHAR);
 					pNotification->Data.Types.Registry.RegistryAction = NOTIFICATION_REGISTRY_SET_VALUE;
-					if (RegString->Length > CopyLength)
+
+					if (pObjCtx->KeyName.Length > CopyLength)
 					{
 						pNotification->Data.Types.Registry.Truncated =
-							(RegString->Length - CopyLength) >> 1;
+							(pObjCtx->KeyName.Length - CopyLength) >> 1;
 					}
 					else
 					{
-						CopyLength = RegString->Length;
+						CopyLength = pObjCtx->KeyName.Length;
 					}
 					RtlCopyMemory(
-						pNotification->Data.Types.Registry.RegistryPath,
+						pNotification->Data.Types.Registry.KeyPath,
+						pObjCtx->KeyName.Buffer,
+						CopyLength
+					);
+					pNotification->Data.Types.Registry.KeyPath[CopyLength] = L'\0';
+					CopyLength = min(63 * sizeof(WCHAR), RegString->Length);
+					RtlCopyMemory(
+						pNotification->Data.Types.Registry.ValueName,
 						RegString->Buffer,
 						CopyLength
 					);
-					pNotification->Data.Types.Registry.RegistryPath[CopyLength] = L'\0';
+					pNotification->Data.Types.Registry.ValueName[CopyLength] = L'\0';
 					pNotification->Data.Reaction = pEntry->Rule.Action;
 					NotificationSend(pNotification);
 				}

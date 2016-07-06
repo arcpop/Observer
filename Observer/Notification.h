@@ -28,7 +28,8 @@ typedef struct _OBSERVER_NOTIFICATION {
 		{
 			UINT16	RegistryAction;
 			UINT16	Truncated;
-			WCHAR	RegistryPath[NOTIFICATION_STRING_BUFFER_SIZE];
+			WCHAR	ValueName[64];
+			WCHAR	KeyPath[NOTIFICATION_STRING_BUFFER_SIZE];
 		} Registry;
 		struct
 		{
