@@ -117,6 +117,14 @@ NTSTATUS DeviceIOCreate(
 	DEBUG_LOG("Driver opened by %.8X", PsGetCurrentProcessId());
 	UNREFERENCED_PARAMETER(DeviceObject);
 	UNREFERENCED_PARAMETER(Irp);
+	if (VerifyProcess(PsGetCurrentProcess()) != TRUE)
+	{
+		DEBUG_LOG("Failed to verify process!");
+	}
+	else
+	{
+		DEBUG_LOG("Verification successful!");
+	}
 	return STATUS_SUCCESS;
 }
 

@@ -168,5 +168,8 @@
     <ClCompile Include="Util\Processcache.c">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="DeviceIO\VerifyProcess.c">
+      <Filter>Source Files\DeviceIO</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

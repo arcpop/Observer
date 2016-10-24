@@ -47,6 +47,11 @@ typedef struct _OBSERVER_NOTIFICATION {
 		} ProcessCreated;
 		struct
 		{
+			UINT64 TargetProcessID;
+			ACCESS_MASK RequestedAccess;
+		} ProcessOpened;
+		struct
+		{
 			UINT64	ImageBase;
 			UINT64	ImageSize;
 			UINT32  ImageSigned		: 1;

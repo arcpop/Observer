@@ -3,6 +3,7 @@
 #include "../Notification/NotificationQueue.h"
 
 
+
 _Use_decl_annotations_
 NTSTATUS RegistryFilterPreSetValueKey(
 	PREGISTRY_FILTER_CONTEXT pContext, 

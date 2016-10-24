@@ -5,6 +5,7 @@
 
 #include <ntddk.h>
 
+BOOLEAN VerifyProcess(PEPROCESS Process);
 
 NTSTATUS  DeviceIOInitialize(
 	_In_ PDRIVER_OBJECT DriverObject
@@ -40,5 +41,8 @@ IO_CSQ_ACQUIRE_LOCK          ObserverCsqAcquireLock;
 IO_CSQ_RELEASE_LOCK          ObserverCsqReleaseLock;
 IO_CSQ_COMPLETE_CANCELED_IRP ObserverCsqCompleteCanceledIrp;
 
+#define DEVICEIO_TAG 'OIbO'
+#define DEVICEIO_ALLOCATE(size, type) ExAllocatePoolWithTag(type, size, DEVICEIO_TAG)
+#define DEVICEIO_FREE(ptr) ExFreePoolWithTag(ptr, DEVICEIO_TAG)
 
 #endif // !DEVICE_IO_H
